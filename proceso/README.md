@@ -6,6 +6,7 @@ implementación y gestión del proyecto de la memoria.
 | Fecha | Sprint | Entrada |
 |---|---|---|
 | 28/09/2026 | Sprint 0 | [01 · Montaje inicial: repositorios, tablero Kanban y normas de contribución](01-montaje-inicial.md) |
+| 28/09/2026 | Sprint 0 | [02 · Anteproyecto, priorización MoSCoW y plan de sprints](02-anteproyecto-priorizacion.md) |
 
 ## Convenciones
 
