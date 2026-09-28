@@ -1,0 +1,39 @@
+@startuml 15-esquema-users
+!include estilo.iuml
+title Base de datos del servicio users (migración Flyway V1)
+hide circle
+skinparam linetype ortho
+
+entity "profile" as profile {
+  * user_id : UUID <<PK>>
+  --
+  * display_name : VARCHAR(50)
+  zone_name : VARCHAR(60)
+  zone_latitude : NUMERIC(5,2)
+  zone_longitude : NUMERIC(6,2)
+  * updated_at : TIMESTAMPTZ
+}
+
+entity "profile_hobby" as hobby {
+  * user_id : UUID <<PK, FK>>
+  * activity : VARCHAR(30) <<PK>>
+  --
+  * level : VARCHAR(20)
+}
+
+profile ||--o{ hobby : ON DELETE CASCADE
+
+note right of profile
+  CHECK zone_complete: la zona tiene nombre y
+  coordenadas, o no tiene nada.
+  NUMERIC(5,2) y NUMERIC(6,2): el propio esquema
+  impide guardar más de 2 decimales.
+end note
+
+note right of hobby
+  La clave primaria (user_id, activity)
+  impide repetir una actividad.
+  Índice por activity para buscar
+  personas afines a un plan.
+end note
+@enduml
