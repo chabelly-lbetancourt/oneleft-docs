@@ -72,12 +72,8 @@ Se redactó el [anteproyecto](../anteproyecto/anteproyecto.md) con:
 
 ## 5. Diagramas
 
-Los diagramas se escribieron en **Mermaid** dentro del propio Markdown (GitHub los muestra directamente) y se
-exportaron a PNG con `mermaid-cli` para usarlos en la memoria:
-
-```bash
-npx @mermaid-js/mermaid-cli -i 01-casos-de-uso.mmd -o 01-casos-de-uso.png -s 2 -b white
-```
+> **Actualización:** los diagramas se escribieron primero en Mermaid y después se migraron a **PlantUML**, que es
+> la notación UML estándar para la memoria. Ver [04 · Migración de los diagramas a PlantUML](04-diagramas-plantuml.md).
 
 | Diagrama | Fichero |
 |---|---|
@@ -109,7 +105,7 @@ oneleft-docs/
 │   └── workflows/lint.yml       validación de ramas y commits
 ├── anteproyecto/
 │   ├── anteproyecto.md
-│   └── diagramas/               fuentes Mermaid (.mmd) y PNG exportados
+│   └── diagramas/               fuentes PlantUML en src/ y PNG/SVG exportados
 ├── memoria/
 │   └── estructura.md            índice de la memoria y puntos de énfasis
 ├── proceso/
