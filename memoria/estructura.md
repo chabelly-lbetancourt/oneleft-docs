@@ -25,6 +25,11 @@ La memoria debe hacer énfasis en estos aspectos. Cada uno indica dónde se trat
 | Estructura de directorios | 4.3, 4.4, anexo | Árbol de cada repositorio con explicación |
 | Fotos de los resultados | 5 | Capturas de la app web y Android, Grafana, SonarQube, pruebas de carga |
 
+## Diagramas
+
+Los diagramas del anteproyecto están en `anteproyecto/diagramas` y los nuevos de la memoria en
+`memoria/diagramas`, siempre en PlantUML (fuentes en `src/`, generados con `tools/render-plantuml.sh`).
+
 ## Portada
 
 - Universidad Politécnica de Madrid · Escuela Técnica Superior de Ingeniería de Sistemas Informáticos
