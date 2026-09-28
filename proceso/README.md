@@ -11,6 +11,7 @@ implementación y gestión del proyecto de la memoria.
 | 28/09/2026 | Sprint 1 | [04 · Migración de los diagramas a PlantUML](04-diagramas-plantuml.md) |
 | 28/09/2026 | Sprint 2 | [05 · Integración continua con cobertura y SonarQube](05-sprint2-integracion-continua.md) |
 | 28/09/2026 | Sprint 3 | [06 · Inicio de sesión con Keycloak y observabilidad](06-sprint3-login-y-observabilidad.md) |
+| 28/09/2026 | Sprint 4 | [07 · Documentación OpenAPI con Swagger UI y microservicios en contenedores](07-openapi-y-contenedores.md) |
 
 ## Convenciones
 
