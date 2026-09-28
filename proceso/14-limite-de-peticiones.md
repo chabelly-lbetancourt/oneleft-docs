@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | backend#63 · Límite de peticiones y anti-spam | Tarea | Should | 3 | PR #84 |
 | infra#29 · Redis para el gateway y panel de Grafana (sub-issue) | Tarea | Should | 1 | PR #30 |
-| frontend#36 · Mensaje traducido al superar el límite (sub-issue) | Tarea | Should | 1 | PR abierta |
+| frontend#36 · Mensaje traducido al superar el límite (sub-issue) | Tarea | Should | 1 | PR #37 |
 | docs#29 · Documentación (sub-issue) | Tarea | Should | 1 | Esta entrada |
 
 **Objetivo:** que nadie pueda inundar el mapa de planes falsos ni saturar la API. El límite se aplica en el
