@@ -16,7 +16,7 @@ La memoria debe hacer énfasis en estos aspectos. Cada uno indica dónde se trat
 | Estado del arte | 2 | Comparativa de aplicaciones, TFM previos y alternativas tecnológicas |
 | Requisitos | 3.2, 3.3 | Tablas RF y RNF con trazabilidad a historias de usuario |
 | Historias de usuario | 3.4 | Catálogo HU con criterios de aceptación, MoSCoW y puntos |
-| Diagramas UML | 3.5–3.8 | Casos de uso, componentes, clases, estados, secuencia y despliegue |
+| Diagramas UML (PlantUML) | 3.5–3.8 | Casos de uso, componentes, clases, estados, secuencia y despliegue |
 | Bases de datos | 3.9 | Modelo entidad-relación, base de datos por servicio, PostGIS y Redis |
 | Arquitectura | 3.5, 4.3 | Microservicios con arquitectura hexagonal, eventos, gateway |
 | Infraestructura | 4.7 | Docker, Kubernetes, entornos, pipelines |

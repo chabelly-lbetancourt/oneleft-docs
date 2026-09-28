@@ -1,7 +1,0 @@
-flowchart LR
-    NG[Código Angular<br/>PrimeNG + Tailwind] --> BUILD[ng build]
-    BUILD --> WEBAPP[App web<br/>S3 + CloudFront]
-    BUILD --> CAP[Capacitor sync]
-    CAP --> AS[Proyecto Android<br/>Android Studio]
-    AS --> APK[APK / AAB]
-    PLG[Plugins nativos<br/>Geolocation · Push Notifications] --> CAP

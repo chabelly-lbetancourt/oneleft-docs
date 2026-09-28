@@ -1,0 +1,24 @@
+@startuml 08-pipeline-app-movil
+!include estilo.iuml
+title Generación de la app web y la app Android desde el mismo código
+
+start
+:Código Angular
+(PrimeNG + Tailwind CSS);
+:ng build;
+fork
+  :App web;
+  :Publicación en S3 + CloudFront;
+fork again
+  :npx cap sync android;
+  note right
+    Plugins nativos de Capacitor:
+    Geolocation y Push Notifications
+  end note
+  :Proyecto Android
+  (Android Studio / Gradle);
+  :APK / AAB;
+  :Artefacto de GitHub Actions;
+end fork
+stop
+@enduml
