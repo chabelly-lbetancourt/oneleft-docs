@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Renderiza los diagramas PlantUML (*.puml) de un directorio a PNG (GitHub) y SVG (memoria).
-# Usa la imagen Docker oficial de PlantUML, que incluye Graphviz: no hay que instalar nada.
-# Uso: tools/render-plantuml.sh [directorio]   (por defecto anteproyecto/diagramas)
-# Las fuentes están en <directorio>/src y las imágenes se generan en <directorio>.
+# Renders the PlantUML diagrams (*.puml) of a directory to PNG (GitHub) and SVG (thesis).
+# Uses the official PlantUML Docker image, which includes Graphviz: nothing to install.
+# Usage: tools/render-plantuml.sh [directory]   (anteproyecto/diagramas by default)
+# Sources live in <directory>/src and the images are written to <directory>.
 set -euo pipefail
 DIR="$(cd "${1:-anteproyecto/diagramas}" && pwd)"
 IMAGE="plantuml/plantuml:1.2026.8"

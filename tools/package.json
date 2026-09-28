@@ -2,9 +2,9 @@
   "name": "oneleft-docs-tools",
   "private": true,
   "type": "module",
-  "description": "Herramientas para generar las capturas de la documentación",
+  "description": "Tools that generate the screenshots of the documentation",
   "scripts": {
-    "captura": "node captura-web.mjs"
+    "capture": "node capture-web.mjs"
   },
   "dependencies": {
     "puppeteer-core": "^24.43.1"

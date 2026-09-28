@@ -136,9 +136,9 @@ Para que todas las evidencias tengan el mismo aspecto se añadieron tres herrami
 
 | Herramienta | Uso |
 |---|---|
-| `captura-terminal.sh` | Convierte la salida de un comando en una captura con aspecto de terminal |
-| `captura-web.mjs` | Captura una página emulando un móvil o un escritorio (Puppeteer + Chrome) |
-| `arbol.py` | Genera el árbol de directorios compactando los paquetes Java, como IntelliJ |
+| `capture-terminal.sh` | Convierte la salida de un comando en una captura con aspecto de terminal |
+| `capture-web.mjs` | Captura una página emulando un móvil o un escritorio (Puppeteer + Chrome) |
+| `tree.py` | Genera el árbol de directorios compactando los paquetes Java, como IntelliJ |
 
 ## Pendiente
 
