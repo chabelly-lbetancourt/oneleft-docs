@@ -1,0 +1,49 @@
+@startuml 10-pipeline-ci
+!include estilo.iuml
+title Pipeline de integración continua (GitHub Actions)
+
+start
+:Push a issue#N, dev o main
+o pull request contra dev / main;
+
+fork
+  partition "lint (todos los repositorios)" {
+    :Validar nombre de rama\n(dev, issue#N, hotfix/...);
+    :Validar commits\n(Conventional Commits + #issue);
+  }
+fork again
+  partition "oneleft-backend · ci" {
+    :./mvnw verify\n(Java 21, tests JUnit + ArchUnit);
+    if (Cobertura JaCoCo ≥ 80 %?) then (sí)
+      :Informe de cobertura\ny resumen del job;
+      if (SONAR_TOKEN configurado?) then (sí)
+        :Análisis en SonarQube Cloud\n(quality gate);
+      endif
+      :Imagen Docker por servicio\n(gateway, users, plans);
+      if (rama main?) then (sí)
+        :Publicar en GHCR\n(:latest y :sha);
+      endif
+    else (no)
+      :Build fallido; <<#FECACA>>
+      stop
+    endif
+  }
+fork again
+  partition "oneleft-frontend · ci" {
+    :npm ci (Node 24 LTS);
+    :ng lint (angular-eslint);
+    if (Tests Vitest y cobertura ≥ 80 %?) then (sí)
+      :ng build de producción\n(licencia PrimeNG desde secreto);
+      :Artefacto con build y cobertura;
+      if (SONAR_TOKEN configurado?) then (sí)
+        :Análisis en SonarQube Cloud\n(quality gate);
+      endif
+    else (no)
+      :Build fallido; <<#FECACA>>
+      stop
+    endif
+  }
+end fork
+:La PR solo se fusiona\ncon todos los checks en verde;
+stop
+@enduml
