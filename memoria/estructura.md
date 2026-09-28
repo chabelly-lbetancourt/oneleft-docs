@@ -19,7 +19,7 @@ La memoria debe hacer énfasis en estos aspectos. Cada uno indica dónde se trat
 | Diagramas UML (PlantUML) | 3.5–3.8 | Casos de uso, componentes, clases, estados, secuencia y despliegue |
 | Bases de datos | 3.9 | Modelo entidad-relación, base de datos por servicio, PostGIS y Redis |
 | Arquitectura | 3.5, 4.3 | Microservicios con arquitectura hexagonal, eventos, gateway; diagrama 17 con los logos de cada tecnología |
-| Infraestructura | 4.7 | Docker, Kubernetes, entornos, pipelines |
+| Infraestructura | 4.7 | Docker, Kubernetes, entornos **dev / pre (staging) / pro** con su flujo de promoción (diagrama 18), pipelines (diagrama 10) |
 | Cómo encaja AWS | 3.8, 4.7 | Diagrama de despliegue en AWS, servicios usados y control de costes |
 | App móvil | 4.5, 5 | Pipeline de Capacitor, capturas en Android |
 | Estructura de directorios | 4.3, 4.4, anexo | Árbol de cada repositorio con explicación |
