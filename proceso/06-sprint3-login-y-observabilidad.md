@@ -68,7 +68,7 @@ que la integración continua no necesita un Keycloak real. La verificación con 
 - 17 tests; cobertura del 94 % de sentencias, 92 % de ramas, 100 % de funciones y 91 % de líneas.
 
 El flujo completo se recorrió en un navegador real contra Keycloak con una herramienta automática
-([`tools/captura-login.mjs`](../tools/captura-login.mjs)), que toma las credenciales de prueba de variables de entorno:
+([`tools/capture-login.mjs`](../tools/capture-login.mjs)), que toma las credenciales de prueba de variables de entorno:
 
 | | | |
 |---|---|---|

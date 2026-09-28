@@ -84,7 +84,7 @@ Sprint 1). Es un buen ejemplo del valor de la integración continua: detecta lo 
 | ![Perfil inicial](img/45-hu002-1-inicial.png) | ![Perfil editado](img/45-hu002-2-editado.png) | ![Perfil guardado](img/45-hu002-3-guardado.png) |
 | *1. Perfil creado en el primer acceso* | *2. Zona aproximada y aficiones* | *3. Guardado* |
 
-*Figura 55. Recorrido de HU-002 en móvil, automatizado con [`tools/captura-perfil.mjs`](../tools/captura-perfil.mjs)
+*Figura 55. Recorrido de HU-002 en móvil, automatizado con [`tools/capture-profile.mjs`](../tools/capture-profile.mjs)
 y una posición simulada del dispositivo (40.391234, −3.628765).*
 
 ![Perfil en la base de datos](img/46-hu002-base-de-datos.png)
