@@ -140,7 +140,7 @@ Al tratarse de un proyecto individual, se adapta Scrum sin ceremonias rígidas:
 | Orquestación | Kubernetes (kind en local, AWS en producción) |
 | Observabilidad | Grafana, Loki y Prometheus |
 | Pruebas | JUnit, Mockito, Testcontainers, Jasmine/Jest, Playwright, k6 |
-| Diagramas | Mermaid y PlantUML |
+| Diagramas UML | PlantUML (renderizado con Docker) |
 | Asistencia con IA | Claude Code |
 
 ## 5. Requisitos
@@ -209,171 +209,36 @@ Cada historia tiene su issue con criterios de aceptación en el [tablero del pro
 
 ### 6.1 Casos de uso
 
-```mermaid
-flowchart LR
-    U((Usuario))
-    O((Organizador))
-    A((Administrador))
-    S((Sistema de IA))
-    subgraph OneLeft
-        UC1([Registrarse e iniciar sesión])
-        UC2([Editar perfil])
-        UC3([Publicar plan])
-        UC4([Publicar plan en lenguaje natural])
-        UC5([Ver planes cercanos])
-        UC6([Unirse a un plan])
-        UC7([Recibir notificaciones])
-        UC8([Chatear con participantes])
-        UC9([Valorar participantes])
-        UC10([Moderar contenido])
-        UC11([Consultar métricas])
-    end
-    U --- UC1 & UC2 & UC5 & UC6 & UC7 & UC8 & UC9
-    O --- UC3 & UC4
-    O -. es un .-> U
-    A --- UC10 & UC11
-    S --- UC4 & UC7 & UC10
-```
+![Diagrama de casos de uso](diagramas/01-casos-de-uso.png)
+
+*Fuente PlantUML: [`diagramas/src/01-casos-de-uso.puml`](diagramas/src/01-casos-de-uso.puml)*
 
 ### 6.2 Arquitectura de componentes
 
-```mermaid
-flowchart TB
-    subgraph Clientes
-        WEB[App web<br/>Angular + PrimeNG + Tailwind]
-        AND[App Android<br/>Capacitor]
-    end
-    GW[API Gateway<br/>Spring Cloud Gateway]
-    KC[Keycloak<br/>OAuth2 / OIDC]
-    subgraph Microservicios
-        USR[users<br/>perfiles y reputación]
-        PLN[plans<br/>planes, plazas, caducidad]
-        GEO[geo<br/>búsqueda por proximidad]
-        NOT[notifications<br/>push y tiempo real]
-        CHT[chat<br/>WebSockets]
-        AI[ai<br/>lenguaje natural, moderación, ranking]
-    end
-    MQ[(RabbitMQ<br/>eventos)]
-    PG[(PostgreSQL + PostGIS<br/>una base de datos por servicio)]
-    RD[(Redis<br/>GEO, bloqueos, caché)]
-    LLM[[Proveedor LLM]]
-    FCM[[Firebase Cloud Messaging]]
-    WEB & AND --> GW
-    WEB & AND -. login .-> KC
-    GW --> USR & PLN & GEO & NOT & CHT & AI
-    PLN -- PlanPublicado / PlazaOcupada --> MQ
-    MQ --> GEO & NOT & AI
-    USR & PLN & GEO & CHT --> PG
-    GEO & PLN --> RD
-    AI --> LLM
-    NOT --> FCM --> AND
-```
+![Arquitectura de componentes](diagramas/02-arquitectura-componentes.png)
+
+*Fuente PlantUML: [`diagramas/src/02-arquitectura-componentes.puml`](diagramas/src/02-arquitectura-componentes.puml)*
 
 Cada microservicio sigue **arquitectura hexagonal** (dominio, aplicación e infraestructura) y se comunica de forma
 síncrona a través del gateway y de forma asíncrona mediante **eventos** en RabbitMQ.
 
 ### 6.3 Modelo de dominio del servicio de planes
 
-```mermaid
-classDiagram
-    class Plan {
-        +UUID id
-        +UUID organizadorId
-        +Actividad actividad
-        +Ubicacion ubicacion
-        +Instant inicio
-        +int plazasTotales
-        +EstadoPlan estado
-        +publicar()
-        +unirse(UUID usuarioId) Participacion
-        +caducar()
-        +plazasLibres() int
-    }
-    class Participacion {
-        +UUID usuarioId
-        +Instant fecha
-        +boolean asistio
-    }
-    class Actividad {
-        +String codigo
-        +String nombre
-        +Nivel nivelRequerido
-    }
-    class Ubicacion {
-        +double latitud
-        +double longitud
-        +String zonaAproximada
-    }
-    class EstadoPlan {
-        <<enumeration>>
-        ABIERTO
-        COMPLETO
-        EN_CURSO
-        CADUCADO
-        CANCELADO
-    }
-    class PlanRepository {
-        <<interface>>
-        +guardar(Plan)
-        +buscarPorId(UUID) Plan
-    }
-    class EventPublisher {
-        <<interface>>
-        +publicar(EventoDominio)
-    }
-    Plan "1" *-- "0..*" Participacion
-    Plan --> Actividad
-    Plan --> Ubicacion
-    Plan --> EstadoPlan
-    PlanRepository ..> Plan
-    EventPublisher ..> Plan
-```
+![Modelo de dominio del servicio de planes](diagramas/03-clases-dominio-planes.png)
+
+*Fuente PlantUML: [`diagramas/src/03-clases-dominio-planes.puml`](diagramas/src/03-clases-dominio-planes.puml)*
 
 ### 6.4 Ciclo de vida de un plan
 
-```mermaid
-stateDiagram-v2
-    [*] --> Abierto: publicar
-    Abierto --> Completo: se ocupa la última plaza
-    Completo --> Abierto: un participante abandona
-    Abierto --> EnCurso: llega la hora de inicio
-    Completo --> EnCurso: llega la hora de inicio
-    Abierto --> Cancelado: el organizador cancela
-    Completo --> Cancelado: el organizador cancela
-    EnCurso --> Finalizado: termina el plan
-    Finalizado --> [*]: valoraciones
-    Cancelado --> [*]
-```
+![Ciclo de vida de un plan](diagramas/04-estados-plan.png)
+
+*Fuente PlantUML: [`diagramas/src/04-estados-plan.puml`](diagramas/src/04-estados-plan.puml)*
 
 ### 6.5 Secuencia: unirse a la última plaza
 
-```mermaid
-sequenceDiagram
-    actor A as Usuario A
-    actor B as Usuario B
-    participant GW as API Gateway
-    participant P as plans
-    participant R as Redis
-    participant DB as PostgreSQL
-    participant MQ as RabbitMQ
-    A->>GW: POST /plans/{id}/participants
-    B->>GW: POST /plans/{id}/participants
-    GW->>P: unirse(A)
-    GW->>P: unirse(B)
-    P->>R: SET lock:plan:{id} NX
-    R-->>P: OK (A obtiene el bloqueo)
-    P->>DB: UPDATE plan SET ocupadas = ocupadas + 1<br/>WHERE id = ? AND ocupadas < plazas
-    DB-->>P: 1 fila (plaza asignada a A)
-    P->>R: DEL lock:plan:{id}
-    P->>MQ: PlanCompletado
-    P-->>A: 201 Created
-    P->>R: SET lock:plan:{id} NX
-    R-->>P: OK (B obtiene el bloqueo)
-    P->>DB: UPDATE ... WHERE ocupadas < plazas
-    DB-->>P: 0 filas (sin plazas)
-    P->>R: DEL lock:plan:{id}
-    P-->>B: 409 Conflict (plan completo)
-```
+![Secuencia: unirse a la última plaza](diagramas/05-secuencia-unirse-plan.png)
+
+*Fuente PlantUML: [`diagramas/src/05-secuencia-unirse-plan.puml`](diagramas/src/05-secuencia-unirse-plan.puml)*
 
 La condición `ocupadas < plazas` en la propia sentencia garantiza el requisito RNF-03 incluso si falla el bloqueo
 distribuido.
@@ -392,72 +257,9 @@ acceden a ellos a través de su API o de eventos.
 | notifications | PostgreSQL + Redis | Historial de avisos y límites por usuario |
 | ai | PostgreSQL | Datos de entrenamiento y decisiones del ranking |
 
-```mermaid
-erDiagram
-    USUARIO ||--o{ AFICION : tiene
-    USUARIO ||--o{ PLAN : organiza
-    USUARIO ||--o{ PARTICIPACION : realiza
-    PLAN ||--o{ PARTICIPACION : contiene
-    PLAN }o--|| ACTIVIDAD : es_de
-    PLAN ||--o{ MENSAJE : tiene
-    USUARIO ||--o{ VALORACION : recibe
-    PLAN ||--o{ VALORACION : origina
-    USUARIO ||--o{ NOTIFICACION : recibe
-    PLAN ||--o{ NOTIFICACION : genera
+![Modelo entidad-relación](diagramas/06-modelo-entidad-relacion.png)
 
-    USUARIO {
-        uuid id PK
-        string nombre
-        string zona_aproximada
-        float reputacion
-        int ausencias
-    }
-    AFICION {
-        uuid usuario_id FK
-        string actividad FK
-        string nivel
-    }
-    ACTIVIDAD {
-        string codigo PK
-        string nombre
-    }
-    PLAN {
-        uuid id PK
-        uuid organizador_id FK
-        string actividad FK
-        geography ubicacion
-        timestamp inicio
-        int plazas
-        int ocupadas
-        string estado
-    }
-    PARTICIPACION {
-        uuid plan_id FK
-        uuid usuario_id FK
-        timestamp fecha
-        boolean asistio
-    }
-    MENSAJE {
-        uuid id PK
-        uuid plan_id FK
-        uuid autor_id FK
-        text contenido
-        timestamp fecha
-    }
-    VALORACION {
-        uuid plan_id FK
-        uuid autor_id FK
-        uuid valorado_id FK
-        int puntuacion
-    }
-    NOTIFICACION {
-        uuid id PK
-        uuid usuario_id FK
-        uuid plan_id FK
-        float probabilidad
-        boolean aceptada
-    }
-```
+*Fuente PlantUML: [`diagramas/src/06-modelo-entidad-relacion.puml`](diagramas/src/06-modelo-entidad-relacion.puml)*
 
 ## 8. Infraestructura y encaje en AWS
 
@@ -471,37 +273,9 @@ erDiagram
 
 ### 8.2 Arquitectura en AWS
 
-```mermaid
-flowchart TB
-    USR[Usuarios web y Android]
-    R53[Route 53 + ACM<br/>dominio y certificados TLS]
-    CF[CloudFront + S3<br/>app Angular estática]
-    subgraph VPC[VPC · región eu-south-2 España]
-        ALB[Application Load Balancer]
-        subgraph K8S[Clúster Kubernetes · EKS o k3s en EC2]
-            ING[Ingress]
-            GWP[gateway]
-            SVC[users · plans · geo<br/>notifications · chat · ai<br/>HPA autoescalado]
-            KCP[Keycloak]
-            MQP[RabbitMQ]
-            OBS[Grafana · Loki · Prometheus]
-        end
-        RDS[(Amazon RDS<br/>PostgreSQL + PostGIS)]
-        EC[(ElastiCache<br/>Redis)]
-    end
-    ECR[ECR<br/>imágenes Docker]
-    SM[Secrets Manager]
-    BUD[AWS Budgets<br/>alertas de coste]
-    GHA[GitHub Actions]
-    USR --> R53
-    R53 --> CF
-    R53 --> ALB --> ING --> GWP --> SVC
-    SVC --> RDS & EC & MQP
-    SVC -. secretos .-> SM
-    GHA -- push de imágenes --> ECR
-    GHA -- despliegue --> K8S
-    K8S -- pull --> ECR
-```
+![Despliegue en AWS](diagramas/07-despliegue-aws.png)
+
+*Fuente PlantUML: [`diagramas/src/07-despliegue-aws.puml`](diagramas/src/07-despliegue-aws.puml)*
 
 | Servicio de AWS | Papel en OneLeft |
 |---|---|
@@ -522,15 +296,9 @@ alternativa económica y se solicitarán créditos educativos de AWS.
 
 La app Android se genera con **Capacitor** a partir del mismo código Angular, lo que evita mantener dos frontends:
 
-```mermaid
-flowchart LR
-    NG[Código Angular<br/>PrimeNG + Tailwind] --> BUILD[ng build]
-    BUILD --> WEBAPP[App web<br/>S3 + CloudFront]
-    BUILD --> CAP[Capacitor sync]
-    CAP --> AS[Proyecto Android<br/>Android Studio]
-    AS --> APK[APK / AAB]
-    PLG[Plugins nativos<br/>Geolocation · Push Notifications] --> CAP
-```
+![Generación de la app web y Android](diagramas/08-pipeline-app-movil.png)
+
+*Fuente PlantUML: [`diagramas/src/08-pipeline-app-movil.puml`](diagramas/src/08-pipeline-app-movil.puml)*
 
 - **Geolocalización nativa** para obtener la zona del usuario, también en segundo plano con su consentimiento.
 - **Notificaciones push** mediante Firebase Cloud Messaging.
@@ -539,34 +307,9 @@ flowchart LR
 
 ## 10. Planificación
 
-```mermaid
-gantt
-    title Planificación por fases (sprints semanales)
-    dateFormat YYYY-MM-DD
-    axisFormat %d/%m
-    section Arranque
-    Repositorios, tablero y anteproyecto      :done, a1, 2026-09-28, 7d
-    Entorno Docker y esqueletos back y front  :a2, 2026-10-05, 7d
-    CI/CD y SonarQube                         :a3, 2026-10-12, 7d
-    section Base técnica
-    Autenticación y observabilidad            :b1, 2026-10-19, 7d
-    Capacitor y perfil                        :b2, 2026-10-26, 7d
-    section Núcleo funcional
-    Publicar y ver planes                     :c1, 2026-11-02, 21d
-    Unirse, notificaciones y caducidad        :c2, 2026-11-23, 28d
-    Pausa de Navidad                          :crit, 2026-12-21, 14d
-    section Social y administración
-    Chat, reputación y panel                  :d1, 2027-01-04, 28d
-    section Inteligencia artificial
-    Lenguaje natural, moderación y ranking    :e1, 2027-02-01, 28d
-    Agente (Could)                            :e2, 2027-03-01, 14d
-    section Despliegue
-    Kubernetes y AWS                          :f1, 2027-03-15, 28d
-    Pruebas de carga                          :f2, 2027-04-12, 7d
-    section Cierre
-    Memoria                                   :g1, 2027-04-19, 63d
-    Defensa                                   :g2, 2027-06-21, 8d
-```
+![Planificación por fases](diagramas/09-planificacion-gantt.png)
+
+*Fuente PlantUML: [`diagramas/src/09-planificacion-gantt.puml`](diagramas/src/09-planificacion-gantt.puml)*
 
 La memoria se redacta de forma progresiva desde el primer sprint a partir del diario de desarrollo; el tramo final
 se dedica a su cierre y revisión.

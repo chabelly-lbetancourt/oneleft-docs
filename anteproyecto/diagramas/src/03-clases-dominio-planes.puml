@@ -1,0 +1,81 @@
+@startuml 03-clases-dominio-planes
+!include estilo.iuml
+title Modelo de dominio del servicio de planes
+hide empty members
+
+package "domain.model" {
+  class Plan <<aggregate root>> {
+    - id : UUID
+    - organizadorId : UUID
+    - inicio : Instant
+    - plazasTotales : int
+    - estado : EstadoPlan
+    + publicar() : void
+    + unirse(usuarioId : UUID) : Participacion
+    + abandonar(usuarioId : UUID) : void
+    + caducar() : void
+    + plazasLibres() : int
+  }
+
+  class Participacion <<entity>> {
+    - usuarioId : UUID
+    - fecha : Instant
+    - asistio : boolean
+  }
+
+  class Actividad <<value object>> {
+    - codigo : String
+    - nombre : String
+    - nivelRequerido : Nivel
+  }
+
+  class Ubicacion <<value object>> {
+    - latitud : double
+    - longitud : double
+    - zonaAproximada : String
+  }
+
+  enum EstadoPlan {
+    ABIERTO
+    COMPLETO
+    EN_CURSO
+    FINALIZADO
+    CANCELADO
+  }
+}
+
+package "domain.port.in" {
+  interface PublicarPlanUseCase {
+    + publicar(comando : PublicarPlanCommand) : Plan
+  }
+  interface UnirseAPlanUseCase {
+    + unirse(planId : UUID, usuarioId : UUID) : Participacion
+  }
+}
+
+package "domain.port.out" {
+  interface PlanRepository {
+    + guardar(plan : Plan) : Plan
+    + buscarPorId(id : UUID) : Optional<Plan>
+  }
+  interface EventPublisher {
+    + publicar(evento : EventoDominio) : void
+  }
+}
+
+package "application" {
+  class PlanService {
+  }
+}
+
+Plan "1" *-- "0..*" Participacion
+Plan --> "1" Actividad
+Plan --> "1" Ubicacion
+Plan --> "1" EstadoPlan
+
+PlanService ..|> PublicarPlanUseCase
+PlanService ..|> UnirseAPlanUseCase
+PlanService --> PlanRepository
+PlanService --> EventPublisher
+PlanService ..> Plan
+@enduml
