@@ -1,0 +1,64 @@
+erDiagram
+    USUARIO ||--o{ AFICION : tiene
+    USUARIO ||--o{ PLAN : organiza
+    USUARIO ||--o{ PARTICIPACION : realiza
+    PLAN ||--o{ PARTICIPACION : contiene
+    PLAN }o--|| ACTIVIDAD : es_de
+    PLAN ||--o{ MENSAJE : tiene
+    USUARIO ||--o{ VALORACION : recibe
+    PLAN ||--o{ VALORACION : origina
+    USUARIO ||--o{ NOTIFICACION : recibe
+    PLAN ||--o{ NOTIFICACION : genera
+
+    USUARIO {
+        uuid id PK
+        string nombre
+        string zona_aproximada
+        float reputacion
+        int ausencias
+    }
+    AFICION {
+        uuid usuario_id FK
+        string actividad FK
+        string nivel
+    }
+    ACTIVIDAD {
+        string codigo PK
+        string nombre
+    }
+    PLAN {
+        uuid id PK
+        uuid organizador_id FK
+        string actividad FK
+        geography ubicacion
+        timestamp inicio
+        int plazas
+        int ocupadas
+        string estado
+    }
+    PARTICIPACION {
+        uuid plan_id FK
+        uuid usuario_id FK
+        timestamp fecha
+        boolean asistio
+    }
+    MENSAJE {
+        uuid id PK
+        uuid plan_id FK
+        uuid autor_id FK
+        text contenido
+        timestamp fecha
+    }
+    VALORACION {
+        uuid plan_id FK
+        uuid autor_id FK
+        uuid valorado_id FK
+        int puntuacion
+    }
+    NOTIFICACION {
+        uuid id PK
+        uuid usuario_id FK
+        uuid plan_id FK
+        float probabilidad
+        boolean aceptada
+    }

@@ -1,0 +1,29 @@
+flowchart TB
+    subgraph Clientes
+        WEB[App web<br/>Angular + PrimeNG + Tailwind]
+        AND[App Android<br/>Capacitor]
+    end
+    GW[API Gateway<br/>Spring Cloud Gateway]
+    KC[Keycloak<br/>OAuth2 / OIDC]
+    subgraph Microservicios
+        USR[users<br/>perfiles y reputación]
+        PLN[plans<br/>planes, plazas, caducidad]
+        GEO[geo<br/>búsqueda por proximidad]
+        NOT[notifications<br/>push y tiempo real]
+        CHT[chat<br/>WebSockets]
+        AI[ai<br/>lenguaje natural, moderación, ranking]
+    end
+    MQ[(RabbitMQ<br/>eventos)]
+    PG[(PostgreSQL + PostGIS<br/>una base de datos por servicio)]
+    RD[(Redis<br/>GEO, bloqueos, caché)]
+    LLM[[Proveedor LLM]]
+    FCM[[Firebase Cloud Messaging]]
+    WEB & AND --> GW
+    WEB & AND -. login .-> KC
+    GW --> USR & PLN & GEO & NOT & CHT & AI
+    PLN -- PlanPublicado / PlazaOcupada --> MQ
+    MQ --> GEO & NOT & AI
+    USR & PLN & GEO & CHT --> PG
+    GEO & PLN --> RD
+    AI --> LLM
+    NOT --> FCM --> AND
