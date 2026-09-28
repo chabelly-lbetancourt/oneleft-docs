@@ -12,3 +12,6 @@
 *.lot
 .idea/
 .DS_Store
+
+# Herramientas
+tools/node_modules/
