@@ -131,7 +131,7 @@ Al tratarse de un proyecto individual, se adapta Scrum sin ceremonias rígidas:
 | Ámbito | Herramienta |
 |---|---|
 | Gestión ágil | GitHub Projects (tablero Kanban, backlog, roadmap por sprints) |
-| Control de versiones | Git y GitHub (4 repositorios, ramas `main`/`dev`/`issue#N`/`hotfix/*`) |
+| Control de versiones | Git y GitHub (4 repositorios, ramas `main` (pro) / `pre` (*staging*) / `dev` / `issue#N` / `hotfix/*`) |
 | IDE backend | IntelliJ IDEA |
 | IDE frontend | WebStorm (y Android Studio para compilar Android) |
 | CI/CD | GitHub Actions |

@@ -3,12 +3,13 @@
 title Pipeline de integración continua (GitHub Actions)
 
 start
-:Push a issue#N, dev o main
-o pull request contra dev / main;
+:Pull request contra dev, pre o main
+o push a dev, pre o main;
 
 fork
   partition "lint (todos los repositorios)" {
-    :Validar nombre de rama\n(dev, issue#N, hotfix/...);
+    :Validar nombre de rama\n(issue#N, hotfix/..., dev, pre);
+    :Validar camino de promoción\n(issue#N → dev → pre → main;\nhotfix/* → main, pre, dev);
     :Validar commits\n(Conventional Commits + #issue);
   }
 fork again
@@ -20,8 +21,10 @@ fork again
         :Análisis en SonarQube Cloud\n(quality gate);
       endif
       :Imagen Docker por servicio\n(gateway, users, plans);
-      if (rama main?) then (sí)
-        :Publicar en GHCR\n(:latest y :sha);
+      if (push a pre?) then (sí)
+        :Publicar en GHCR\n(:pre y :sha) → entorno pre;
+      elseif (push a main?) then (sí)
+        :Publicar en GHCR\n(:latest y :sha) → entorno pro;
       endif
     else (no)
       :Build fallido; <<#FECACA>>
@@ -33,7 +36,7 @@ fork again
     :npm ci (Node 24 LTS);
     :ng lint (angular-eslint);
     if (Tests Vitest y cobertura ≥ 80 %?) then (sí)
-      :ng build de producción\n(licencia PrimeNG desde secreto);
+      :ng build (configuración pre en pre,\nproduction en el resto;\nlicencia PrimeNG desde secreto);
       :Artefacto con build y cobertura;
       if (SONAR_TOKEN configurado?) then (sí)
         :Análisis en SonarQube Cloud\n(quality gate);
