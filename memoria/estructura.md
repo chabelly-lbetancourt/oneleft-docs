@@ -11,14 +11,14 @@ La memoria debe hacer énfasis en estos aspectos. Cada uno indica dónde se trat
 |---|---|---|
 | Metodologías ágiles (Scrum ligero + Kanban) | 2.1, 4.1 | Capturas del tablero en cada sprint, tabla de sprints |
 | Priorización (MoSCoW) y estimación (puntos Fibonacci) de las tareas de cada sprint | 4.1 | Tabla de planificación y ejecución por sprint, gráfico de velocidad |
-| Herramientas utilizadas | 2.9, 4.2 | Tabla de herramientas con su uso concreto, capturas de IntelliJ, WebStorm, GitHub, SonarQube |
+| Herramientas utilizadas | 2.9, 4.2 | Tabla de tecnologías **con sus logos** (`assets/logos`, README), capturas de IntelliJ, WebStorm, GitHub, SonarQube, Slack |
 | Proceso documentado | 4 (todo) | Diario `proceso/` con capturas de cada hito |
 | Estado del arte | 2 | Comparativa de aplicaciones, TFM previos y alternativas tecnológicas |
 | Requisitos | 3.2, 3.3 | Tablas RF y RNF con trazabilidad a historias de usuario |
 | Historias de usuario | 3.4 | Catálogo HU con criterios de aceptación, MoSCoW y puntos |
 | Diagramas UML (PlantUML) | 3.5–3.8 | Casos de uso, componentes, clases, estados, secuencia y despliegue |
 | Bases de datos | 3.9 | Modelo entidad-relación, base de datos por servicio, PostGIS y Redis |
-| Arquitectura | 3.5, 4.3 | Microservicios con arquitectura hexagonal, eventos, gateway |
+| Arquitectura | 3.5, 4.3 | Microservicios con arquitectura hexagonal, eventos, gateway; diagrama 17 con los logos de cada tecnología |
 | Infraestructura | 4.7 | Docker, Kubernetes, entornos, pipelines |
 | Cómo encaja AWS | 3.8, 4.7 | Diagrama de despliegue en AWS, servicios usados y control de costes |
 | App móvil | 4.5, 5 | Pipeline de Capacitor, capturas en Android |
@@ -137,3 +137,9 @@ Con capturas de la app web y Android de cada pantalla:
 - Catálogo completo de historias de usuario
 - Estructura de directorios de los repositorios
 - Manual de despliegue
+
+## Convenciones de idioma
+
+- **Código en inglés** (comentarios, nombres, enumerados, mensajes de la API y de la CI): backend#33 y sub-issues.
+- **App en español e inglés** (HU-022): los textos de la interfaz están en `oneleft-frontend/public/i18n`.
+- **Memoria, diario y diagramas en español**, como exige la normativa del TFM.

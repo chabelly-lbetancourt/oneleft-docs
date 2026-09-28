@@ -14,6 +14,7 @@ implementación y gestión del proyecto de la memoria.
 | 28/09/2026 | Sprint 4 | [07 · Documentación OpenAPI con Swagger UI y microservicios en contenedores](07-openapi-y-contenedores.md) |
 | 28/09/2026 | Sprint 4 | [08 · HU-002 Perfil con aficiones y nivel](08-sprint4-perfil.md) |
 | 28/09/2026 | Sprint 5 | [09 · HU-003 Publicar un plan con plazas libres](09-sprint5-publicar-plan.md) |
+| 28/09/2026 | Sprint 7 | [10 · HU-004 backend, código en inglés, HU-022 idiomas, logos y control de tiempos](10-sprint7-cercanos-idiomas-y-codigo-en-ingles.md) |
 
 ## Convenciones
 
