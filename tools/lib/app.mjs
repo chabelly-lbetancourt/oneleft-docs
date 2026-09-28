@@ -56,12 +56,15 @@ export const click = async (page, selector) => {
   await pause(400);
 };
 
-/** Fills the Keycloak login form that the app redirected to. */
-export const keycloakLogin = async (page, { user, password }) => {
+/**
+ * Fills the Keycloak login form that the app redirected to. Pages that keep a stream open (Server-Sent Events)
+ * never reach networkidle0: pass waitUntil 'load' for them.
+ */
+export const keycloakLogin = async (page, { user, password }, waitUntil = 'networkidle0') => {
   await page.waitForSelector('#username');
   await page.locator('#username').fill(user);
   await page.locator('#password').fill(password);
-  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.locator('#kc-login').click()]);
+  await Promise.all([page.waitForNavigation({ waitUntil }), page.locator('#kc-login').click()]);
 };
 
 export const screenshot = (page, outDir, prefix, name, fullPage = true) =>
