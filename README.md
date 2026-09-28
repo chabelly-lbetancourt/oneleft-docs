@@ -39,6 +39,8 @@ cada tecnología.
 | [oneleft-infra](https://github.com/chabelly-lbetancourt/oneleft-infra) | Docker, Kubernetes, AWS y observabilidad |
 | [oneleft-docs](https://github.com/chabelly-lbetancourt/oneleft-docs) | Memoria del TFM y documentación del proceso |
 
+Entornos: **dev** (integración) → **pre** (*staging*) → **pro** (`main`), ver [CONTRIBUTING.md](CONTRIBUTING.md).
+
 Tablero Kanban: [OneLeft · TFM](https://github.com/users/chabelly-lbetancourt/projects/4) · Normas de trabajo: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
