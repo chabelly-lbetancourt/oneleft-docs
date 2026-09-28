@@ -20,5 +20,5 @@ implementación y gestión del proyecto de la memoria.
 - Una entrada por hito, numerada (`01-`, `02-`...).
 - Las capturas se guardan en `img/` con el mismo prefijo numérico que su orden de aparición.
 - Cada entrada indica el sprint y los issues relacionados.
-- Las capturas se generan con las herramientas de [`../tools`](../tools): `captura-terminal.sh`, `captura-web.mjs` y `arbol.py`.
+- Las capturas se generan con las herramientas de [`../tools`](../tools): `capture-terminal.sh`, `capture-web.mjs` y `tree.py`.
 - Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.

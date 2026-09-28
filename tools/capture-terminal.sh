@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Genera una captura PNG con aspecto de terminal a partir de la salida de un comando.
-# Uso: comando | tools/captura-terminal.sh "título" salida.png ["$ comando mostrado"]
+# Renders the output of a command as a terminal-looking PNG screenshot.
+# Usage: command | tools/capture-terminal.sh "title" output.png ["$ command shown"]
 set -euo pipefail
 TITLE="$1"; OUT="$2"; CMD="${3:-}"
 CHROME="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
