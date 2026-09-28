@@ -1,0 +1,23 @@
+flowchart LR
+    U((Usuario))
+    O((Organizador))
+    A((Administrador))
+    S((Sistema de IA))
+    subgraph OneLeft
+        UC1([Registrarse e iniciar sesión])
+        UC2([Editar perfil])
+        UC3([Publicar plan])
+        UC4([Publicar plan en lenguaje natural])
+        UC5([Ver planes cercanos])
+        UC6([Unirse a un plan])
+        UC7([Recibir notificaciones])
+        UC8([Chatear con participantes])
+        UC9([Valorar participantes])
+        UC10([Moderar contenido])
+        UC11([Consultar métricas])
+    end
+    U --- UC1 & UC2 & UC5 & UC6 & UC7 & UC8 & UC9
+    O --- UC3 & UC4
+    O -. es un .-> U
+    A --- UC10 & UC11
+    S --- UC4 & UC7 & UC10
