@@ -9,6 +9,7 @@ implementación y gestión del proyecto de la memoria.
 | 28/09/2026 | Sprint 0 | [02 · Anteproyecto, priorización MoSCoW y plan de sprints](02-anteproyecto-priorizacion.md) |
 | 28/09/2026 | Sprint 1 | [03 · Entorno de desarrollo y esqueletos de backend y frontend](03-sprint1-entorno-y-esqueletos.md) |
 | 28/09/2026 | Sprint 1 | [04 · Migración de los diagramas a PlantUML](04-diagramas-plantuml.md) |
+| 28/09/2026 | Sprint 2 | [05 · Integración continua con cobertura y SonarQube](05-sprint2-integracion-continua.md) |
 
 ## Convenciones
 
