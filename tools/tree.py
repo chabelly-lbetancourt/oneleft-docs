@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Imprime el árbol de un directorio compactando las cadenas de carpetas con un solo hijo
-(como la vista de paquetes de IntelliJ). Uso: arbol.py <dir> [ignorar,separado,por,comas]"""
+"""Prints the tree of a directory, compacting chains of folders with a single child
+(like the IntelliJ package view). Usage: tree.py <dir> [comma,separated,names,to,skip]"""
 import os, sys
 root = sys.argv[1] if len(sys.argv) > 1 else "."
 skip = {".git", "target", "node_modules", ".idea", ".mvn", ".angular", "dist", ".DS_Store"} | set(filter(None, (sys.argv[2] if len(sys.argv) > 2 else "").split(",")))

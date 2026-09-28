@@ -58,7 +58,7 @@ en JSON recibido en una cola de prueba y el punto guardado en PostGIS con SRID 4
 ![Inicio con mis próximos planes](img/49-hu003-4-inicio.png)
 
 *Figura 60. Pantalla de inicio con «Tus próximos planes». Recorrido automatizado con
-[`tools/captura-plan.mjs`](../tools/captura-plan.mjs).*
+[`tools/capture-plan.mjs`](../tools/capture-plan.mjs).*
 
 - Hora de inicio con **accesos rápidos** («en 30 min», «en 1 h», «en 2 h», «en 3 h») u otra hora. Si esa hora ya ha
   pasado hoy, se entiende que es la de mañana; y tiene que caer dentro de las próximas 12 horas.

@@ -34,7 +34,7 @@ ejecutándose en contenedores. Se añadió al tablero como tarea nueva del sprin
 *Figura 48. `GET /api/v1/users/me` desde Swagger UI: la petición lleva el token y la respuesta es 200 con el
 usuario. Se ven también las respuestas documentadas (200 con ejemplo y 401 sin cuerpo).*
 
-El recorrido se automatizó con [`tools/captura-swagger.mjs`](../tools/captura-swagger.mjs).
+El recorrido se automatizó con [`tools/capture-swagger.mjs`](../tools/capture-swagger.mjs).
 
 ## 3. Microservicios en contenedores
 
