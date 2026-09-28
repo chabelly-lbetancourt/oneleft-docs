@@ -17,6 +17,7 @@ implementación y gestión del proyecto de la memoria.
 | 28/09/2026 | Sprint 7 | [10 · HU-004 backend, código en inglés, HU-022 idiomas, logos y control de tiempos](10-sprint7-cercanos-idiomas-y-codigo-en-ingles.md) |
 | 28/09/2026 | Sprint 7 | [11 · Entorno pre (staging) y documentación al día](11-entorno-pre-staging.md) |
 | 28/09/2026 | Sprint 7 | [12 · HU-004 Planes cercanos en la app (lista, mapa y tiempo real)](12-hu004-planes-cercanos-web.md) |
+| 28/09/2026 | Sprint 7-8 | [13 · Seed de demostración y HU-005 Unirse a un plan](13-seed-y-hu005-unirse.md) |
 
 ## Convenciones
 

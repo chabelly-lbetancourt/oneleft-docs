@@ -38,7 +38,7 @@ export const MOBILE = { width: 390, height: 844, deviceScaleFactor: 3, isMobile:
 
 export const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-/** New mobile page with the app language already chosen. */
+/** New mobile page (in a browser or a browser context) with the app language already chosen. */
 export const mobilePage = async (browser) => {
   const page = await browser.newPage();
   await page.setViewport(MOBILE);
