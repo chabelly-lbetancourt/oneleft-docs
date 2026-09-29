@@ -1,0 +1,24 @@
+@startuml 24-secuencia-lista-de-espera
+!include estilo.iuml
+title HU-023 · Alguien sale de un plan completo y entra la primera persona de la lista
+
+actor "Lucía\n(participante)" as L
+participant "plans\nParticipationService" as S
+database "PostgreSQL\nplan (version)\nplan_waitlist" as DB
+queue "RabbitMQ\nplan.left" as MQ
+actor "Diego\n(1.º en la lista)" as D
+actor "Ana\n(organizadora)" as O
+
+L -> S : DELETE /plans/{id}/participants/me
+S -> DB : SELECT plan (FULL, lista: Diego, Marta)
+S -> S : Plan.leave(Lucía)\nDiego ocupa la plaza · el plan sigue FULL
+S -> DB : UPDATE plan (version + 1)\nparticipantes y lista de espera
+alt otra persona guardó antes (versión antigua)
+  DB --> S : conflicto de versión
+  S -> DB : reintento con datos frescos
+end
+S --> L : 200 · plan actualizado
+S -> MQ : PlanLeftEvent (tras el commit)
+MQ -> O : SSE plan-left\n«Lucía ha salido y entra Diego»
+MQ -> D : SSE plan-spot\n«¡Tienes plaza!»
+@enduml
