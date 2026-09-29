@@ -1,0 +1,33 @@
+@startuml 22-tests-e2e-ci
+!include estilo.iuml
+title Tests E2E en la CI del frontend (PR hacia pre, etiqueta «e2e» o a mano)
+
+start
+fork
+  :Lint, tests unitarios,
+  cobertura y build;
+fork again
+  :checkout de oneleft-frontend
+  y de oneleft-infra (rama pre);
+  :npm ci + Chromium de Playwright;
+  :docker compose con compose.e2e.yaml
+  imágenes :pre de GHCR · perfil seed
+  límite de publicaciones alto;
+  note right
+    PostgreSQL/PostGIS, Redis, RabbitMQ,
+    Keycloak (realm de desarrollo),
+    gateway, users y plans
+  end note
+  :ng build (development)
+  servido por e2e/serve.mjs;
+  :Playwright · proyectos es y en
+  login · perfil · publicar · cercanos · unirse;
+  if (¿fallos?) then (sí)
+    :logs de los servicios;
+  endif
+  :artefacto e2e-report
+  (informe, capturas, vídeos y trazas);
+end fork
+:Aviso en Slack;
+stop
+@enduml
