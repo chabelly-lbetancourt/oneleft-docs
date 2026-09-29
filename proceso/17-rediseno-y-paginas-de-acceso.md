@@ -92,3 +92,29 @@ estudiantes). Queda preparado:
   fondo» se ocultaba la página entera.
 - **Tras el login no se volvía a la página de origen.** La navegación se lanzaba antes que la navegación inicial del
   router, que la pisaba. Ahora espera al primer `NavigationEnd`.
+
+## 7. Revisión: identidad sobria (frontend#48, infra#35)
+
+Tras ver el resultado, la autora lo encontró **demasiado atrevido**: la app tenía que verse moderna, sobria y
+cuidada, sin perder usabilidad ni identidad propia. Se mantiene la estructura (componentes, páginas de acceso,
+tema de Keycloak) y cambia el lenguaje visual:
+
+| Antes («cromo») | Ahora (sobrio) |
+|---|---|
+| Dos tipografías expresivas | Una sola, **Plus Jakarta Sans**, con pesos contenidos |
+| Bordes de tinta de 2 px y sombra desplazada | Borde fino de 1 px y sombra suave |
+| Botones mandarina con texto en tinta | Botones principales en **tinta con texto blanco** (contraste AA) |
+| Lima y mandarina por todas partes, titular girado | El naranja solo como **acento**: logo, plazas libres, estados activos |
+| Plaza libre como círculo lima grande | La plaza libre como **anillo discontinuo discreto** |
+
+La identidad queda en detalles con sentido: el anillo «+1» del logo, los huecos de cada plan y la palabra «uno»
+subrayada en el titular. Como las plantillas ya usaban utilidades propias (`sticker`, `slot`), bastó con
+redefinirlas (`card`, `spot`) para que el cambio llegara a todas las pantallas.
+
+![Antes y después de la revisión](img/70-identidad-sobria-antes-despues.png)
+
+*Figura 87. Portada y detalle de un plan: estilo «cromo» y versión sobria.*
+
+![Pantallas con la identidad sobria](img/71-identidad-sobria-pantallas.png)
+
+*Figura 88. Entrar, inicio con sesión, planes cerca y login de Keycloak con la identidad sobria.*
