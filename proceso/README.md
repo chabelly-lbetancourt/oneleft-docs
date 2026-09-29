@@ -20,6 +20,7 @@ implementación y gestión del proyecto de la memoria.
 | 28/09/2026 | Sprint 7-8 | [13 · Seed de demostración y HU-005 Unirse a un plan](13-seed-y-hu005-unirse.md) |
 | 28/09/2026 | Sprint 6 | [14 · Límite de peticiones y anti-spam en el gateway](14-limite-de-peticiones.md) |
 | 29/09/2026 | Sprint 7 | [15 · Release: primeras promociones de dev a pre](15-release-pre.md) |
+| 29/09/2026 | Sprint 6 | [16 · Tests de extremo a extremo con Playwright](16-tests-e2e-playwright.md) |
 
 ## Convenciones
 
