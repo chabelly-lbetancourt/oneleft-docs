@@ -21,6 +21,7 @@ implementación y gestión del proyecto de la memoria.
 | 28/09/2026 | Sprint 6 | [14 · Límite de peticiones y anti-spam en el gateway](14-limite-de-peticiones.md) |
 | 29/09/2026 | Sprint 7 | [15 · Release: primeras promociones de dev a pre](15-release-pre.md) |
 | 29/09/2026 | Sprint 6 | [16 · Tests de extremo a extremo con Playwright](16-tests-e2e-playwright.md) |
+| 29/09/2026 | Sprint 7 | [17 · Rediseño de la identidad visual y páginas de acceso](17-rediseno-y-paginas-de-acceso.md) |
 
 ## Convenciones
 
