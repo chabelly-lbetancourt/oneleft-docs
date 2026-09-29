@@ -68,6 +68,4 @@ y el lugar, y la imagen `og-image.png` (1200 × 630) que aparece en la vista pre
 - **E2E contra una compilación antigua (otra vez).** Los E2E sirven `dist/`: tras cambiar una plantilla hay que
   recompilar (`npm run build -- --configuration development`) antes de lanzarlos. Ya estaba anotado en la
   [entrada 18](18-hu023-salir-y-lista-de-espera.md).
-- **Aviso «Invalid PrimeUI License» en las capturas.** La compilación local no tiene clave de PrimeUI (se inyecta con
-  `--define PRIMEUI_LICENSE` desde un `.env` que no está en el repositorio). No afecta al funcionamiento.
 - **Abrir el enlace en la app Android** (App Links) queda para frontend#3, con el resto de la app móvil.

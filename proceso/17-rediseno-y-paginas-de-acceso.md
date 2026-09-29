@@ -82,7 +82,11 @@ prohíbe eliminar sus mecanismos de licencia. Hace falta una clave de la *Commun
 estudiantes). Queda preparado:
 
 - `npm start` y `npm run build` la leen de `PRIMEUI_LICENSE` o de un `.env` ignorado por Git (PR #45).
-- La CI la lee del secreto con el mismo nombre, que todavía no existe en el repositorio.
+- La CI la lee del secreto con el mismo nombre.
+
+**Actualización (29/09/2026, docs#46):** la autora obtuvo la *Community License* (tipo *dev*, válida hasta el
+29/09/2027) y la configuró en el `.env` local y en el secreto `PRIMEUI_LICENSE` de `oneleft-frontend`. Las capturas
+de HU-023 (figura 90) y HU-024 (figuras 94 y 95) se repitieron ya sin el aviso; las anteriores lo conservan.
 
 ## 6. Incidencias
 
