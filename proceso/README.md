@@ -27,6 +27,7 @@ implementación y gestión del proyecto de la memoria.
 | 29/09/2026 | Sprint 7 | [20 · HU-024 Compartir un plan por enlace](20-hu024-compartir-enlace.md) |
 | 29/09/2026 | Sprint 7 | [21 · Release: segunda promoción de dev a pre](21-release-pre-2.md) |
 | 30/09/2026 | Sprint 5 | [22 · La app Android con Capacitor](22-app-android-capacitor.md) |
+| 30/09/2026 | Sprint 7 | [23 · HU-006 Avisos de planes cercanos](23-hu006-avisos-planes-cercanos.md) |
 
 ## Convenciones
 
