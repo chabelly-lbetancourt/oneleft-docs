@@ -25,6 +25,9 @@ implementación y gestión del proyecto de la memoria.
 | 29/09/2026 | Sprint 7 | [18 · HU-023 Salir de un plan y lista de espera](18-hu023-salir-y-lista-de-espera.md) |
 | 29/09/2026 | Sprints 5-6 | [19 · HU-021 Inicio de sesión con Google](19-hu021-login-con-google.md) |
 | 29/09/2026 | Sprint 7 | [20 · HU-024 Compartir un plan por enlace](20-hu024-compartir-enlace.md) |
+| 29/09/2026 | Sprint 7 | [21 · Release: segunda promoción de dev a pre](21-release-pre-2.md) |
+| 30/09/2026 | Sprint 5 | [22 · La app Android con Capacitor](22-app-android-capacitor.md) |
+| 30/09/2026 | Sprint 7 | [23 · HU-006 Avisos de planes cercanos](23-hu006-avisos-planes-cercanos.md) |
 
 ## Convenciones
 
