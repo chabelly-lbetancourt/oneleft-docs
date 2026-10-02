@@ -1,0 +1,39 @@
+@startuml 12-observabilidad
+!include ../../estilo.iuml
+title Observabilidad en el entorno de desarrollo
+
+node "Equipo de desarrollo" {
+  component "gateway :8080" as GW
+  component "users :8081" as US
+  component "plans :8082" as PL
+}
+
+node "Docker Compose (perfil observability)" {
+  component "Prometheus :9090" as PROM
+  component "Loki :3100" as LOKI
+  component "Grafana :3000" as GRAF
+  component "Keycloak" as KC
+  component "RabbitMQ" as MQ
+}
+
+actor "Desarrollador" as DEV
+
+PROM --> GW : scrape /actuator/prometheus\ncada 10 s
+PROM --> US
+PROM --> PL
+PROM --> KC : /metrics
+PROM --> MQ : /metrics
+
+GW --> LOKI : logs (loki4j)
+US --> LOKI
+PL --> LOKI
+
+GRAF --> PROM : PromQL
+GRAF --> LOKI : LogQL
+DEV --> GRAF : dashboard\n«OneLeft · Microservicios»
+
+note bottom of GRAF
+  Fuentes de datos y dashboard aprovisionados
+  como código desde oneleft-infra.
+end note
+@enduml

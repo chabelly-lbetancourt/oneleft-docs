@@ -1,0 +1,40 @@
+@startuml 19-secuencia-planes-cercanos
+!include ../../estilo.iuml
+title HU-004 · Planes cercanos y avisos en tiempo real
+
+actor "Persona que busca" as U
+participant "App web / Android\n(NearbyPlans)" as APP
+participant "API Gateway" as GW
+participant "plans\n(réplica A)" as PA
+participant "plans\n(réplica B)" as PB
+database "PostgreSQL\n+ PostGIS" as DB
+queue "RabbitMQ\noneleft.plans" as MQ
+actor "Organizadora" as O
+
+U -> APP : abre «Planes cerca»
+APP -> APP : ubicación del dispositivo\nredondeada a ~110 m
+APP -> GW : GET /api/v1/plans/nearby?latitude&longitude\n&radius&withinHours&activity (JWT)
+GW -> PA
+PA -> DB : ST_DWithin(location::geography, punto, radio)\nORDER BY <-> LIMIT 50
+DB --> PA : planes abiertos con plazas
+PA --> APP : [{plan, distanceMeters}]
+APP -> GW : GET /api/v1/plans/nearby/stream (fetch + JWT)
+GW -> PB
+PB --> APP : event: ready
+
+note over PA, PB
+  Cada réplica tiene su cola anónima enlazada a
+  plan.published: todas reciben todos los eventos
+end note
+
+O -> GW : POST /api/v1/plans
+GW -> PA
+PA -> DB : INSERT plan
+PA -> MQ : plan.published
+MQ -> PA : copia para la réplica A
+MQ -> PB : copia para la réplica B
+PB -> PB : NearbySearch.matches(evento)\n(actividad, ventana, plazas, distancia)
+PB --> APP : event: plan-published\n{planId, activity, distanceMeters}
+APP -> APP : aviso «Nuevo plan cerca»
+APP -> GW : GET /nearby (recarga)
+@enduml

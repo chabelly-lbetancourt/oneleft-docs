@@ -1,0 +1,36 @@
+@startuml 26-secuencia-compartir-enlace
+!include ../../estilo.iuml
+title HU-024 · Ana comparte su plan y Lucía se apunta desde el enlace
+
+actor "Ana\n(organizadora)" as A
+participant "App de\nmensajería" as M
+actor "Lucía\n(sin sesión)" as L
+participant "Web\nAngular" as W
+participant "Gateway\n(límite /share/**)" as G
+participant "plans\nPublicPlanController" as P
+participant "Keycloak" as K
+
+A -> W : «Compartir»
+W -> A : hoja nativa (Web Share API)\no enlace copiado
+A -> M : /share/plans/{id}
+M -> G : GET /share/plans/{id}
+G -> P : GET /share/plans/{id}
+P --> M : HTML con etiquetas Open Graph\n(título, actividad, hora, plazas)\nCache-Control: 5 min
+M -> L : vista previa del enlace
+L -> G : abre el enlace
+G -> P : GET /share/plans/{id}
+P --> L : meta refresh → /plans/{id}
+L -> W : /plans/{id}
+W -> G : GET /api/v1/public/plans/{id}\n(sin token)
+G -> P : GET /api/v1/public/plans/{id}
+P --> W : plan sin personas y con el\npunto de encuentro redondeado (~100 m)
+W --> L : plan público · «Me apunto»
+L -> W : «Me apunto»
+W -> K : /login?returnUrl=/plans/{id}\n(OIDC + PKCE)
+K --> W : sesión iniciada
+W -> G : GET /api/v1/plans/{id} (con token)
+W --> L : de vuelta en el plan
+L -> W : «Me apunto»
+W -> G : POST /api/v1/plans/{id}/participants
+note right of W : Mismo flujo que HU-005:\nAna recibe el aviso en tiempo real
+@enduml

@@ -50,7 +50,7 @@ try {
   const page = await mobilePage(browser);
   await page.setGeolocation(POSITION);
 
-  await page.goto(`${APP}/plans/nearby`, { waitUntil: 'networkidle0' });
+  await page.goto(`${APP}/plans/nearby`, { waitUntil: 'load' });
   await keycloakLogin(page, login, 'load');
 
   // 1. List with the default filters (5 km, next 12 hours, all activities)

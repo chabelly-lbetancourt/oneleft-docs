@@ -22,7 +22,7 @@ try {
   const joinerPage = await mobilePage(joinerContext);
 
   // The organizer signs in and stays on the home screen with their upcoming plans
-  await organizerPage.goto(`${APP}/profile`, { waitUntil: 'networkidle0' });
+  await organizerPage.goto(`${APP}/profile`, { waitUntil: 'load' });
   await keycloakLogin(organizerPage, organizer, 'load');
   // The profile only loads once the app has exchanged the code for the tokens
   await organizerPage.waitForSelector('.profile-card', { timeout: 20000 });
@@ -35,7 +35,9 @@ try {
   );
 
   // 1. The other person opens the plan: free spots and the "I'm in" button
-  await joinerPage.goto(`${APP}${planPath}`, { waitUntil: 'networkidle0' });
+  // The plan page is public (HU-024): joining asks to sign in and comes back to the plan
+  await joinerPage.goto(`${APP}${planPath}`, { waitUntil: 'load' });
+  await click(joinerPage, '.guest-join button');
   await keycloakLogin(joinerPage, joiner, 'load');
   await joinerPage.waitForSelector('.join-button', { timeout: 20000 });
   await pause(500);
