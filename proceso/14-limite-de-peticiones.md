@@ -26,10 +26,10 @@
 | **Falla en abierto** si Redis cae | Un anti-spam no debe dejar la aplicación sin servicio. Se cuenta en `oneleft.gateway.ratelimit.unavailable` y el *health* de Redis no marca el gateway como caído |
 | Métrica `oneleft.gateway.ratelimit.rejected{rule}` | Panel de rechazos por regla en Grafana |
 
-![Secuencia del límite de peticiones](../memoria/diagramas/21-secuencia-limite-peticiones.png)
+![Secuencia del límite de peticiones](../diagramas/secuencia/21-secuencia-limite-peticiones.png)
 
 *Figura 73. Recorrido de una petición por el límite del gateway. Fuente:
-[`21-secuencia-limite-peticiones.puml`](../memoria/diagramas/src/21-secuencia-limite-peticiones.puml).*
+[`21-secuencia-limite-peticiones.puml`](../diagramas/secuencia/src/21-secuencia-limite-peticiones.puml).*
 
 ## 3. Pruebas
 
@@ -37,16 +37,16 @@
   métrica. **Unitarias:** *fail-open* y validación de reglas. 14 tests en el gateway.
 - **Extremo a extremo** con Docker Compose: cinco publicaciones devuelven 201 y la sexta, 429.
 
-![Prueba de extremo a extremo](img/58-limite-peticiones-429.png)
+![Prueba de extremo a extremo](../capturas/api/58-limite-peticiones-429.png)
 
 *Figura 74. Sexta publicación en la misma hora: 429 con `Retry-After` (12 min, lo que tarda en recargarse una
 ficha) y la métrica en Prometheus.*
 
-![Panel de Grafana](img/59-limite-peticiones-grafana.png)
+![Panel de Grafana](../capturas/infraestructura/59-limite-peticiones-grafana.png)
 
 *Figura 75. Panel «Rate limit: rejected requests» del dashboard de microservicios.*
 
-![Mensaje en la web](img/60-limite-peticiones-web.png)
+![Mensaje en la web](../capturas/app-web/60-limite-peticiones-web.png)
 
 *Figura 76. La web explica cuánto esperar, en español y en inglés, y conserva lo escrito en el formulario. Captura
 con `ONELEFT_LANG=es|en node tools/capture-rate-limit.mjs`.*

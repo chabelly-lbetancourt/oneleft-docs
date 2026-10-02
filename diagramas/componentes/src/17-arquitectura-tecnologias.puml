@@ -1,0 +1,67 @@
+@startuml 17-arquitectura-tecnologias
+!include ../../estilo.iuml
+title Arquitectura de OneLeft y tecnologías de cada pieza
+skinparam componentStyle rectangle
+skinparam nodesep 40
+skinparam ranksep 55
+!define L(x) <img:/docs/assets/logos/png/x.png{scale=0.22}>
+!define S(x) <img:/docs/assets/logos/png/x.png{scale=0.14}>
+
+actor "Persona usuaria" as U
+
+package "Clientes (mismo código Angular)" {
+  component "L(angular)\n**App web**\nAngular 22 · S(primeng) PrimeNG · S(tailwindcss) Tailwind\nS(typescript) TypeScript · Transloco (es/en)" as WEB
+  component "L(android)\n**App Android**\nS(capacitor) Capacitor" as APP
+}
+
+component "L(keycloak)\n**Keycloak 26**\nOIDC + PKCE · realm oneleft" as KC
+
+node "Microservicios S(docker) (Docker · S(kubernetes) Kubernetes)" {
+  component "L(spring)\n**API Gateway**\nSpring Cloud Gateway\nS(swagger) Swagger UI · CORS · JWT" as GW
+  component "L(springboot)\n**users**\nSpring Boot 4 · S(java) Java 21\nhexagonal · S(hibernate) JPA · S(flyway) Flyway" as US
+  component "L(springboot)\n**plans**\nSpring Boot 4 · SSE en tiempo real\nhexagonal · Hibernate Spatial" as PL
+}
+
+database "L(postgresql)\n**PostgreSQL 17**\nS(postgis) PostGIS · BD por servicio" as PG
+queue "L(rabbitmq)\n**RabbitMQ 4**\nexchange oneleft.plans" as MQ
+database "L(redis)\n**Redis**" as RD
+
+package "Observabilidad" {
+  component "L(prometheus)\n**Prometheus**\nS(micrometer) Micrometer" as PR
+  component "L(loki)\n**Loki**\nlogs" as LK
+  component "L(grafana)\n**Grafana**\ndashboards" as GF
+}
+
+package "Proceso y calidad" {
+  component "L(github)\n**GitHub**\nKanban · PR · S(githubactions) Actions" as GH
+  component "L(sonarqubecloud)\n**SonarQube Cloud**\nS(junit5) JUnit · S(testcontainers) Testcontainers\nS(vitest) Vitest · S(archunit) ArchUnit" as SQ
+  component "L(slack)\n**Slack**\navisos del proyecto" as SL
+}
+
+cloud "L(aws)\n**AWS** (despliegue)\nS(aws-eks) EKS · S(aws-rds) RDS · S(aws-s3) S3 · S(aws-elb) ELB · S(aws-cloudwatch) CloudWatch" as AWS
+
+U --> WEB
+U --> APP
+WEB --> KC : login (ui_locales)
+APP --> KC : login
+WEB --> GW : REST + SSE (JWT)
+APP --> GW : REST + SSE (JWT)
+GW --> US
+GW --> PL
+US --> PG
+PL --> PG
+PL --> MQ : plan.published
+MQ --> PL : abanico por réplica
+KC --> PG
+US ..> RD
+PR ..> GW
+PR ..> US
+PR ..> PL
+US ..> LK
+PL ..> LK
+GF --> PR
+GF --> LK
+GH --> SQ : análisis
+GH --> SL : notificaciones
+GH ..> AWS : imágenes GHCR → EKS
+@enduml

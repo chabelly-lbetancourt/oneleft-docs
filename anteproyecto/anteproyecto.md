@@ -209,36 +209,36 @@ Cada historia tiene su issue con criterios de aceptación en el [tablero del pro
 
 ### 6.1 Casos de uso
 
-![Diagrama de casos de uso](diagramas/01-casos-de-uso.png)
+![Diagrama de casos de uso](../diagramas/casos-de-uso/01-casos-de-uso.png)
 
-*Fuente PlantUML: [`diagramas/src/01-casos-de-uso.puml`](diagramas/src/01-casos-de-uso.puml)*
+*Fuente PlantUML: [`diagramas/casos-de-uso/src/01-casos-de-uso.puml`](../diagramas/casos-de-uso/src/01-casos-de-uso.puml)*
 
 ### 6.2 Arquitectura de componentes
 
-![Arquitectura de componentes](diagramas/02-arquitectura-componentes.png)
+![Arquitectura de componentes](../diagramas/componentes/02-arquitectura-componentes.png)
 
-*Fuente PlantUML: [`diagramas/src/02-arquitectura-componentes.puml`](diagramas/src/02-arquitectura-componentes.puml)*
+*Fuente PlantUML: [`diagramas/componentes/src/02-arquitectura-componentes.puml`](../diagramas/componentes/src/02-arquitectura-componentes.puml)*
 
 Cada microservicio sigue **arquitectura hexagonal** (dominio, aplicación e infraestructura) y se comunica de forma
 síncrona a través del gateway y de forma asíncrona mediante **eventos** en RabbitMQ.
 
 ### 6.3 Modelo de dominio del servicio de planes
 
-![Modelo de dominio del servicio de planes](diagramas/03-clases-dominio-planes.png)
+![Modelo de dominio del servicio de planes](../diagramas/clases/03-clases-dominio-planes.png)
 
-*Fuente PlantUML: [`diagramas/src/03-clases-dominio-planes.puml`](diagramas/src/03-clases-dominio-planes.puml)*
+*Fuente PlantUML: [`diagramas/clases/src/03-clases-dominio-planes.puml`](../diagramas/clases/src/03-clases-dominio-planes.puml)*
 
 ### 6.4 Ciclo de vida de un plan
 
-![Ciclo de vida de un plan](diagramas/04-estados-plan.png)
+![Ciclo de vida de un plan](../diagramas/estados/04-estados-plan.png)
 
-*Fuente PlantUML: [`diagramas/src/04-estados-plan.puml`](diagramas/src/04-estados-plan.puml)*
+*Fuente PlantUML: [`diagramas/estados/src/04-estados-plan.puml`](../diagramas/estados/src/04-estados-plan.puml)*
 
 ### 6.5 Secuencia: unirse a la última plaza
 
-![Secuencia: unirse a la última plaza](diagramas/05-secuencia-unirse-plan.png)
+![Secuencia: unirse a la última plaza](../diagramas/secuencia/05-secuencia-unirse-plan.png)
 
-*Fuente PlantUML: [`diagramas/src/05-secuencia-unirse-plan.puml`](diagramas/src/05-secuencia-unirse-plan.puml)*
+*Fuente PlantUML: [`diagramas/secuencia/src/05-secuencia-unirse-plan.puml`](../diagramas/secuencia/src/05-secuencia-unirse-plan.puml)*
 
 La condición `ocupadas < plazas` en la propia sentencia garantiza el requisito RNF-03 incluso si falla el bloqueo
 distribuido.
@@ -257,9 +257,9 @@ acceden a ellos a través de su API o de eventos.
 | notifications | PostgreSQL + Redis | Historial de avisos y límites por usuario |
 | ai | PostgreSQL | Datos de entrenamiento y decisiones del ranking |
 
-![Modelo entidad-relación](diagramas/06-modelo-entidad-relacion.png)
+![Modelo entidad-relación](../diagramas/datos/06-modelo-entidad-relacion.png)
 
-*Fuente PlantUML: [`diagramas/src/06-modelo-entidad-relacion.puml`](diagramas/src/06-modelo-entidad-relacion.puml)*
+*Fuente PlantUML: [`diagramas/datos/src/06-modelo-entidad-relacion.puml`](../diagramas/datos/src/06-modelo-entidad-relacion.puml)*
 
 ## 8. Infraestructura y encaje en AWS
 
@@ -273,9 +273,9 @@ acceden a ellos a través de su API o de eventos.
 
 ### 8.2 Arquitectura en AWS
 
-![Despliegue en AWS](diagramas/07-despliegue-aws.png)
+![Despliegue en AWS](../diagramas/despliegue/07-despliegue-aws.png)
 
-*Fuente PlantUML: [`diagramas/src/07-despliegue-aws.puml`](diagramas/src/07-despliegue-aws.puml)*
+*Fuente PlantUML: [`diagramas/despliegue/src/07-despliegue-aws.puml`](../diagramas/despliegue/src/07-despliegue-aws.puml)*
 
 | Servicio de AWS | Papel en OneLeft |
 |---|---|
@@ -296,9 +296,9 @@ alternativa económica y se solicitarán créditos educativos de AWS.
 
 La app Android se genera con **Capacitor** a partir del mismo código Angular, lo que evita mantener dos frontends:
 
-![Generación de la app web y Android](diagramas/08-pipeline-app-movil.png)
+![Generación de la app web y Android](../diagramas/procesos/08-pipeline-app-movil.png)
 
-*Fuente PlantUML: [`diagramas/src/08-pipeline-app-movil.puml`](diagramas/src/08-pipeline-app-movil.puml)*
+*Fuente PlantUML: [`diagramas/procesos/src/08-pipeline-app-movil.puml`](../diagramas/procesos/src/08-pipeline-app-movil.puml)*
 
 - **Geolocalización nativa** para obtener la zona del usuario, también en segundo plano con su consentimiento.
 - **Notificaciones push** mediante Firebase Cloud Messaging.
@@ -307,9 +307,9 @@ La app Android se genera con **Capacitor** a partir del mismo código Angular, l
 
 ## 10. Planificación
 
-![Planificación por fases](diagramas/09-planificacion-gantt.png)
+![Planificación por fases](../diagramas/procesos/09-planificacion-gantt.png)
 
-*Fuente PlantUML: [`diagramas/src/09-planificacion-gantt.puml`](diagramas/src/09-planificacion-gantt.puml)*
+*Fuente PlantUML: [`diagramas/procesos/src/09-planificacion-gantt.puml`](../diagramas/procesos/src/09-planificacion-gantt.puml)*
 
 La memoria se redacta de forma progresiva desde el primer sprint a partir del diario de desarrollo; el tramo final
 se dedica a su cierre y revisión.

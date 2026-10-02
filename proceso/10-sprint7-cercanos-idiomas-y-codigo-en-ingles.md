@@ -36,7 +36,7 @@
 | Cola **anónima por réplica** enlazada a `plan.published` | Reparto en abanico: con varias réplicas de `plans`, todas avisan a sus clientes |
 | Latido cada 20 s y métrica `oneleft_plans_nearby_subscriptions` | Evita cortes de proxies; las conexiones abiertas se ven en Grafana |
 
-![HU-004 a través del gateway](img/51-hu004-cercanos-y-sse.png)
+![HU-004 a través del gateway](../capturas/api/51-hu004-cercanos-y-sse.png)
 
 *Figura 61. Búsqueda por distancia con filtros y aviso en tiempo real. El evento llega en unos 125 ms.*
 
@@ -65,12 +65,12 @@ dos latidos (unos 40 s, algo más a través del gateway). El *timeout* de 30 min
 - **Keycloak** recibe `ui_locales`, así que su pantalla de login sale en el mismo idioma.
 - 62 tests en el frontend, con un 97,8 % de cobertura de sentencias.
 
-![Login en español e inglés](img/52-hu022-login-es-en.png)
+![Login en español e inglés](../capturas/app-web/52-hu022-login-es-en.png)
 
 *Figura 62. Inicio, login de Keycloak y perfil en los dos idiomas. Capturas automáticas con
 `ONELEFT_LANG=es|en node tools/capture-login.mjs`.*
 
-![Publicar un plan y perfil](img/53-hu022-plan-y-perfil.png)
+![Publicar un plan y perfil](../capturas/app-web/53-hu022-plan-y-perfil.png)
 
 *Figura 63. Publicar un plan en inglés, detalle en inglés y en español, y perfil guardado. En la base de datos solo
 hay códigos (`PADEL`, `INTERMEDIATE`, `OPEN`).*
@@ -103,12 +103,12 @@ genera `assets/logos/SOURCES.md` con el origen y la licencia de cada uno. Las fu
 gilbarbara/logos (CC0; incluye AWS y Slack, que Simple Icons ya no publica) y los repositorios oficiales de PostGIS,
 Loki, Testcontainers, ArchUnit, JaCoCo, Micrometer y PlantUML.
 
-![Logos](img/54-logos-tecnologias.png)
+![Logos](../capturas/codigo/54-logos-tecnologias.png)
 
 *Figura 64. Logos de las tecnologías de OneLeft.*
 
-![Arquitectura con logos](../memoria/diagramas/17-arquitectura-tecnologias.png)
+![Arquitectura con logos](../diagramas/componentes/17-arquitectura-tecnologias.png)
 
 *Figura 65. Arquitectura y tecnologías de cada pieza. Fuente:
-[`17-arquitectura-tecnologias.puml`](../memoria/diagramas/src/17-arquitectura-tecnologias.puml).
+[`17-arquitectura-tecnologias.puml`](../diagramas/componentes/src/17-arquitectura-tecnologias.puml).
 `render-plantuml.sh` monta ahora todo el repositorio para que los diagramas incrusten `assets/logos/png`.*
