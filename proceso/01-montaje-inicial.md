@@ -29,7 +29,7 @@ y la aplicación Android). Todos son públicos, lo que permite usar SonarQube Cl
 |---|---|
 | [oneleft-backend](https://github.com/chabelly-lbetancourt/oneleft-backend) | Microservicios Spring Boot |
 | [oneleft-frontend](https://github.com/chabelly-lbetancourt/oneleft-frontend) | App web Angular + PrimeNG + Tailwind CSS, empaquetada para Android con Capacitor |
-| [oneleft-infra](https://github.com/chabelly-lbetancourt/oneleft-infra) | Docker, Kubernetes, AWS, Grafana y Loki |
+| [oneleft-infra](https://github.com/chabelly-lbetancourt/oneleft-infra) | Docker Compose, AWS Lightsail, Grafana y Loki |
 | [oneleft-docs](https://github.com/chabelly-lbetancourt/oneleft-docs) | Memoria y documentación del proceso |
 
 ![Repositorios del proyecto en GitHub](../capturas/gestion/01-repositorios.png)
@@ -90,7 +90,7 @@ trabajo y por área:
 ## 5. Backlog inicial
 
 Se cargaron 33 issues: la estructura de cada repositorio, las tareas técnicas de arranque (esqueletos de
-backend y frontend, Capacitor, pipelines, Docker Compose, observabilidad, Kubernetes y AWS) y 17 historias
+backend y frontend, Capacitor, pipelines, Docker Compose, observabilidad y despliegue en AWS) y 17 historias
 de usuario, de `HU-001 · Registro e inicio de sesión` a `HU-017 · Preparación de la defensa`.
 
 Cada historia sigue el formato *Como… quiero… para…* con criterios de aceptación verificables.

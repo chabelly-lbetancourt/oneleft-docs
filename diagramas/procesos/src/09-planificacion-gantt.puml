@@ -40,7 +40,7 @@ sunday are closed
 [Agente (Could)] starts 2027-03-01 and lasts 10 days
 
 -- Despliegue --
-[Kubernetes y AWS] starts 2027-03-15 and lasts 20 days
+[Despliegue en AWS Lightsail] starts 2027-03-15 and lasts 20 days
 [Pruebas de carga] starts 2027-04-12 and lasts 5 days
 
 -- Cierre --

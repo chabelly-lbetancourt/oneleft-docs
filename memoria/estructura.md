@@ -19,7 +19,7 @@ La memoria debe hacer énfasis en estos aspectos. Cada uno indica dónde se trat
 | Diagramas UML (PlantUML) | 3.5–3.8 | Casos de uso, componentes, clases, estados, secuencia y despliegue |
 | Bases de datos | 3.9 | Modelo entidad-relación, base de datos por servicio, PostGIS y Redis |
 | Arquitectura | 3.5, 4.3 | Microservicios con arquitectura hexagonal, eventos, gateway; diagrama 17 con los logos de cada tecnología |
-| Infraestructura | 4.7 | Docker, Kubernetes, entornos **dev / pre (staging) / pro** con su flujo de promoción (diagrama 18), pipelines (diagrama 10) |
+| Infraestructura | 4.7 | Docker y Docker Compose en AWS Lightsail, entornos **dev / pre (staging) / pro** con su flujo de promoción (diagrama 18), pipelines (diagrama 10) |
 | Cómo encaja AWS | 3.8, 4.7 | Diagrama de despliegue en AWS, servicios usados y control de costes |
 | App móvil | 4.5, 5 | Pipeline de Capacitor, capturas en Android |
 | Estructura de directorios | 4.3, 4.4, anexo | Árbol de cada repositorio con explicación |
@@ -62,7 +62,7 @@ secuencia, datos, despliegue y procesos), siempre en PlantUML (fuentes en `src/`
 - 2.2 Arquitectura de microservicios y arquitectura hexagonal
 - 2.3 Aplicaciones web con Angular y aplicaciones híbridas con Capacitor
 - 2.4 Bases de datos: relacionales, geoespaciales (PostGIS) y en memoria (Redis)
-- 2.5 Contenedores y orquestación: Docker y Kubernetes
+- 2.5 Contenedores: Docker y Docker Compose
 - 2.6 Computación en la nube: AWS
 - 2.7 Observabilidad: logs, métricas, Grafana, Loki y Prometheus
 - 2.8 Calidad del software: pruebas automatizadas, cobertura y SonarQube
@@ -101,8 +101,7 @@ secuencia, datos, despliegue y procesos), siempre en PlantUML (fuentes en `src/`
 - 4.7 Infraestructura y despliegue
   - Estrategia de ramas y política de contribución
   - Entorno de desarrollo con Docker Compose
-  - Kubernetes y autoescalado
-  - Infraestructura en AWS y control de costes
+  - Despliegue en AWS Lightsail y control de costes
   - Pipeline de CI/CD y SonarQube
   - Observabilidad
 - 4.8 Pruebas

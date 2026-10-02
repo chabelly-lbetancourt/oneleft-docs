@@ -99,7 +99,7 @@ las URIs de redirección del realm ya incluyen los orígenes de Capacitor.
 - **Métricas:** los microservicios exponen `/actuator/prometheus` con histogramas de latencia HTTP. Prometheus
   los rasca cada 10 segundos, junto con Keycloak y RabbitMQ.
 - **Logs:** con el perfil `observability`, los servicios envían sus logs a Loki con las etiquetas `app`, `level` y `host`.
-  En Kubernetes se recogerán de la salida estándar de los contenedores.
+  En producción se recogerán de la salida estándar de los contenedores.
 - **Grafana como código:** fuentes de datos y dashboard aprovisionados desde `oneleft-infra`, sin configuración manual.
 
 ![Destinos de Prometheus](../capturas/infraestructura/40-prometheus-targets.png)
