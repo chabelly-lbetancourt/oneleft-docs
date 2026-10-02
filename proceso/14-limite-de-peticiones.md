@@ -18,7 +18,7 @@
 
 | Decisión | Motivo |
 |---|---|
-| **Bucket4j** (*token bucket*) con estado en **Redis** (Lettuce, operaciones CAS) | Todas las réplicas del gateway comparten el mismo contador. Un límite en memoria se multiplicaría por el número de réplicas en Kubernetes |
+| **Bucket4j** (*token bucket*) con estado en **Redis** (Lettuce, operaciones CAS) | Todas las réplicas del gateway comparten el mismo contador. Un límite en memoria se multiplicaría por el número de réplicas |
 | Filtro **dentro de la cadena de Spring Security**, después de validar el JWT | La clave es el `sub` del usuario, así que cambiar de red no esquiva el límite. Sin sesión se usa la IP |
 | Reglas en `application.yaml`; se aplica la primera que coincide | `publish-plans`: 5 planes por hora; `api`: 120 peticiones por minuto. Se ajustan por variables de entorno en cada entorno (`dev`, `pre`, `pro`) |
 | **429 con Problem Details** y `code: rate.limited`, `retryAfterSeconds` | Mismo formato que el resto de errores de la API; la web lo traduce y dice cuántos minutos esperar |

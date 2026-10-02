@@ -1,46 +1,42 @@
 @startuml 07-despliegue-aws
 !include ../../estilo.iuml
-title Diagrama de despliegue en AWS
+title Diagrama de despliegue en AWS Lightsail (un entorno: pre o pro)
 
 actor "Usuarios\nweb y Android" as USR
 node "GitHub Actions" as GHA
+database "GitHub Container\nRegistry (GHCR)" as GHCR
 
-rectangle "AWS" as AWS {
-  component "Route 53 + ACM\ndominio y TLS" as R53
-  component "CloudFront + S3\napp Angular" as CF
-  component "ECR\nimágenes Docker" as ECR
-  component "Secrets Manager" as SM
-  component "AWS Budgets\nalertas de coste" as BUD
+rectangle "AWS" {
+  component "Zona DNS e IP estática\nde Lightsail" as DNS
+  component "Amazon SES\ncorreo de Keycloak" as SES
+  component "AWS Budgets y alarmas\nde Lightsail" as BUD
+  component "Almacenamiento de objetos\nLightsail (copias pg_dump)" as BK
 
-  node "VPC · eu-south-2 (España)" as VPC {
-    component "Application\nLoad Balancer" as ALB
-
-    node "Clúster Kubernetes\nEKS o k3s en EC2" as K8S {
-      component "Ingress" as ING
-      component "gateway" as GWP
-      component "users · plans · geo\nnotifications · chat · ai\n(HPA: autoescalado)" as SVC
-      component "Keycloak" as KCP
-      queue "RabbitMQ" as MQP
-      component "Grafana · Loki\nPrometheus" as OBS
-    }
-
-    database "Amazon RDS\nPostgreSQL + PostGIS" as RDS
-    database "ElastiCache\nRedis" as EC
+  node "Instancia Lightsail · Linux · 2 vCPU · 8 GB\nDocker Compose" as LS {
+    component "Caddy\nHTTPS (Let's Encrypt)\napp Angular · /api · /auth" as CAD
+    component "gateway" as GWP
+    component "users · plans\nnotifications" as SVC
+    component "Keycloak" as KCP
+    database "PostgreSQL\n+ PostGIS" as PGP
+    queue "RabbitMQ" as MQP
+    database "Redis" as RDP
+    component "Prometheus · Loki\nGrafana" as OBS
   }
 }
 
-USR --> R53
-R53 --> CF
-R53 --> ALB
-ALB --> ING
-ING --> GWP
+USR --> DNS
+DNS --> CAD
+CAD --> GWP : /api
+CAD --> KCP : /auth
 GWP --> SVC
-SVC --> RDS
-SVC --> EC
+GWP --> RDP : límite de peticiones
+SVC --> PGP
 SVC --> MQP
-SVC ..> SM : secretos
-SVC ..> OBS : logs y métricas
-GHA --> ECR : push de imágenes
-GHA --> K8S : despliegue
-K8S ..> ECR : pull
+KCP --> PGP
+KCP ..> SES : correos
+SVC ..> OBS : métricas y logs
+PGP ..> BK : copia diaria
+GHA --> GHCR : imágenes :pre / :latest
+GHA --> LS : SSH: docker compose pull && up -d
+LS ..> GHCR : pull
 @enduml

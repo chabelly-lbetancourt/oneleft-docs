@@ -28,7 +28,7 @@ producción problemas que solo aparecen con la infraestructura real (dominios, b
 | `pre` se crea desde `main` | `pre` nunca va por detrás de producción; recibe `dev` mediante una PR de promoción |
 | El workflow `lint` valida el **camino de promoción** | Solo se admiten `issue#N → dev`, `dev → pre`, `pre → main` y `hotfix/* → main, pre, dev`; se rechaza, por ejemplo, `dev → main` |
 | Imágenes `:pre` desde `pre` y `:latest` desde `main` | Lo que se prueba en pre es exactamente lo que se promociona (además, todas llevan la etiqueta `:sha-…`) |
-| Namespaces `oneleft-pre` y `oneleft-pro` en el mismo clúster EKS (overlays de Kustomize) | Control de costes: un clúster, dos entornos aislados, con su propia base de datos y su propio realm |
+| Una instancia de AWS Lightsail por entorno (`pre` y `pro`), cada una con su Docker Compose | Entornos aislados, con su propia base de datos y su propio realm; `pre` solo se enciende para validar cada *release* |
 | Web, `/api` y `/auth` en el **mismo origen** | La web de pre no lleva ningún host compilado (`environment.pre.ts`); la app Android recibe el host con `--define ONELEFT_ORIGIN` |
 
 ![Pipeline de CI](../diagramas/procesos/10-pipeline-ci.png)
@@ -44,10 +44,10 @@ Al revisar si la documentación estaba al día aparecieron estos desfases, corre
 | `CONTRIBUTING.md` (los cuatro repositorios) | Solo `dev` y `main`, sin convención de idioma | Entornos dev/pre/pro, promoción, hotfix, código en inglés, campos de tiempo del tablero |
 | README del backend | `users` y `plans` como «esqueletos» y un servicio `geo` que no existe | Historias implementadas, convenciones (errores con `code`) y entornos con sus imágenes |
 | README del frontend | Sin i18n ni rutas; estructura incompleta | Idiomas (HU-022), estructura real, rutas y configuraciones de build por entorno |
-| README de infra | Carpetas `k8s/`, `aws/` y `observability/` que no existen | Contenido real y tabla de entornos con namespaces |
+| README de infra | Carpetas `aws/` y `observability/` que no existen | Contenido real y tabla de entornos |
 | Plantillas de PR | Sin promociones | Casilla de promoción validada en el entorno anterior |
 | Anteproyecto | Ramas `main`/`dev` | Incluye `pre` (aún se puede cambiar: falta la firma del Anexo I) |
-| infra#4 e infra#5 | Sin entornos | Overlays `pre`/`pro`, Ingress con `/auth` y despliegue por rama |
+| infra#4 e infra#5 | Sin entornos | Compose de producción por entorno, entrada con `/auth` en el mismo origen y despliegue por rama |
 
 Las entradas anteriores del diario no se reescriben: describen el estado de cada momento.
 
@@ -55,4 +55,4 @@ Las entradas anteriores del diario no se reescriben: describen el estado de cada
 
 1. Mezclar las PR pendientes en el orden indicado en cada una (dependen del refactor al inglés).
 2. Primera **promoción `dev → pre`** cuando HU-004 esté completa (backend y web).
-3. El despliegue real de `pre` y `pro` llega con infra#4 (Kubernetes) e infra#5 (AWS).
+3. El despliegue real de `pre` y `pro` llega con infra#4 (Compose de producción) e infra#5 (AWS Lightsail).

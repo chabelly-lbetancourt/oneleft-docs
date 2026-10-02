@@ -12,13 +12,13 @@ start
 :Sprint integrado\nPR de promoción dev → pre;
 |pre|
 :CI en pre\nimágenes :pre en GHCR;
-:Despliegue en el namespace oneleft-pre\n(web, /api y /auth en el mismo origen);
+:Despliegue en la instancia Lightsail de pre\n(web, /api y /auth en el mismo origen);
 :Pruebas completas\n(E2E con capturas, carga, revisión funcional);
 if (¿Validado?) then (sí)
   :PR de release pre → main;
   |main|
   :CI en main\nimágenes :latest en GHCR;
-  :Despliegue en el namespace oneleft-pro\n(producción);
+  :Despliegue en la instancia Lightsail de pro\n(producción);
   stop
 else (no)
   |issue#N|
