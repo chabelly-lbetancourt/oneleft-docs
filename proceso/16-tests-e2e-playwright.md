@@ -35,29 +35,29 @@ Los recorridos son:
 
 ## 3. En la CI
 
-![Job E2E en la CI](../memoria/diagramas/22-tests-e2e-ci.png)
+![Job E2E en la CI](../diagramas/procesos/22-tests-e2e-ci.png)
 
-*Figura 77. Job `e2e` del frontend. Fuente: [`22-tests-e2e-ci.puml`](../memoria/diagramas/src/22-tests-e2e-ci.puml).*
+*Figura 77. Job `e2e` del frontend. Fuente: [`22-tests-e2e-ci.puml`](../diagramas/procesos/src/22-tests-e2e-ci.puml).*
 
 - Se ejecuta en las PR hacia `pre`, a mano (`workflow_dispatch`, eligiendo la etiqueta de las imágenes) y en
   cualquier PR con la etiqueta **`e2e`**. La etiqueta hizo falta para probar el propio job en su PR, que iba a `dev`.
 - Corre en paralelo con el lint, los tests unitarios y el build: unos 3 minutos en total.
 
-![Ejecución en la CI](img/65-e2e-ci.png)
+![Ejecución en la CI](../capturas/integracion-continua/65-e2e-ci.png)
 
 *Figura 78. Primera ejecución del job en la PR #39, en verde a la primera.*
 
 ## 4. Resultados
 
-![Ejecución en local](img/62-e2e-ejecucion-local.png)
+![Ejecución en local](../capturas/pruebas/62-e2e-ejecucion-local.png)
 
 *Figura 79. Los 10 tests en local (47 s) contra las imágenes compiladas desde `dev`.*
 
-![Informe HTML](img/63-e2e-informe.png)
+![Informe HTML](../capturas/pruebas/63-e2e-informe.png)
 
 *Figura 80. Informe HTML de Playwright, con la etiqueta del idioma de cada test.*
 
-![Informe de un fallo](img/64-e2e-informe-fallo.png)
+![Informe de un fallo](../capturas/pruebas/64-e2e-informe-fallo.png)
 
 *Figura 81. Un test roto a propósito: error, pasos con su duración, captura de la pantalla y, más abajo, la traza y
 el vídeo de la sesión. En la CI todo esto se descarga del artefacto `e2e-report`.*

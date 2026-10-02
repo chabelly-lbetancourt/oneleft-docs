@@ -1,0 +1,92 @@
+@startuml 06-modelo-entidad-relacion
+!include ../../estilo.iuml
+title Modelo entidad-relación
+hide circle
+skinparam linetype ortho
+
+entity "usuario" as usuario {
+  * id : uuid <<PK>>
+  --
+  nombre : varchar
+  zona_aproximada : varchar
+  reputacion : numeric
+  ausencias : int
+}
+
+entity "aficion" as aficion {
+  * usuario_id : uuid <<FK>>
+  * actividad : varchar <<FK>>
+  --
+  nivel : varchar
+}
+
+entity "actividad" as actividad {
+  * codigo : varchar <<PK>>
+  --
+  nombre : varchar
+}
+
+entity "plan" as plan {
+  * id : uuid <<PK>>
+  --
+  organizador_id : uuid <<FK>>
+  actividad : varchar <<FK>>
+  ubicacion : geography(Point) <<PostGIS>>
+  inicio : timestamptz
+  plazas : int
+  ocupadas : int
+  estado : varchar
+}
+
+entity "participacion" as participacion {
+  * plan_id : uuid <<FK>>
+  * usuario_id : uuid <<FK>>
+  --
+  fecha : timestamptz
+  asistio : boolean
+}
+
+entity "mensaje" as mensaje {
+  * id : uuid <<PK>>
+  --
+  plan_id : uuid <<FK>>
+  autor_id : uuid <<FK>>
+  contenido : text
+  fecha : timestamptz
+}
+
+entity "valoracion" as valoracion {
+  * plan_id : uuid <<FK>>
+  * autor_id : uuid <<FK>>
+  * valorado_id : uuid <<FK>>
+  --
+  puntuacion : int
+}
+
+entity "notificacion" as notificacion {
+  * id : uuid <<PK>>
+  --
+  usuario_id : uuid <<FK>>
+  plan_id : uuid <<FK>>
+  probabilidad : numeric
+  aceptada : boolean
+}
+
+usuario ||--o{ aficion
+actividad ||--o{ aficion
+usuario ||--o{ plan : organiza
+actividad ||--o{ plan
+plan ||--o{ participacion
+usuario ||--o{ participacion
+plan ||--o{ mensaje
+plan ||--o{ valoracion
+usuario ||--o{ valoracion : recibe
+usuario ||--o{ notificacion
+plan ||--o{ notificacion
+
+note bottom of plan
+  Cada microservicio es dueño de sus tablas.
+  Las relaciones entre servicios distintos se
+  resuelven por identificador, no por clave foránea.
+end note
+@enduml

@@ -27,8 +27,9 @@ La memoria debe hacer énfasis en estos aspectos. Cada uno indica dónde se trat
 
 ## Diagramas
 
-Los diagramas del anteproyecto están en `anteproyecto/diagramas` y los nuevos de la memoria en
-`memoria/diagramas`, siempre en PlantUML (fuentes en `src/`, generados con `tools/render-plantuml.sh`).
+Los diagramas están en [`diagramas/`](../diagramas), agrupados por tipo (casos de uso, componentes, clases, estados,
+secuencia, datos, despliegue y procesos), siempre en PlantUML (fuentes en `src/` de cada tipo, generados con
+`tools/render-plantuml.sh`). Las capturas están en [`capturas/`](../capturas), agrupadas por categoría.
 
 ## Portada
 

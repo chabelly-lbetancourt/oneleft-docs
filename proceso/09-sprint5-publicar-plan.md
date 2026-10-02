@@ -11,7 +11,7 @@
 | infra#14 · PostGIS y RabbitMQ para plans (sub-issue) | Tarea | Must | 1 | Done |
 | frontend#12 · HU-003 Publicar un plan desde la app (sub-issue) | Historia | Must | 5 | Done |
 
-![Tablero en el Sprint 5](img/50-tablero-sprint5.png)
+![Tablero en el Sprint 5](../capturas/gestion/50-tablero-sprint5.png)
 
 *Figura 57. Tablero tras HU-003.*
 
@@ -20,10 +20,10 @@ el primer evento de dominio en RabbitMQ.
 
 ## 2. Diseño
 
-![Secuencia de publicación de un plan](../memoria/diagramas/16-secuencia-publicar-plan.png)
+![Secuencia de publicación de un plan](../diagramas/secuencia/16-secuencia-publicar-plan.png)
 
 *Figura 58. Secuencia de HU-003. Fuente:
-[`16-secuencia-publicar-plan.puml`](../memoria/diagramas/src/16-secuencia-publicar-plan.puml).*
+[`16-secuencia-publicar-plan.puml`](../diagramas/secuencia/src/16-secuencia-publicar-plan.puml).*
 
 | Decisión | Motivo |
 |---|---|
@@ -43,7 +43,7 @@ el primer evento de dominio en RabbitMQ.
 - **24 tests** en `plans` con **PostGIS y RabbitMQ reales (Testcontainers)**; 100 % de cobertura de líneas.
   Incluye un test que recibe el evento desde una cola real y otro que comprueba el punto con `ST_AsText` y `ST_SRID`.
 
-![API, evento y PostGIS](img/48-hu003-api-evento-postgis.png)
+![API, evento y PostGIS](../capturas/api/48-hu003-api-evento-postgis.png)
 
 *Figura 59. Prueba de extremo a extremo con los contenedores: 201 con `Location` pública, evento `plan.published`
 en JSON recibido en una cola de prueba y el punto guardado en PostGIS con SRID 4326.*
@@ -52,10 +52,10 @@ en JSON recibido en una cola de prueba y el punto guardado en PostGIS con SRID 4
 
 | | | |
 |---|---|---|
-| ![Formulario vacío](img/49-hu003-1-formulario-vacio.png) | ![Formulario relleno](img/49-hu003-2-formulario-relleno.png) | ![Detalle](img/49-hu003-3-detalle.png) |
+| ![Formulario vacío](../capturas/app-web/49-hu003-1-formulario-vacio.png) | ![Formulario relleno](../capturas/app-web/49-hu003-2-formulario-relleno.png) | ![Detalle](../capturas/app-web/49-hu003-3-detalle.png) |
 | *1. Formulario* | *2. Relleno* | *3. Plan publicado* |
 
-![Inicio con mis próximos planes](img/49-hu003-4-inicio.png)
+![Inicio con mis próximos planes](../capturas/app-web/49-hu003-4-inicio.png)
 
 *Figura 60. Pantalla de inicio con «Tus próximos planes». Recorrido automatizado con
 [`tools/capture-plan.mjs`](../tools/capture-plan.mjs).*

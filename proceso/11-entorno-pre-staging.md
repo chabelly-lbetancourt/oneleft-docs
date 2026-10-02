@@ -18,10 +18,10 @@ producción problemas que solo aparecen con la infraestructura real (dominios, b
 
 ## 2. Flujo de ramas y entornos
 
-![Flujo de ramas y entornos](../memoria/diagramas/18-flujo-ramas-entornos.png)
+![Flujo de ramas y entornos](../diagramas/procesos/18-flujo-ramas-entornos.png)
 
 *Figura 66. Flujo `issue#N → dev → pre → main`. Fuente:
-[`18-flujo-ramas-entornos.puml`](../memoria/diagramas/src/18-flujo-ramas-entornos.puml).*
+[`18-flujo-ramas-entornos.puml`](../diagramas/procesos/src/18-flujo-ramas-entornos.puml).*
 
 | Decisión | Motivo |
 |---|---|
@@ -31,7 +31,7 @@ producción problemas que solo aparecen con la infraestructura real (dominios, b
 | Namespaces `oneleft-pre` y `oneleft-pro` en el mismo clúster EKS (overlays de Kustomize) | Control de costes: un clúster, dos entornos aislados, con su propia base de datos y su propio realm |
 | Web, `/api` y `/auth` en el **mismo origen** | La web de pre no lleva ningún host compilado (`environment.pre.ts`); la app Android recibe el host con `--define ONELEFT_ORIGIN` |
 
-![Pipeline de CI](../memoria/diagramas/10-pipeline-ci.png)
+![Pipeline de CI](../diagramas/procesos/10-pipeline-ci.png)
 
 *Figura 67. Pipeline de CI actualizado con la validación de la promoción y la publicación por entorno.*
 

@@ -1,0 +1,35 @@
+@startuml 18-flujo-ramas-entornos
+!include ../../estilo.iuml
+title Flujo de ramas y entornos: dev → pre → pro
+
+|issue#N|
+start
+:Crear rama desde dev\n(una por issue del tablero);
+:Commits Conventional Commits\n(en inglés, con #issue);
+:PR contra dev\nlint + tests + cobertura ≥ 80 %;
+|dev|
+:Integración continua\n(entorno dev: Docker Compose en local);
+:Sprint integrado\nPR de promoción dev → pre;
+|pre|
+:CI en pre\nimágenes :pre en GHCR;
+:Despliegue en el namespace oneleft-pre\n(web, /api y /auth en el mismo origen);
+:Pruebas completas\n(E2E con capturas, carga, revisión funcional);
+if (¿Validado?) then (sí)
+  :PR de release pre → main;
+  |main|
+  :CI en main\nimágenes :latest en GHCR;
+  :Despliegue en el namespace oneleft-pro\n(producción);
+  stop
+else (no)
+  |issue#N|
+  :Issue de bug en el tablero\n(vuelve a empezar desde dev);
+  stop
+endif
+
+legend right
+  **hotfix/***: se crea desde main, PR a main
+  y la misma rama después a pre y a dev.
+  El workflow lint rechaza cualquier otro camino
+  (por ejemplo, dev → main o issue#N → pre).
+endlegend
+@enduml

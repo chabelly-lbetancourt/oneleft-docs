@@ -35,15 +35,15 @@ Componentes compartidos nuevos:
 Los ajustes de PrimeNG van **fuera de capas CSS**, porque PrimeNG inyecta su capa en tiempo de ejecución, después de
 la hoja de estilos, y la suya ganaría.
 
-![Antes y después: portada y login](img/66-rediseno-antes-despues-inicio.png)
+![Antes y después: portada y login](../capturas/app-web/66-rediseno-antes-despues-inicio.png)
 
 *Figura 82. Antes y después de la portada sin sesión y del login de Keycloak.*
 
-![Antes y después: planes](img/67-rediseno-antes-despues-planes.png)
+![Antes y después: planes](../capturas/app-web/67-rediseno-antes-despues-planes.png)
 
 *Figura 83. Antes y después de «Planes cerca» y del detalle de un plan.*
 
-![Con sesión](img/69-rediseno-con-sesion.png)
+![Con sesión](../capturas/app-web/69-rediseno-con-sesion.png)
 
 *Figura 84. Inicio con sesión, publicar y perfil con el nuevo sistema (también en inglés).*
 
@@ -59,12 +59,12 @@ la hoja de estilos, y la suya ganaría.
   la abre al volver de Keycloak. Solo acepta rutas de la app (nada de `https://…` ni `//…`), para no abrir una
   redirección a otros sitios.
 
-![Secuencia de acceso](../memoria/diagramas/23-secuencia-paginas-acceso.png)
+![Secuencia de acceso](../diagramas/secuencia/23-secuencia-paginas-acceso.png)
 
 *Figura 85. Acceso desde una página protegida. Fuente:
-[`23-secuencia-paginas-acceso.puml`](../memoria/diagramas/src/23-secuencia-paginas-acceso.puml).*
+[`23-secuencia-paginas-acceso.puml`](../diagramas/secuencia/src/23-secuencia-paginas-acceso.puml).*
 
-![Páginas de acceso](img/68-paginas-acceso.png)
+![Páginas de acceso](../capturas/app-web/68-paginas-acceso.png)
 
 *Figura 86. Entrar y crear cuenta, en español y en inglés.*
 
@@ -115,10 +115,10 @@ La identidad queda en detalles con sentido: el anillo «+1» del logo, los hueco
 subrayada en el titular. Como las plantillas ya usaban utilidades propias (`sticker`, `slot`), bastó con
 redefinirlas (`card`, `spot`) para que el cambio llegara a todas las pantallas.
 
-![Antes y después de la revisión](img/70-identidad-sobria-antes-despues.png)
+![Antes y después de la revisión](../capturas/app-web/70-identidad-sobria-antes-despues.png)
 
 *Figura 87. Portada y detalle de un plan: estilo «cromo» y versión sobria.*
 
-![Pantallas con la identidad sobria](img/71-identidad-sobria-pantallas.png)
+![Pantallas con la identidad sobria](../capturas/app-web/71-identidad-sobria-pantallas.png)
 
 *Figura 88. Entrar, inicio con sesión, planes cerca y login de Keycloak con la identidad sobria.*
