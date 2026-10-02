@@ -50,7 +50,7 @@ crea contenido realista:
 ![Unirse y aviso al organizador](../capturas/app-web/57-hu005-unirse-y-aviso.png)
 
 *Figura 72. Admin se apunta al plan de Ana (antes y después), Ana recibe el aviso en tiempo real con su lista
-actualizada («Faltan 2»), y al tocarlo ve al nuevo participante; las dos últimas, en inglés. Capturas con dos
+actualizada, y al tocarlo ve al nuevo participante. Capturas con dos
 navegadores a la vez: [`tools/capture-join.mjs`](../tools/capture-join.mjs).*
 
 **Pruebas:** plans pasa de 46 a 63 tests (100 % de líneas) y el frontend de 79 a 87 (96 % de sentencias).

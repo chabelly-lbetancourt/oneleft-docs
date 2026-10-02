@@ -98,7 +98,7 @@ No hace falta tocar los workflows: la suscripción `workflows` de la app ya avis
 
 ## 7. Logos de las tecnologías (docs#17)
 
-`tools/fetch-logos.mjs` descarga los 48 logos del stack en SVG (con su color de marca) y en PNG para PlantUML, y
+`tools/fetch-logos.mjs` descarga los 46 logos del stack en SVG (con su color de marca) y en PNG para PlantUML, y
 genera `assets/logos/SOURCES.md` con el origen y la licencia de cada uno. Las fuentes son Simple Icons (CC0),
 gilbarbara/logos (CC0; incluye AWS y Slack, que Simple Icons ya no publica) y los repositorios oficiales de PostGIS,
 Loki, Testcontainers, ArchUnit, JaCoCo, Micrometer y PlantUML.

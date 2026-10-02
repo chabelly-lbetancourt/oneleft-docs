@@ -30,7 +30,7 @@ mensajería con amigos; un enlace con buena vista previa es la forma más rápid
 
 ![Secuencia de compartir un plan](../diagramas/secuencia/26-secuencia-compartir-enlace.png)
 
-*Figura 93. Ana comparte su plan, la app de mensajería genera la vista previa y Lucía, sin sesión, abre el plan,
+*Figura 90. Ana comparte su plan, la app de mensajería genera la vista previa y Lucía, sin sesión, abre el plan,
 inicia sesión y se apunta. Fuente:
 [`26-secuencia-compartir-enlace.puml`](../diagramas/secuencia/src/26-secuencia-compartir-enlace.puml).*
 
@@ -38,13 +38,13 @@ inicia sesión y se apunta. Fuente:
 
 ![Compartir un plan por enlace](../capturas/app-web/74-hu024-compartir-enlace.png)
 
-*Figura 94. De izquierda a derecha: Ana pulsa «Compartir» (en un navegador sin hoja nativa, el enlace se copia);
+*Figura 91. De izquierda a derecha: Ana pulsa «Compartir» (en un navegador sin hoja nativa, el enlace se copia);
 Lucía abre el enlace sin sesión y ve el plan sin nombres, con «0 de 2 plazas ocupadas»; «Me apunto» la lleva a
 iniciar sesión; y vuelve al plan, donde ya está dentro.*
 
 ![Vista previa del enlace](../capturas/app-web/75-hu024-vista-previa.png)
 
-*Figura 95. Lo que lee una app de mensajería del enlace: etiquetas Open Graph con la actividad, la hora, las plazas
+*Figura 92. Lo que lee una app de mensajería del enlace: etiquetas Open Graph con la actividad, la hora, las plazas
 y el lugar, y la imagen `og-image.png` (1200 × 630) que aparece en la vista previa.*
 
 ## 4. Pruebas
