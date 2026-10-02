@@ -22,7 +22,7 @@ try {
   const page = await mobilePage(browser);
   await page.setGeolocation(DEVICE_POSITION);
 
-  await page.goto(`${APP}/profile`, { waitUntil: 'networkidle0' });
+  await page.goto(`${APP}/profile`, { waitUntil: 'load' });
   await keycloakLogin(page, login);
 
   // 1. Newly created profile

@@ -24,12 +24,12 @@ ejecutándose en contenedores. Se añadió al tablero como tarea nueva del sprin
 
 | | |
 |---|---|
-| ![Swagger UI](img/42-swagger-1-swagger-ui.png) | ![Authorize](img/42-swagger-2-authorize.png) |
+| ![Swagger UI](../capturas/api/42-swagger-1-swagger-ui.png) | ![Authorize](../capturas/api/42-swagger-2-authorize.png) |
 | *1. Swagger UI con la API de users* | *2. «Authorize» con Keycloak* |
-| ![Login en Keycloak](img/42-swagger-3-login-keycloak.png) | ![Autorizado](img/42-swagger-4-autorizado.png) |
+| ![Login en Keycloak](../capturas/api/42-swagger-3-login-keycloak.png) | ![Autorizado](../capturas/api/42-swagger-4-autorizado.png) |
 | *3. Login en Keycloak* | *4. Sesión iniciada en Swagger UI* |
 
-![Prueba de GET /api/v1/users/me](img/42-swagger-5-respuesta-me.png)
+![Prueba de GET /api/v1/users/me](../capturas/api/42-swagger-5-respuesta-me.png)
 
 *Figura 48. `GET /api/v1/users/me` desde Swagger UI: la petición lleva el token y la respuesta es 200 con el
 usuario. Se ven también las respuestas documentadas (200 con ejemplo y 401 sin cuerpo).*
@@ -40,14 +40,14 @@ El recorrido se automatizó con [`tools/capture-swagger.mjs`](../tools/capture-s
 
 Nuevo perfil **`backend`** en Docker Compose con gateway, users y plans, además de los perfiles anteriores:
 
-![Contenedores del entorno](img/43-contenedores-backend.png)
+![Contenedores del entorno](../capturas/infraestructura/43-contenedores-backend.png)
 
 *Figura 49. Los diez contenedores del entorno en marcha y la especificación OpenAPI servida a través del gateway.*
 
-![Entorno local por perfiles](../memoria/diagramas/13-despliegue-local.png)
+![Entorno local por perfiles](../diagramas/despliegue/13-despliegue-local.png)
 
 *Figura 50. Entorno local con Docker Compose y sus perfiles. Fuente:
-[`memoria/diagramas/src/13-despliegue-local.puml`](../memoria/diagramas/src/13-despliegue-local.puml).*
+[`diagramas/despliegue/src/13-despliegue-local.puml`](../diagramas/despliegue/src/13-despliegue-local.puml).*
 
 ### Problema resuelto: el emisor de los tokens dentro de Docker
 

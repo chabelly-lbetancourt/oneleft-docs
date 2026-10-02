@@ -35,17 +35,12 @@ Componentes compartidos nuevos:
 Los ajustes de PrimeNG van **fuera de capas CSS**, porque PrimeNG inyecta su capa en tiempo de ejecución, después de
 la hoja de estilos, y la suya ganaría.
 
-![Antes y después: portada y login](img/66-rediseno-antes-despues-inicio.png)
+Este primer sistema («cromo») se revisó el mismo sprint por uno más sobrio, que es el que tiene la app (apartado 7).
+Las capturas de esta entrada muestran ya el resultado final.
 
-*Figura 82. Antes y después de la portada sin sesión y del login de Keycloak.*
+![Con sesión](../capturas/app-web/69-rediseno-con-sesion.png)
 
-![Antes y después: planes](img/67-rediseno-antes-despues-planes.png)
-
-*Figura 83. Antes y después de «Planes cerca» y del detalle de un plan.*
-
-![Con sesión](img/69-rediseno-con-sesion.png)
-
-*Figura 84. Inicio con sesión, publicar y perfil con el nuevo sistema (también en inglés).*
+*Figura 82. Inicio con sesión, publicar y perfil con el sistema visual de OneLeft (también en inglés).*
 
 ## 3. Páginas de acceso
 
@@ -59,14 +54,14 @@ la hoja de estilos, y la suya ganaría.
   la abre al volver de Keycloak. Solo acepta rutas de la app (nada de `https://…` ni `//…`), para no abrir una
   redirección a otros sitios.
 
-![Secuencia de acceso](../memoria/diagramas/23-secuencia-paginas-acceso.png)
+![Secuencia de acceso](../diagramas/secuencia/23-secuencia-paginas-acceso.png)
 
-*Figura 85. Acceso desde una página protegida. Fuente:
-[`23-secuencia-paginas-acceso.puml`](../memoria/diagramas/src/23-secuencia-paginas-acceso.puml).*
+*Figura 83. Acceso desde una página protegida. Fuente:
+[`23-secuencia-paginas-acceso.puml`](../diagramas/secuencia/src/23-secuencia-paginas-acceso.puml).*
 
-![Páginas de acceso](img/68-paginas-acceso.png)
+![Páginas de acceso](../capturas/app-web/68-paginas-acceso.png)
 
-*Figura 86. Entrar y crear cuenta, en español y en inglés.*
+*Figura 84. Entrar y crear cuenta, en español y en inglés.*
 
 ## 4. Pruebas
 
@@ -85,8 +80,10 @@ estudiantes). Queda preparado:
 - La CI la lee del secreto con el mismo nombre.
 
 **Actualización (29/09/2026, docs#46):** la autora obtuvo la *Community License* (tipo *dev*, válida hasta el
-29/09/2027) y la configuró en el `.env` local y en el secreto `PRIMEUI_LICENSE` de `oneleft-frontend`. Las capturas
-de HU-023 (figura 90) y HU-024 (figuras 94 y 95) se repitieron ya sin el aviso; las anteriores lo conservan.
+29/09/2027) y la configuró en el `.env` local y en el secreto `PRIMEUI_LICENSE` de `oneleft-frontend`.
+
+**Actualización (02/10/2026, docs#56):** todas las capturas de la app del diario se rehicieron con la licencia y con
+el diseño actual, con las mismas herramientas de [`tools/`](../tools); ya ninguna muestra el aviso.
 
 ## 6. Incidencias
 
@@ -115,10 +112,6 @@ La identidad queda en detalles con sentido: el anillo «+1» del logo, los hueco
 subrayada en el titular. Como las plantillas ya usaban utilidades propias (`sticker`, `slot`), bastó con
 redefinirlas (`card`, `spot`) para que el cambio llegara a todas las pantallas.
 
-![Antes y después de la revisión](img/70-identidad-sobria-antes-despues.png)
+![Pantallas con la identidad sobria](../capturas/app-web/71-identidad-sobria-pantallas.png)
 
-*Figura 87. Portada y detalle de un plan: estilo «cromo» y versión sobria.*
-
-![Pantallas con la identidad sobria](img/71-identidad-sobria-pantallas.png)
-
-*Figura 88. Entrar, inicio con sesión, planes cerca y login de Keycloak con la identidad sobria.*
+*Figura 85. Entrar, inicio con sesión, planes cerca y login de Keycloak con la identidad sobria.*

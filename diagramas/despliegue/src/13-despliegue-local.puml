@@ -1,0 +1,48 @@
+@startuml 13-despliegue-local
+!include ../../estilo.iuml
+title Entorno local con Docker Compose (perfiles)
+
+actor "Navegador\n(app web, Swagger UI, Grafana)" as NAV
+
+node "Docker Compose · red oneleft" {
+  package "Siempre" {
+    database "PostgreSQL + PostGIS\n:5432" as PG
+    database "Redis\n:6379" as RD
+    queue "RabbitMQ\n:5672 / :15672" as MQ
+    component "Keycloak\n:8180" as KC
+  }
+  package "Perfil backend" {
+    component "gateway\n:8080\nSwagger UI" as GW
+    component "users\n:8081" as US
+    component "plans\n:8082" as PL
+  }
+  package "Perfil observability" {
+    component "Prometheus\n:9090" as PR
+    component "Loki\n:3100" as LK
+    component "Grafana\n:3000" as GF
+  }
+}
+
+NAV --> GW : HTTP :8080
+NAV --> KC : login :8180
+NAV --> GF : :3000
+GW --> US
+GW --> PL
+US ..> KC : JWKS (keycloak:8180)
+GW ..> KC : JWKS
+KC --> PG
+PL --> PG
+US ..> LK : logs
+PL ..> LK : logs
+GW ..> LK : logs
+PR ..> GW : métricas
+PR ..> US
+PR ..> PL
+GF --> PR
+GF --> LK
+
+note right of KC
+  KC_HOSTNAME = http://localhost:8180
+  Emisor de los tokens: siempre la URL pública
+end note
+@enduml

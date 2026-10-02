@@ -1,0 +1,82 @@
+@startuml 30-arquitectura-implementada-y-prevista
+!include ../../estilo.iuml
+title Arquitectura de OneLeft (implementado y previsto)
+skinparam componentStyle rectangle
+skinparam nodesep 40
+skinparam ranksep 55
+skinparam rectangle<<previsto>> {
+  BorderStyle dashed
+  BackgroundColor #FFFFFF
+}
+skinparam component<<previsto>> {
+  BorderStyle dashed
+  BackgroundColor #FFFFFF
+}
+!define L(x) <img:/docs/assets/logos/png/x.png{scale=0.22}>
+!define S(x) <img:/docs/assets/logos/png/x.png{scale=0.14}>
+
+actor "Persona usuaria" as U
+
+package "Clientes (mismo código Angular)" {
+  component "L(angular)\n**App web**\nAngular 22 · S(primeng) PrimeNG · SCSS\nS(typescript) TypeScript · Transloco (es/en)" as WEB
+  component "L(android)\n**App Android**\nS(capacitor) Capacitor" as APP
+}
+
+component "L(keycloak)\n**Keycloak 26**\nOIDC + PKCE · Google" as KC
+
+node "Microservicios hexagonales S(docker) (Docker Compose)" {
+  component "L(spring)\n**API Gateway**\nSpring Cloud Gateway\nJWT · límite de peticiones · S(swagger) Swagger" as GW
+  component "L(springboot)\n**users**\nperfiles, zona aproximada\naficiones" as US
+  component "L(springboot)\n**plans**\nplanes, plazas, lista de espera\nbúsqueda por cercanía · SSE" as PL
+  component "L(springboot)\n**notifications**\na quién avisar · Web Push\npreferencias y horario" as NT
+  component "**ai**\nSpring AI · ranking de avisos\nplanes en lenguaje natural · moderación" <<previsto>> as AI
+  component "**Agente «¿qué hago ahora?»**\nIA agéntica: planifica y usa\nherramientas (MCP) con confirmación" <<previsto>> as AG
+}
+
+database "L(postgresql)\n**PostgreSQL 17**\nS(postgis) PostGIS · BD por servicio" as PG
+queue "L(rabbitmq)\n**RabbitMQ 4**\neventos de dominio" as MQ
+database "L(redis)\n**Redis**\nlímite de peticiones" as RD
+cloud "**Proveedor LLM**\n(intercambiable)" <<previsto>> as LLM
+
+package "Observabilidad" {
+  component "L(prometheus)\n**Prometheus**" as PR
+  component "L(loki)\n**Loki**" as LK
+  component "L(grafana)\n**Grafana**" as GF
+}
+
+package "Proceso y calidad" {
+  component "L(github)\n**GitHub**\nKanban · PR · S(githubactions) Actions" as GH
+  component "L(sonarqubecloud)\n**SonarQube Cloud**\nS(junit5) JUnit · S(testcontainers) Testcontainers\nS(vitest) Vitest · Playwright" as SQ
+}
+
+cloud "L(aws)\n**AWS Lightsail** (despliegue)\nDocker Compose · Caddy · SES" as AWS
+
+U --> WEB
+U --> APP
+WEB --> KC : login
+APP --> KC : login
+WEB --> GW : REST + SSE (JWT)
+APP --> GW : REST + SSE (JWT)
+GW --> US
+GW --> PL
+GW --> NT
+GW ..> AG
+GW --> RD
+US --> PG
+PL --> PG
+NT --> PG
+PL --> MQ : eventos de planes
+MQ --> NT : plan publicado
+
+NT ..> PL : aviso en tiempo real (vía MQ)
+NT ..> AI : ¿a quién avisar?
+AG ..> PL : herramientas: buscar, publicar, unirse
+AG ..> US : preferencias
+AI ..> LLM
+AG ..> LLM
+KC --> PG
+GF --> PR
+GF --> LK
+GH --> SQ : análisis
+GH ..> AWS : imágenes → Lightsail
+@enduml

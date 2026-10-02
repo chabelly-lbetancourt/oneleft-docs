@@ -1,0 +1,53 @@
+@startuml 02-arquitectura-componentes
+!include ../../estilo.iuml
+title Arquitectura de componentes
+
+package "Clientes" {
+  [App web\nAngular + PrimeNG + Tailwind] as WEB
+  [App Android\nCapacitor] as AND
+}
+
+component "API Gateway\nSpring Cloud Gateway" as GW
+component "Keycloak\nOAuth2 / OIDC" as KC
+
+package "Microservicios (arquitectura hexagonal)" {
+  component "users\nperfiles y reputación" as USR
+  component "plans\nplanes, plazas, caducidad" as PLN
+  component "geo\nbúsqueda por proximidad" as GEO
+  component "notifications\npush y tiempo real" as NOT
+  component "chat\nWebSockets" as CHT
+  component "ai\nlenguaje natural, moderación,\nranking" as AI
+}
+
+queue "RabbitMQ\neventos" as MQ
+database "PostgreSQL + PostGIS\nuna base de datos por servicio" as PG
+database "Redis\nGEO, bloqueos, caché" as RD
+cloud "Proveedor LLM" as LLM
+cloud "Firebase Cloud\nMessaging" as FCM
+
+WEB --> GW : HTTPS / REST
+AND --> GW : HTTPS / REST
+WEB ..> KC : login (PKCE)
+AND ..> KC : login (PKCE)
+
+GW --> USR
+GW --> PLN
+GW --> GEO
+GW --> NOT
+GW --> CHT
+GW --> AI
+
+PLN --> MQ : PlanPublicado\nPlazaOcupada
+MQ --> GEO
+MQ --> NOT
+MQ --> AI
+
+USR --> PG
+PLN --> PG
+CHT --> PG
+PLN --> RD
+GEO --> RD
+AI --> LLM
+NOT --> FCM
+FCM ..> AND : push
+@enduml

@@ -15,10 +15,10 @@ hora** y **actualización en tiempo real**.
 
 ## 2. Diseño
 
-![Secuencia de planes cercanos](../memoria/diagramas/19-secuencia-planes-cercanos.png)
+![Secuencia de planes cercanos](../diagramas/secuencia/19-secuencia-planes-cercanos.png)
 
 *Figura 68. Búsqueda y avisos en tiempo real con dos réplicas de `plans`. Fuente:
-[`19-secuencia-planes-cercanos.puml`](../memoria/diagramas/src/19-secuencia-planes-cercanos.puml).*
+[`19-secuencia-planes-cercanos.puml`](../diagramas/secuencia/src/19-secuencia-planes-cercanos.puml).*
 
 | Decisión | Motivo |
 |---|---|
@@ -32,15 +32,14 @@ hora** y **actualización en tiempo real**.
 
 ## 3. Resultado
 
-![Lista, mapa y filtros](img/55-hu004-lista-mapa-filtros.png)
+![Lista, mapa y filtros](../capturas/app-web/55-hu004-lista-mapa-filtros.png)
 
-*Figura 69. Lista con la distancia de cada plan, mapa con el área de búsqueda (5 km), filtro de 3 km y pádel, y las
-mismas pantallas en inglés. Capturas automáticas con [`tools/capture-nearby.mjs`](../tools/capture-nearby.mjs).*
+*Figura 69. Lista con la distancia de cada plan, mapa con el área de búsqueda (5 km), filtro de 3 km y pádel. Capturas automáticas con [`tools/capture-nearby.mjs`](../tools/capture-nearby.mjs).*
 
-![Tiempo real](img/56-hu004-tiempo-real.png)
+![Tiempo real](../capturas/app-web/56-hu004-tiempo-real.png)
 
 *Figura 70. Otra persona publica un plan de pádel a 600 m: aparece el aviso «Nuevo plan cerca» con enlace y la lista
-pasa de 2 a 3 planes sin recargar la página (en español y en inglés).*
+suma el plan nuevo sin recargar la página.*
 
 - 79 tests en el frontend (antes 62), con un 98,2 % de cobertura de sentencias. Leaflet se prueba de verdad sobre
   jsdom (capas, atribución de OpenStreetMap y popups).

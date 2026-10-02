@@ -1,0 +1,44 @@
+@startuml 16-secuencia-publicar-plan
+!include ../../estilo.iuml
+title HU-003 · Publicar un plan
+autonumber
+
+actor "Organizador" as U
+participant "App Angular\n/planes/nuevo" as APP
+participant "API Gateway" as GW
+participant "plans\nPlanController" as C
+participant "PlanService" as S
+participant "Plan\n(agregado)" as P
+database "PostgreSQL\n+ PostGIS" as DB
+queue "RabbitMQ\noneleft.plans" as MQ
+
+U -> APP : rellena el formulario\n(«Estoy aquí», «en 2 h», plazas)
+APP -> APP : valida hora (5 min - 12 h)\ny redondea el punto a 3 decimales
+APP -> GW : POST /api/v1/plans\nAuthorization: Bearer <token>
+GW -> GW : valida el token\nañade X-Forwarded-*
+GW -> C : reenvía la petición
+C -> C : Bean Validation del DTO
+C -> S : publish(PublishPlanCommand)
+S -> P : Plan.publish(..., clock)
+P -> P : reglas de dominio:\nhora, título, plazas
+alt datos no válidos
+  P --> S : IllegalArgumentException
+  S --> C
+  C --> GW : 400 Problem Details
+  GW --> APP : 400 {detail}
+  APP --> U : muestra el motivo
+else plan válido
+  P --> S : plan ABIERTO
+  S -> DB : INSERT plan\n(location = POINT(lon lat) SRID 4326)
+  S -> MQ : PlanPublished\n(clave plan.published, JSON)
+  S --> C : plan
+  C --> GW : 201 Created\nLocation: http://localhost:8080/api/v1/plans/{id}
+  GW --> APP : 201
+  APP --> U : /planes/{id} «¡Plan publicado!»
+end
+
+note over MQ
+  Consumidores previstos:
+  geo (HU-004) y notifications (HU-006)
+end note
+@enduml

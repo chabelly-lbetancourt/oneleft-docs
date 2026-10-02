@@ -32,7 +32,10 @@ implementación y gestión del proyecto de la memoria.
 ## Convenciones
 
 - Una entrada por hito, numerada (`01-`, `02-`...).
-- Las capturas se guardan en `img/` con el mismo prefijo numérico que su orden de aparición.
+- Las capturas se guardan en [`../capturas`](../capturas), en una carpeta por categoría (gestión, código, integración continua, infraestructura, API, pruebas, app web y app Android), con el prefijo numérico de su orden de aparición.
+- Los diagramas están en [`../diagramas`](../diagramas), en una carpeta por tipo (casos de uso, componentes, clases, estados, secuencia, datos, despliegue y procesos).
 - Cada entrada indica el sprint y los issues relacionados.
-- Las capturas se generan con las herramientas de [`../tools`](../tools): `capture-terminal.sh`, `capture-web.mjs` y `tree.py`.
+- Las capturas se generan con las herramientas de [`../tools`](../tools): `capture-terminal.sh`, `capture-web.mjs`, los
+  recorridos `capture-*.mjs` de cada historia y `tree.py`. Las figuras con varias pantallas se montan con
+  `compose-figure.mjs`. Todas las capturas de la app se hacen con la licencia de PrimeUI y sin animaciones.
 - Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.

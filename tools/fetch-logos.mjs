@@ -45,9 +45,7 @@ const LOGOS = [
   { id: 'redis', name: 'Redis', group: 'Data', si: 'redis' },
   // Infrastructure and cloud
   { id: 'docker', name: 'Docker', group: 'Infrastructure', si: 'docker' },
-  { id: 'kubernetes', name: 'Kubernetes', group: 'Infrastructure', si: 'kubernetes' },
   { id: 'aws', name: 'Amazon Web Services', group: 'Cloud', url: `${GILBARBARA}/aws.svg`, licence: 'CC0-1.0 (gilbarbara/logos); trademark of Amazon' },
-  { id: 'aws-eks', name: 'Amazon EKS', group: 'Cloud', url: `${GILBARBARA}/aws-eks.svg`, licence: 'CC0-1.0 (gilbarbara/logos); trademark of Amazon' },
   { id: 'aws-rds', name: 'Amazon RDS', group: 'Cloud', url: `${GILBARBARA}/aws-rds.svg`, licence: 'CC0-1.0 (gilbarbara/logos); trademark of Amazon' },
   { id: 'aws-s3', name: 'Amazon S3', group: 'Cloud', url: `${GILBARBARA}/aws-s3.svg`, licence: 'CC0-1.0 (gilbarbara/logos); trademark of Amazon' },
   { id: 'aws-elb', name: 'Elastic Load Balancing', group: 'Cloud', url: `${GILBARBARA}/aws-elb.svg`, licence: 'CC0-1.0 (gilbarbara/logos); trademark of Amazon' },
