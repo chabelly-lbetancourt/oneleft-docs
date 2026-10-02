@@ -23,14 +23,14 @@
 
 ![Secuencia del login con Google](../diagramas/secuencia/25-secuencia-login-google.png)
 
-*Figura 91. Continuar con Google con Keycloak como intermediario. Fuente:
+*Figura 88. Continuar con Google con Keycloak como intermediario. Fuente:
 [`25-secuencia-login-google.puml`](../diagramas/secuencia/src/25-secuencia-login-google.puml).*
 
 ## 3. Recorrido
 
 ![Login con Google](../capturas/app-web/73-hu021-google.png)
 
-*Figura 92. Página de entrada de OneLeft, login de Keycloak con su botón de Google, pantalla de Google para OneLeft y
+*Figura 89. Página de entrada de OneLeft, login de Keycloak con su botón de Google, pantalla de Google para OneLeft y
 la página de entrada en inglés.*
 
 La autora completó el login con su cuenta de Google y volvió a OneLeft con la sesión iniciada y su nombre en la

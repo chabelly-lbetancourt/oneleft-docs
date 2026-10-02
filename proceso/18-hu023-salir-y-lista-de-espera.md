@@ -28,14 +28,14 @@ baja sin sustituto deja el plan cojo; la lista de espera lo rellena sola.
 
 ![Secuencia de la lista de espera](../diagramas/secuencia/24-secuencia-lista-de-espera.png)
 
-*Figura 89. Lucía sale de un plan completo, entra Diego y los dos avisos llegan en tiempo real. Fuente:
+*Figura 86. Lucía sale de un plan completo, entra Diego y los dos avisos llegan en tiempo real. Fuente:
 [`24-secuencia-lista-de-espera.puml`](../diagramas/secuencia/src/24-secuencia-lista-de-espera.puml).*
 
 ## 3. En la app
 
 ![Salir y lista de espera](../capturas/app-web/72-hu023-salir-y-lista-de-espera.png)
 
-*Figura 90. Arriba, el plan completo visto por Admin, que se apunta a la lista (posición 1), y Lucía confirmando que
+*Figura 87. Arriba, el plan completo visto por Admin, que se apunta a la lista (posición 1), y Lucía confirmando que
 sale. Abajo: Lucía ya fuera, Admin recibe «¡Tienes plaza!» y ya está dentro, y Ana, la organizadora, ve quién ha
 salido y quién entra.*
 

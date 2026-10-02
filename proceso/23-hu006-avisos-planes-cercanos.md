@@ -39,13 +39,13 @@ navegador (Web Push). Las notificaciones de Android necesitan un proyecto de Fir
 
 ![Componentes de los avisos](../diagramas/componentes/28-componentes-avisos.png)
 
-*Figura 100. Componentes de HU-006: `notifications` escucha los planes publicados, decide a quién avisar y entrega
+*Figura 97. Componentes de HU-006: `notifications` escucha los planes publicados, decide a quién avisar y entrega
 el aviso por el flujo en tiempo real de `plans` y por el servicio de push del navegador. Fuente:
 [`28-componentes-avisos.puml`](../diagramas/componentes/src/28-componentes-avisos.puml).*
 
 ![Secuencia de un aviso](../diagramas/secuencia/29-secuencia-aviso-plan-cercano.png)
 
-*Figura 101. Ana publica un pádel en Vallecas y Lucía, que tiene los avisos activados, lo recibe en la app y como
+*Figura 98. Ana publica un pádel en Vallecas y Lucía, que tiene los avisos activados, lo recibe en la app y como
 notificación del sistema. Fuente:
 [`29-secuencia-aviso-plan-cercano.puml`](../diagramas/secuencia/src/29-secuencia-aviso-plan-cercano.puml).*
 
@@ -53,7 +53,7 @@ notificación del sistema. Fuente:
 
 ![Avisos de planes cercanos](../capturas/app-web/79-hu006-avisos-planes-cercanos.png)
 
-*Figura 102. A la izquierda, la página de avisos de Lucía: zona aproximada, 5 km, pádel y tenis, sin avisos de 23:00
+*Figura 99. A la izquierda, la página de avisos de Lucía: zona aproximada, 5 km, pádel y tenis, sin avisos de 23:00
 a 08:00 y como mucho 5 al día. En el centro, el aviso que le llega en cuanto Ana publica un pádel cerca («a 0,7 km ·
 Falta 1»). A la derecha, el plan que se abre al tocarlo. La tarjeta «Avisos en este navegador» aparece como
 bloqueada porque las capturas se hacen con Chrome sin interfaz, que no admite notificaciones del sistema.*
