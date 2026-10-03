@@ -29,10 +29,10 @@ crea contenido realista:
 
 ## 3. HU-005 · Unirse a un plan
 
-![Bloqueo optimista](../memoria/diagramas/20-secuencia-unirse-plan.png)
+![Bloqueo optimista](../diagramas/secuencia/20-secuencia-unirse-plan.png)
 
 *Figura 71. Dos personas piden la última plaza a la vez. Fuente:
-[`20-secuencia-unirse-plan.puml`](../memoria/diagramas/src/20-secuencia-unirse-plan.puml).*
+[`20-secuencia-unirse-plan.puml`](../diagramas/secuencia/src/20-secuencia-unirse-plan.puml).*
 
 | Criterio | Cómo se cumple |
 |---|---|
@@ -47,10 +47,10 @@ crea contenido realista:
   de la API. El aviso al organizador es un *toast* que se carga de forma diferida (`@defer`), y el detalle del plan
   y «Tus próximos planes» se actualizan solos.
 
-![Unirse y aviso al organizador](img/57-hu005-unirse-y-aviso.png)
+![Unirse y aviso al organizador](../capturas/app-web/57-hu005-unirse-y-aviso.png)
 
 *Figura 72. Admin se apunta al plan de Ana (antes y después), Ana recibe el aviso en tiempo real con su lista
-actualizada («Faltan 2»), y al tocarlo ve al nuevo participante; las dos últimas, en inglés. Capturas con dos
+actualizada, y al tocarlo ve al nuevo participante. Capturas con dos
 navegadores a la vez: [`tools/capture-join.mjs`](../tools/capture-join.mjs).*
 
 **Pruebas:** plans pasa de 46 a 63 tests (100 % de líneas) y el frontend de 79 a 87 (96 % de sentencias).

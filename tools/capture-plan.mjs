@@ -13,7 +13,7 @@ try {
   await page.setGeolocation({ latitude: 40.391234, longitude: -3.628765, accuracy: 10 });
 
   // Login by opening "Publish a plan" directly (protected route)
-  await page.goto(`${APP}/plans/new`, { waitUntil: 'networkidle0' });
+  await page.goto(`${APP}/plans/new`, { waitUntil: 'load' });
   await keycloakLogin(page, login);
   await page.waitForSelector('.publish-form', { timeout: 20000 });
   await pause(500);
@@ -32,13 +32,13 @@ try {
   await shot(page, '2-filled-form');
 
   // Publish and see the detail
-  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), click(page, button('publish.submit'))]);
+  await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), click(page, button('publish.submit'))]);
   await page.waitForSelector('.plan-card', { timeout: 20000 });
   await pause(500);
   await shot(page, '3-detail');
 
   // Home screen with "Your upcoming plans"
-  await page.goto(APP, { waitUntil: 'networkidle0' });
+  await page.goto(APP, { waitUntil: 'load' });
   await page.waitForSelector('.my-plan', { timeout: 20000 });
   await pause(500);
   await shot(page, '4-home', false);

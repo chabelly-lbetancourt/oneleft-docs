@@ -34,9 +34,7 @@ identify the technologies of the project (nominative use).
 | RabbitMQ | `rabbitmq` | Simple Icons `rabbitmq` | CC0-1.0 (Simple Icons) | <https://www.rabbitmq.com> |
 | Redis | `redis` | Simple Icons `redis` | CC0-1.0 (Simple Icons) | <https://redis.io/brand-guidelines> |
 | Docker | `docker` | Simple Icons `docker` | CC0-1.0 (Simple Icons) | <https://www.docker.com/company/newsroom/media-resources> |
-| Kubernetes | `kubernetes` | Simple Icons `kubernetes` | CC0-1.0 (Simple Icons) | <https://github.com/kubernetes/kubernetes/tree/cac53883f4714452f3084a22e4be20d042a9df33/logo> |
 | Amazon Web Services | `aws` | Project / brand | CC0-1.0 (gilbarbara/logos); trademark of Amazon | <https://cdn.jsdelivr.net/gh/gilbarbara/logos@main/logos/aws.svg> |
-| Amazon EKS | `aws-eks` | Project / brand | CC0-1.0 (gilbarbara/logos); trademark of Amazon | <https://cdn.jsdelivr.net/gh/gilbarbara/logos@main/logos/aws-eks.svg> |
 | Amazon RDS | `aws-rds` | Project / brand | CC0-1.0 (gilbarbara/logos); trademark of Amazon | <https://cdn.jsdelivr.net/gh/gilbarbara/logos@main/logos/aws-rds.svg> |
 | Amazon S3 | `aws-s3` | Project / brand | CC0-1.0 (gilbarbara/logos); trademark of Amazon | <https://cdn.jsdelivr.net/gh/gilbarbara/logos@main/logos/aws-s3.svg> |
 | Elastic Load Balancing | `aws-elb` | Project / brand | CC0-1.0 (gilbarbara/logos); trademark of Amazon | <https://cdn.jsdelivr.net/gh/gilbarbara/logos@main/logos/aws-elb.svg> |

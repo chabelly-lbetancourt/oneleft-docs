@@ -29,10 +29,10 @@ y la aplicación Android). Todos son públicos, lo que permite usar SonarQube Cl
 |---|---|
 | [oneleft-backend](https://github.com/chabelly-lbetancourt/oneleft-backend) | Microservicios Spring Boot |
 | [oneleft-frontend](https://github.com/chabelly-lbetancourt/oneleft-frontend) | App web Angular + PrimeNG + Tailwind CSS, empaquetada para Android con Capacitor |
-| [oneleft-infra](https://github.com/chabelly-lbetancourt/oneleft-infra) | Docker, Kubernetes, AWS, Grafana y Loki |
+| [oneleft-infra](https://github.com/chabelly-lbetancourt/oneleft-infra) | Docker Compose, AWS Lightsail, Grafana y Loki |
 | [oneleft-docs](https://github.com/chabelly-lbetancourt/oneleft-docs) | Memoria y documentación del proceso |
 
-![Repositorios del proyecto en GitHub](img/01-repositorios.png)
+![Repositorios del proyecto en GitHub](../capturas/gestion/01-repositorios.png)
 
 *Figura 1. Los cuatro repositorios de OneLeft.*
 
@@ -57,11 +57,11 @@ vinculado a los cuatro repositorios, con esta configuración:
 | Campo *Sprint* | 40 iteraciones semanales, del Sprint 0 (28/09/2026) al Sprint 39 (28/06/2027) |
 | Vistas | *Tablero Kanban* (tablero), *Backlog* (tabla) y *Planificación por sprints* (roadmap) |
 
-![Tablero Kanban del proyecto](img/02-tablero-kanban.png)
+![Tablero Kanban del proyecto](../capturas/gestion/02-tablero-kanban.png)
 
 *Figura 2. Tablero Kanban al cierre del montaje inicial. La columna In Progress muestra el límite WIP (1/2).*
 
-![Vista de backlog en tabla](img/03-backlog-tabla.png)
+![Vista de backlog en tabla](../capturas/gestion/03-backlog-tabla.png)
 
 *Figura 3. Vista de backlog con tipo, prioridad, puntos, sprint y etiquetas.*
 
@@ -83,19 +83,19 @@ trabajo y por área:
 - **Tipo:** `historia`, `tarea`, `bug`, `documentación`, `hotfix`
 - **Área:** `backend`, `frontend`, `android`, `infra`, `observabilidad`, `ci-cd`, `ia`, `seguridad`, `testing`, `accesibilidad`
 
-![Etiquetas comunes](img/04-etiquetas.png)
+![Etiquetas comunes](../capturas/gestion/04-etiquetas.png)
 
 *Figura 4. Etiquetas comunes a los repositorios.*
 
 ## 5. Backlog inicial
 
 Se cargaron 33 issues: la estructura de cada repositorio, las tareas técnicas de arranque (esqueletos de
-backend y frontend, Capacitor, pipelines, Docker Compose, observabilidad, Kubernetes y AWS) y 17 historias
+backend y frontend, Capacitor, pipelines, Docker Compose, observabilidad y despliegue en AWS) y 17 historias
 de usuario, de `HU-001 · Registro e inicio de sesión` a `HU-017 · Preparación de la defensa`.
 
 Cada historia sigue el formato *Como… quiero… para…* con criterios de aceptación verificables.
 
-![Ejemplo de historia de usuario](img/09-historia-usuario.png)
+![Ejemplo de historia de usuario](../capturas/gestion/09-historia-usuario.png)
 
 *Figura 5. Historia de usuario HU-003 con sus criterios de aceptación.*
 
@@ -109,7 +109,7 @@ Cada repositorio incluye:
 - Workflow `lint` de GitHub Actions que valida el nombre de la rama y los mensajes de commit.
 - `.editorconfig` y `.gitignore` adaptados a cada tecnología.
 
-![CONTRIBUTING.md](img/10-contributing.png)
+![CONTRIBUTING.md](../capturas/gestion/10-contributing.png)
 
 *Figura 6. Normas de contribución comunes.*
 
@@ -118,7 +118,7 @@ Cada repositorio incluye:
 `main` y `dev` son ramas de vida larga, con `dev` como rama por defecto. Cada tarea se desarrolla en una
 rama `issue#<número>` que se integra en `dev` mediante pull request.
 
-![Ramas del repositorio backend](img/08-ramas.png)
+![Ramas del repositorio backend](../capturas/gestion/08-ramas.png)
 
 *Figura 7. Ramas `main` y `dev` en oneleft-backend.*
 
@@ -128,15 +128,15 @@ La propia estructura de cada repositorio se integró siguiendo el flujo definido
 `chore: estructura del repositorio y normas de contribución #1` y pull request contra `dev` con
 `Closes #1`. El workflow `lint` validó la rama y el commit en los cuatro repositorios.
 
-![Pull request con los checks en verde](img/05-pr-estructura-checks.png)
+![Pull request con los checks en verde](../capturas/integracion-continua/05-pr-estructura-checks.png)
 
 *Figura 8. Pull request de la estructura inicial en oneleft-backend, enlazada al issue #1.*
 
-![Ejecución del workflow lint](img/06-lint-workflow.png)
+![Ejecución del workflow lint](../capturas/integracion-continua/06-lint-workflow.png)
 
 *Figura 9. Pasos del workflow `lint`: validación del nombre de rama y de los commits.*
 
-![README del repositorio backend](img/07-readme-backend.png)
+![README del repositorio backend](../capturas/codigo/07-readme-backend.png)
 
 *Figura 10. README de oneleft-backend tras la fusión en `dev`.*
 

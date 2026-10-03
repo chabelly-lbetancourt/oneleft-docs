@@ -27,28 +27,28 @@ con Capacitor, con las mismas historias de usuario. Lo nativo se limita a lo que
 | Icono y pantalla de arranque **generados** desde `assets/` | `scripts/generate-app-assets.mjs` dibuja en SVG el «hueco libre» (anillo discontinuo con «+1») con los colores y la tipografía de la app, y `@capacitor/assets` produce todas las densidades. Se pueden regenerar si cambia la identidad |
 | Notificaciones push a un issue aparte (frontend#55) | Necesitan un proyecto de Firebase y un servicio de notificaciones en el backend que aún no existe |
 
-![Secuencia del inicio de sesión en la app](../memoria/diagramas/27-secuencia-login-android.png)
+![Secuencia del inicio de sesión en la app](../diagramas/secuencia/27-secuencia-login-android.png)
 
-*Figura 96. Inicio de sesión en la app Android: Keycloak se abre en el navegador del sistema y vuelve a la app por
+*Figura 93. Inicio de sesión en la app Android: Keycloak se abre en el navegador del sistema y vuelve a la app por
 `oneleft://callback`. Fuente:
-[`27-secuencia-login-android.puml`](../memoria/diagramas/src/27-secuencia-login-android.puml).*
+[`27-secuencia-login-android.puml`](../diagramas/secuencia/src/27-secuencia-login-android.puml).*
 
 ## 3. En la app
 
-![Pantallas a tamaño móvil](img/76-android-pantallas-movil.png)
+![Pantallas a tamaño móvil](../capturas/app-android/76-android-pantallas-movil.png)
 
-*Figura 97. Las pantallas a tamaño de móvil (Pixel 7, español), las mismas en la web y en la app: portada, acceso,
+*Figura 94. Las pantallas a tamaño de móvil (Pixel 7, español), las mismas en la web y en la app: portada, acceso,
 Keycloak con el tema de OneLeft, inicio de Ana, planes cercanos a Vallecas, publicar, un plan con «Compartir» y
 «Me apunto», y el perfil.*
 
-![La app en el emulador](img/77-android-emulador-login.png)
+![La app en el emulador](../capturas/app-android/77-android-emulador-login.png)
 
-*Figura 98. La app instalada en un emulador Android (Pixel 7, API 36, en inglés): la página de acceso dentro de la
+*Figura 95. La app instalada en un emulador Android (Pixel 7, API 36, en inglés): la página de acceso dentro de la
 app y, al pulsar «Continue with email», Keycloak en el navegador del sistema (`localhost:8180`).*
 
-![Icono y pantalla de arranque](img/78-android-icono-arranque.png)
+![Icono y pantalla de arranque](../capturas/app-android/78-android-icono-arranque.png)
 
-*Figura 99. Icono adaptativo (redondo y cuadrado) y pantallas de arranque clara y oscura.*
+*Figura 96. Icono adaptativo (redondo y cuadrado) y pantallas de arranque clara y oscura.*
 
 ## 4. Pruebas
 

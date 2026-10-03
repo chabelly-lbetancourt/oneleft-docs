@@ -1,0 +1,43 @@
+@startuml 01-casos-de-uso
+!include ../../estilo.iuml
+title Diagrama de casos de uso
+left to right direction
+
+actor "Usuario" as U
+actor "Organizador" as O
+actor "Administrador" as A
+actor "Sistema de IA" as IA <<sistema>>
+
+O -|> U
+
+rectangle OneLeft {
+  usecase "Registrarse e\niniciar sesión" as UC1
+  usecase "Editar perfil" as UC2
+  usecase "Ver planes cercanos" as UC5
+  usecase "Unirse a un plan" as UC6
+  usecase "Recibir notificaciones" as UC7
+  usecase "Chatear con\nparticipantes" as UC8
+  usecase "Valorar\nparticipantes" as UC9
+  usecase "Publicar plan" as UC3
+  usecase "Publicar plan en\nlenguaje natural" as UC4
+  usecase "Moderar contenido" as UC10
+  usecase "Consultar métricas" as UC11
+}
+
+U --> UC1
+U --> UC2
+U --> UC5
+U --> UC6
+U --> UC7
+U --> UC8
+U --> UC9
+O --> UC3
+O --> UC4
+A --> UC10
+A --> UC11
+
+UC4 .> UC3 : <<extend>>
+UC4 <-- IA
+UC7 <-- IA
+UC10 <-- IA
+@enduml

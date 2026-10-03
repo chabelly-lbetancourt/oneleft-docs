@@ -10,7 +10,7 @@
 | frontend#4 · Pipeline de frontend: tests y SonarQube Cloud | Tarea | Must | 2 | Done |
 | **Total** | | | **5** | **5 completados** |
 
-![Tablero al cierre del Sprint 2](img/36-tablero-sprint2.png)
+![Tablero al cierre del Sprint 2](../capturas/gestion/36-tablero-sprint2.png)
 
 *Figura 34. Tablero al cierre del Sprint 2.*
 
@@ -20,10 +20,10 @@ Cada repositorio de código tiene ahora dos workflows: `lint` (común a los cuat
 commits) y `ci` (compila, prueba, mide la cobertura y analiza la calidad). Una pull request solo se fusiona con
 todos los checks en verde.
 
-![Pipeline de integración continua](../memoria/diagramas/10-pipeline-ci.png)
+![Pipeline de integración continua](../diagramas/procesos/10-pipeline-ci.png)
 
 *Figura 35. Pipeline de integración continua. Fuente PlantUML:
-[`memoria/diagramas/src/10-pipeline-ci.puml`](../memoria/diagramas/src/10-pipeline-ci.puml).*
+[`diagramas/procesos/src/10-pipeline-ci.puml`](../diagramas/procesos/src/10-pipeline-ci.puml).*
 
 ## 3. Backend (backend#3)
 
@@ -37,7 +37,7 @@ El POM padre configura **JaCoCo 0.8.15** para todos los módulos:
 
 Para comprobar que el umbral funciona de verdad se añadió temporalmente una clase sin tests:
 
-![JaCoCo detiene el build](img/31-jacoco-umbral-falla.png)
+![JaCoCo detiene el build](../capturas/integracion-continua/31-jacoco-umbral-falla.png)
 
 *Figura 36. Con una clase sin tests, JaCoCo detecta un 0 % de cobertura en `plans` y el build falla.*
 
@@ -48,11 +48,11 @@ Para comprobar que el umbral funciona de verdad se añadió temporalmente una cl
 | **Build, tests y cobertura** | `./mvnw verify` con Java 21, resumen de cobertura por módulo en el job, artefacto con los informes y análisis en SonarQube Cloud si existe el secreto `SONAR_TOKEN` |
 | **Imagen Docker** (matriz: `gateway`, `users`, `plans`) | Construye la imagen de cada servicio con caché de GitHub Actions; desde `main` la publica en GitHub Container Registry con las etiquetas `latest` y `sha` |
 
-![Ejecución del pipeline del backend](img/32-backend-ci-run.png)
+![Ejecución del pipeline del backend](../capturas/integracion-continua/32-backend-ci-run.png)
 
 *Figura 37. Ejecución del workflow `ci` del backend: el job de build y la matriz de imágenes Docker.*
 
-![Checks de la pull request del backend](img/33-backend-ci-pr-checks.png)
+![Checks de la pull request del backend](../capturas/integracion-continua/33-backend-ci-pr-checks.png)
 
 *Figura 38. Pull request con todos los checks en verde.*
 
@@ -64,12 +64,12 @@ Para comprobar que el umbral funciona de verdad se añadió temporalmente una cl
 - Se excluyen de la cobertura los ficheros de configuración (`app.config.ts`, `app.routes.ts`).
 - El build de producción inyecta la licencia de PrimeNG desde el secreto `PRIMEUI_LICENSE` si existe.
 
-![Lint, tests y cobertura del frontend](img/35-frontend-lint-cobertura.png)
+![Lint, tests y cobertura del frontend](../capturas/integracion-continua/35-frontend-lint-cobertura.png)
 
 *Figura 39. Lint sin errores, 6 tests y cobertura: 92,6 % de sentencias, 86,7 % de ramas, 100 % de funciones y
 88,2 % de líneas.*
 
-![Ejecución del pipeline del frontend](img/34-frontend-ci-run.png)
+![Ejecución del pipeline del frontend](../capturas/integracion-continua/34-frontend-ci-run.png)
 
 *Figura 40. Ejecución del workflow `ci` del frontend.*
 

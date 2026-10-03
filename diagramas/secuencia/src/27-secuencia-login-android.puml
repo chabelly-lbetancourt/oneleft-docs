@@ -1,0 +1,27 @@
+@startuml 27-secuencia-login-android
+!include ../../estilo.iuml
+title App Android · Inicio de sesión en el navegador del sistema y vuelta por deep link
+
+actor "Persona" as U
+participant "App OneLeft\n(WebView · Angular)" as A
+participant "Capacitor\nBrowser" as B
+participant "Navegador del sistema\n(Custom Tabs)" as C
+participant "Keycloak" as K
+participant "Android\n(intent filter oneleft://)" as O
+
+U -> A : «Continuar con email» o «Continuar con Google»
+A -> A : Session.login()\ncode_verifier (PKCE) y state
+A -> B : urlHandler(URL de autorización)
+B -> C : abre la página de Keycloak
+note right of C : Fuera del WebView: Google no permite\niniciar sesión en uno y se ve la URL real
+C -> K : GET /auth?client_id=oneleft-web\n&redirect_uri=oneleft://callback
+U -> K : email y contraseña (o Google)
+K --> C : 302 oneleft://callback?code=…&state=…
+C -> O : abre el esquema oneleft://
+O -> A : appUrlOpen(oneleft://callback?code=…)
+A -> B : cierra el navegador
+A -> K : POST /token (code + code_verifier)
+K --> A : access_token y refresh_token
+A -> A : sesión en localStorage\nvuelve a la página que pidió el login
+A --> U : «Hola, Ana»
+@enduml

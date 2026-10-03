@@ -34,7 +34,7 @@ Las tareas se estiman con la serie de Fibonacci según esta referencia de esfuer
 Cada issue tiene asignado su **sprint previsto** según su prioridad y sus dependencias técnicas. La capacidad
 planificada es de unos 5 puntos por semana.
 
-![Backlog con prioridad MoSCoW, puntos y sprint](img/11-backlog-moscow-sprints.png)
+![Backlog con prioridad MoSCoW, puntos y sprint](../capturas/gestion/11-backlog-moscow-sprints.png)
 
 *Figura 11. Vista de backlog con tipo, prioridad MoSCoW, puntos y sprint previsto de cada issue.*
 
@@ -48,7 +48,7 @@ planificada es de unos 5 puntos por semana.
 | Anteproyecto del TFM | Documentación | Must | 3 | In Progress |
 | **Total** | | | **9** | |
 
-![Tablero Kanban en el Sprint 0](img/13-tablero-sprint0.png)
+![Tablero Kanban en el Sprint 0](../capturas/gestion/13-tablero-sprint0.png)
 
 *Figura 12. Tablero en el Sprint 0, con dos tarjetas en curso (límite WIP de 2).*
 
@@ -66,7 +66,7 @@ Se redactó el [anteproyecto](../anteproyecto/anteproyecto.md) con:
 - 13 requisitos funcionales y 11 no funcionales, trazados a las historias de usuario
 - Diagramas UML, modelo de datos, arquitectura en AWS, app móvil, planificación y riesgos
 
-![Anteproyecto renderizado en GitHub](img/14-anteproyecto-github.png)
+![Anteproyecto renderizado en GitHub](../capturas/gestion/14-anteproyecto-github.png)
 
 *Figura 13. Anteproyecto en el repositorio oneleft-docs.*
 
@@ -77,23 +77,23 @@ Se redactó el [anteproyecto](../anteproyecto/anteproyecto.md) con:
 
 | Diagrama | Fichero |
 |---|---|
-| Casos de uso | [01-casos-de-uso.png](../anteproyecto/diagramas/01-casos-de-uso.png) |
-| Arquitectura de componentes | [02-arquitectura-componentes.png](../anteproyecto/diagramas/02-arquitectura-componentes.png) |
-| Clases del dominio de planes | [03-clases-dominio-planes.png](../anteproyecto/diagramas/03-clases-dominio-planes.png) |
-| Estados de un plan | [04-estados-plan.png](../anteproyecto/diagramas/04-estados-plan.png) |
-| Secuencia: unirse a la última plaza | [05-secuencia-unirse-plan.png](../anteproyecto/diagramas/05-secuencia-unirse-plan.png) |
-| Modelo entidad-relación | [06-modelo-entidad-relacion.png](../anteproyecto/diagramas/06-modelo-entidad-relacion.png) |
-| Despliegue en AWS | [07-despliegue-aws.png](../anteproyecto/diagramas/07-despliegue-aws.png) |
-| Pipeline de la app móvil | [08-pipeline-app-movil.png](../anteproyecto/diagramas/08-pipeline-app-movil.png) |
-| Planificación (Gantt) | [09-planificacion-gantt.png](../anteproyecto/diagramas/09-planificacion-gantt.png) |
+| Casos de uso | [01-casos-de-uso.png](../diagramas/casos-de-uso/01-casos-de-uso.png) |
+| Arquitectura de componentes | [02-arquitectura-componentes.png](../diagramas/componentes/02-arquitectura-componentes.png) |
+| Clases del dominio de planes | [03-clases-dominio-planes.png](../diagramas/clases/03-clases-dominio-planes.png) |
+| Estados de un plan | [04-estados-plan.png](../diagramas/estados/04-estados-plan.png) |
+| Secuencia: unirse a la última plaza | [05-secuencia-unirse-plan.png](../diagramas/secuencia/05-secuencia-unirse-plan.png) |
+| Modelo entidad-relación | [06-modelo-entidad-relacion.png](../diagramas/datos/06-modelo-entidad-relacion.png) |
+| Despliegue en AWS | [07-despliegue-aws.png](../diagramas/despliegue/07-despliegue-aws.png) |
+| Pipeline de la app móvil | [08-pipeline-app-movil.png](../diagramas/procesos/08-pipeline-app-movil.png) |
+| Planificación (Gantt) | [09-planificacion-gantt.png](../diagramas/procesos/09-planificacion-gantt.png) |
 
-![Despliegue en AWS](../anteproyecto/diagramas/07-despliegue-aws.png)
+![Despliegue en AWS](../diagramas/despliegue/07-despliegue-aws.png)
 
 *Figura 14. Diagrama de despliegue en AWS.*
 
 ## 6. Estructura de directorios
 
-![Estructura del repositorio oneleft-docs](img/15-estructura-docs.png)
+![Estructura del repositorio oneleft-docs](../capturas/codigo/15-estructura-docs.png)
 
 *Figura 15. Estructura de oneleft-docs en GitHub.*
 
@@ -104,15 +104,15 @@ oneleft-docs/
 │   ├── pull_request_template.md
 │   └── workflows/lint.yml       validación de ramas y commits
 ├── anteproyecto/
-│   ├── anteproyecto.md
-│   └── diagramas/               fuentes PlantUML en src/ y PNG/SVG exportados
+│   └── anteproyecto.md
+├── capturas/                    capturas por categoría (gestión, app web, API...)
+├── diagramas/                   PlantUML por tipo (secuencia, clases...): src/ y PNG/SVG
 ├── memoria/
 │   └── estructura.md            índice de la memoria y puntos de énfasis
 ├── proceso/
 │   ├── README.md                índice del diario
 │   ├── 01-montaje-inicial.md
-│   ├── 02-anteproyecto-priorizacion.md
-│   └── img/                     capturas numeradas
+│   └── 02-anteproyecto-priorizacion.md
 ├── CONTRIBUTING.md
 └── README.md
 ```

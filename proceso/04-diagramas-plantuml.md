@@ -15,7 +15,7 @@ Los diagramas del anteproyecto se habían escrito en Mermaid. Se decidió migrar
 
 Las fuentes están separadas de las imágenes generadas:
 
-![Estructura de la carpeta de diagramas](img/30-diagramas-plantuml-estructura.png)
+![Estructura de la carpeta de diagramas](../capturas/codigo/30-diagramas-plantuml-estructura.png)
 
 *Figura 29. Fuentes `.puml` en `src/` y PNG/SVG generados en `diagramas/`.*
 
@@ -33,7 +33,7 @@ El script [`tools/render-plantuml.sh`](../tools/render-plantuml.sh) usa la **ima
 Graphviz en el equipo:
 
 ```bash
-tools/render-plantuml.sh anteproyecto/diagramas
+tools/render-plantuml.sh diagramas/secuencia   # o sin argumentos: todos los tipos
 ```
 
 ## 4. Diagramas
@@ -50,19 +50,19 @@ tools/render-plantuml.sh anteproyecto/diagramas
 | 08 | Generación de la app web y Android | Actividad, con bifurcación |
 | 09 | Planificación por fases | Gantt |
 
-![Modelo de dominio del servicio de planes](../anteproyecto/diagramas/03-clases-dominio-planes.png)
+![Modelo de dominio del servicio de planes](../diagramas/clases/03-clases-dominio-planes.png)
 
 *Figura 30. Diagrama de clases: el agregado `Plan`, los puertos de entrada y salida y el servicio de aplicación.*
 
-![Secuencia: unirse a la última plaza](../anteproyecto/diagramas/05-secuencia-unirse-plan.png)
+![Secuencia: unirse a la última plaza](../diagramas/secuencia/05-secuencia-unirse-plan.png)
 
 *Figura 31. Diagrama de secuencia del control de concurrencia al ocupar la última plaza.*
 
-![Despliegue en AWS](../anteproyecto/diagramas/07-despliegue-aws.png)
+![Despliegue en AWS](../diagramas/despliegue/07-despliegue-aws.png)
 
 *Figura 32. Diagrama de despliegue en AWS.*
 
-![Planificación](../anteproyecto/diagramas/09-planificacion-gantt.png)
+![Planificación](../diagramas/procesos/09-planificacion-gantt.png)
 
 *Figura 33. Diagrama de Gantt de la planificación por fases.*
 

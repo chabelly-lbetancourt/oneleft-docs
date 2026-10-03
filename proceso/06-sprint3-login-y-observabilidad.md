@@ -18,7 +18,7 @@ referirse a un issue del mismo repositorio, se crearon **sub-issues** enlazados 
 (funcionalidad de *sub-issues* de GitHub), que el tablero añade automáticamente. Esto amplió la estimación
 inicial del sprint de 8 a 13 puntos.
 
-![Tablero al cierre del Sprint 3](img/41-tablero-sprint3.png)
+![Tablero al cierre del Sprint 3](../capturas/gestion/41-tablero-sprint3.png)
 
 *Figura 41. Tablero al cierre del Sprint 3.*
 
@@ -26,10 +26,10 @@ inicial del sprint de 8 a 13 puntos.
 
 ### Diseño
 
-![Secuencia de inicio de sesión con OIDC](../memoria/diagramas/11-secuencia-login-oidc.png)
+![Secuencia de inicio de sesión con OIDC](../diagramas/secuencia/11-secuencia-login-oidc.png)
 
 *Figura 42. Inicio de sesión con OpenID Connect, Authorization Code + PKCE. Fuente:
-[`memoria/diagramas/src/11-secuencia-login-oidc.puml`](../memoria/diagramas/src/11-secuencia-login-oidc.puml).*
+[`diagramas/secuencia/src/11-secuencia-login-oidc.puml`](../diagramas/secuencia/src/11-secuencia-login-oidc.puml).*
 
 - **Cliente público con PKCE:** la app web y la app Android no pueden guardar secretos, así que usan
   Authorization Code con PKCE (S256), el flujo recomendado para aplicaciones SPA y móviles.
@@ -54,7 +54,7 @@ El gateway valida los tokens, deniega las rutas desconocidas y resuelve CORS par
 **Pruebas:** 22 tests en `users` (100 % de cobertura de líneas) y 6 en el gateway, con tokens simulados, de forma
 que la integración continua no necesita un Keycloak real. La verificación con Keycloak real se hizo en local:
 
-![API protegida con tokens de Keycloak](img/37-hu001-api-tokens.png)
+![API protegida con tokens de Keycloak](../capturas/api/37-hu001-api-tokens.png)
 
 *Figura 43. Sin token: 401. Con el token de un usuario de prueba: 200 y su perfil. Con un token manipulado: 401 por firma inválida.*
 
@@ -72,13 +72,13 @@ El flujo completo se recorrió en un navegador real contra Keycloak con una herr
 
 | | | |
 |---|---|---|
-| ![Sin sesión](img/38-hu001-1-sin-sesion.png) | ![Registro en Keycloak](img/38-hu001-2-registro-keycloak.png) | ![Login en Keycloak](img/38-hu001-3-login-keycloak.png) |
+| ![Sin sesión](../capturas/app-web/38-hu001-1-sin-sesion.png) | ![Registro en Keycloak](../capturas/app-web/38-hu001-2-registro-keycloak.png) | ![Login en Keycloak](../capturas/app-web/38-hu001-3-login-keycloak.png) |
 | *1. Sin sesión* | *2. «Crear cuenta»: registro* | *3. «Entrar»: login* |
-| ![Con sesión](img/38-hu001-4-con-sesion.png) | ![Perfil](img/38-hu001-5-perfil.png) | ![Sesión cerrada](img/38-hu001-7-sesion-cerrada.png) |
+| ![Con sesión](../capturas/app-web/38-hu001-4-con-sesion.png) | ![Perfil](../capturas/app-web/38-hu001-5-perfil.png) | ![Sesión cerrada](../capturas/app-web/38-hu001-7-sesion-cerrada.png) |
 | *4. De vuelta con sesión* | *5. Perfil desde la API* | *6. Tras cerrar sesión* |
 
 *Figura 44. Recorrido de HU-001 en un móvil de 390 × 844 px. Al recargar el perfil, la sesión se mantiene
-([captura](img/38-hu001-6-perfil-tras-recargar.png)).*
+([captura](../capturas/app-web/38-hu001-6-perfil-tras-recargar.png)).*
 
 **Criterio pendiente:** la sesión en Android se validará al integrar Capacitor (frontend#3). El CORS del gateway y
 las URIs de redirección del realm ya incluyen los orígenes de Capacitor.
@@ -91,22 +91,22 @@ las URIs de redirección del realm ya incluyen los orígenes de Capacitor.
 
 ## 3. Observabilidad (infra#3 y backend#25)
 
-![Arquitectura de observabilidad](../memoria/diagramas/12-observabilidad.png)
+![Arquitectura de observabilidad](../diagramas/componentes/12-observabilidad.png)
 
 *Figura 45. Observabilidad en el entorno de desarrollo. Fuente:
-[`memoria/diagramas/src/12-observabilidad.puml`](../memoria/diagramas/src/12-observabilidad.puml).*
+[`diagramas/componentes/src/12-observabilidad.puml`](../diagramas/componentes/src/12-observabilidad.puml).*
 
 - **Métricas:** los microservicios exponen `/actuator/prometheus` con histogramas de latencia HTTP. Prometheus
   los rasca cada 10 segundos, junto con Keycloak y RabbitMQ.
 - **Logs:** con el perfil `observability`, los servicios envían sus logs a Loki con las etiquetas `app`, `level` y `host`.
-  En Kubernetes se recogerán de la salida estándar de los contenedores.
+  En producción se recogerán de la salida estándar de los contenedores.
 - **Grafana como código:** fuentes de datos y dashboard aprovisionados desde `oneleft-infra`, sin configuración manual.
 
-![Destinos de Prometheus](img/40-prometheus-targets.png)
+![Destinos de Prometheus](../capturas/infraestructura/40-prometheus-targets.png)
 
 *Figura 46. Los seis destinos de Prometheus activos.*
 
-![Dashboard de Grafana](img/39-grafana-dashboard.png)
+![Dashboard de Grafana](../capturas/infraestructura/39-grafana-dashboard.png)
 
 *Figura 47. Dashboard «OneLeft · Microservicios» con tráfico real a través del gateway: tres servicios activos,
 unas 9 peticiones por segundo, latencia p95 de 16 ms, 0 % de errores 5xx, respuestas 200, 401 y 404 y los logs de Loki.*

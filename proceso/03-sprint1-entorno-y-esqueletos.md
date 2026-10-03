@@ -14,7 +14,7 @@
 Para respetar el límite WIP de 2, las tareas se abordaron **de una en una** (*In Progress* → PR → *Done*) y el
 anteproyecto volvió a *Sprint Backlog* mientras espera la asignación de tutor.
 
-![Tablero al cierre del Sprint 1](img/29-tablero-sprint1.png)
+![Tablero al cierre del Sprint 1](../capturas/gestion/29-tablero-sprint1.png)
 
 *Figura 16. Tablero al cierre del Sprint 1.*
 
@@ -30,19 +30,19 @@ todas las dependencias de los microservicios:
 | RabbitMQ | `rabbitmq:4-management-alpine` | Eventos entre microservicios |
 | Keycloak | `quay.io/keycloak/keycloak:26.5` | Identidad con OAuth2 / OpenID Connect |
 
-![Contenedores del entorno de desarrollo](img/16-docker-compose-ps.png)
+![Contenedores del entorno de desarrollo](../capturas/infraestructura/16-docker-compose-ps.png)
 
 *Figura 17. Los cuatro servicios arrancados y en estado healthy.*
 
-![Bases de datos creadas](img/17-postgres-bases-datos.png)
+![Bases de datos creadas](../capturas/infraestructura/17-postgres-bases-datos.png)
 
 *Figura 18. Una base de datos por microservicio (patrón database per service) y PostGIS 3.5 en `plans`.*
 
-![Verificación de Keycloak, Redis y RabbitMQ](img/18-keycloak-token-redis-rabbitmq.png)
+![Verificación de Keycloak, Redis y RabbitMQ](../capturas/infraestructura/18-keycloak-token-redis-rabbitmq.png)
 
 *Figura 19. Keycloak publica la configuración OpenID del realm `oneleft` y emite tokens; Redis y RabbitMQ responden.*
 
-![Pantalla de login del realm oneleft](img/19-keycloak-login.png)
+![Pantalla de login del realm oneleft](../capturas/infraestructura/19-keycloak-login.png)
 
 *Figura 20. Pantalla de acceso del realm `oneleft` en español, con registro de usuarios habilitado.*
 
@@ -67,7 +67,7 @@ de Spring Initializr):
 | `users` | 8081 | Estructura hexagonal |
 | `plans` | 8082 | Estructura hexagonal |
 
-![Build y tests del backend](img/21-backend-build-tests.png)
+![Build y tests del backend](../capturas/pruebas/21-backend-build-tests.png)
 
 *Figura 21. `./mvnw verify`: tres módulos y 9 tests en verde.*
 
@@ -75,15 +75,15 @@ La **arquitectura hexagonal** no se queda en la estructura de carpetas: cada ser
 **ArchUnit** que falla si el dominio depende de Spring o de otras capas, o si la aplicación depende de la
 infraestructura.
 
-![Estructura de directorios del backend](img/24-backend-estructura.png)
+![Estructura de directorios del backend](../capturas/codigo/24-backend-estructura.png)
 
 *Figura 22. Estructura de oneleft-backend: capas `domain`, `application` e `infrastructure` en cada servicio.*
 
-![Servicios arrancados y enrutado por el gateway](img/22-backend-health-gateway.png)
+![Servicios arrancados y enrutado por el gateway](../capturas/infraestructura/22-backend-health-gateway.png)
 
 *Figura 23. Los tres servicios responden a `/actuator/health` y el gateway reenvía `/api/v1/plans/**` al servicio de planes.*
 
-![Imágenes Docker de los servicios](img/23-backend-imagenes-docker.png)
+![Imágenes Docker de los servicios](../capturas/infraestructura/23-backend-imagenes-docker.png)
 
 *Figura 24. Imagen Docker por servicio, ejecutada con un usuario sin privilegios.*
 
@@ -99,19 +99,19 @@ infraestructura.
 La primera pantalla es la de inicio, diseñada *mobile-first*, con planes de ejemplo que se sustituirán por la API
 en la HU-004.
 
-![Pantalla de inicio en móvil](img/25-frontend-inicio-movil.png)
+![Pantalla de inicio en móvil](../capturas/app-web/25-frontend-inicio-movil.png)
 
 *Figura 25. Pantalla de inicio en un móvil de 390 × 844 px.*
 
-![Pantalla de inicio en escritorio](img/26-frontend-inicio-escritorio.png)
+![Pantalla de inicio en escritorio](../capturas/app-web/26-frontend-inicio-escritorio.png)
 
 *Figura 26. La misma pantalla en escritorio.*
 
-![Build y tests del frontend](img/27-frontend-build-tests.png)
+![Build y tests del frontend](../capturas/pruebas/27-frontend-build-tests.png)
 
 *Figura 27. Build de producción (con carga diferida de la pantalla de inicio) y 6 tests en verde.*
 
-![Estructura de directorios del frontend](img/28-frontend-estructura.png)
+![Estructura de directorios del frontend](../capturas/codigo/28-frontend-estructura.png)
 
 *Figura 28. Estructura de oneleft-frontend: `core/`, `features/` y `shared/`.*
 
