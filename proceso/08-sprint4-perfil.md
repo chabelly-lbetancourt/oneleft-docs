@@ -13,7 +13,7 @@
 | frontend#3 · Capacitor y APK de Android | Tarea | Must | 3 | Pendiente: requiere Android Studio |
 | backend#30 · HU-020 Foto de perfil (nueva) | Historia | Should | 3 | Planificada en el Sprint 26 (fase AWS) |
 
-![Tablero en el Sprint 4](img/47-tablero-sprint4.png)
+![Tablero en el Sprint 4](../capturas/gestion/47-tablero-sprint4.png)
 
 *Figura 51. Tablero durante el Sprint 4.*
 
@@ -23,10 +23,10 @@ fase de despliegue en AWS.
 
 ## 2. Diseño
 
-![Servicio users con arquitectura hexagonal](../memoria/diagramas/14-clases-users-hexagonal.png)
+![Servicio users con arquitectura hexagonal](../diagramas/clases/14-clases-users-hexagonal.png)
 
 *Figura 52. Clases del servicio users: adaptadores de entrada (REST), dominio con sus puertos, aplicación y
-adaptadores de salida (JPA). Fuente: [`14-clases-users-hexagonal.puml`](../memoria/diagramas/src/14-clases-users-hexagonal.puml).*
+adaptadores de salida (JPA). Fuente: [`14-clases-users-hexagonal.puml`](../diagramas/clases/src/14-clases-users-hexagonal.puml).*
 
 ### Privacidad de la ubicación
 
@@ -40,10 +40,10 @@ Además, el perfil que ven otros participantes (`GET /api/v1/users/{id}/profile`
 
 ### Base de datos
 
-![Esquema de la base de datos users](../memoria/diagramas/15-esquema-users.png)
+![Esquema de la base de datos users](../diagramas/datos/15-esquema-users.png)
 
 *Figura 53. Tablas del servicio users, creadas con la migración Flyway `V1__perfiles.sql`. Fuente:
-[`15-esquema-users.puml`](../memoria/diagramas/src/15-esquema-users.puml).*
+[`15-esquema-users.puml`](../diagramas/datos/src/15-esquema-users.puml).*
 
 - **Base de datos por servicio:** `users` tiene su propia base de datos en PostgreSQL.
 - **Flyway** gestiona el esquema y Hibernate solo lo valida (`ddl-auto: validate`).
@@ -59,7 +59,7 @@ Además, el perfil que ven otros participantes (`GET /api/v1/users/{id}/profile`
 | Tests | 47 en `users` con **PostgreSQL real vía Testcontainers**; cobertura 100 % de líneas y 98,6 % de ramas |
 | Test de aplicación | `ProfileService` se prueba con un repositorio en memoria, gracias al puerto de salida |
 
-![API de perfiles](img/44-hu002-api-perfiles.png)
+![API de perfiles](../capturas/api/44-hu002-api-perfiles.png)
 
 *Figura 54. API de perfiles con los contenedores y un token real: creación en el primer acceso, zona redondeada,
 perfil público sin coordenadas y rechazo de actividades repetidas.*
@@ -81,13 +81,13 @@ Sprint 1). Es un buen ejemplo del valor de la integración continua: detecta lo 
 
 | | | |
 |---|---|---|
-| ![Perfil inicial](img/45-hu002-1-inicial.png) | ![Perfil editado](img/45-hu002-2-editado.png) | ![Perfil guardado](img/45-hu002-3-guardado.png) |
+| ![Perfil inicial](../capturas/app-web/45-hu002-1-inicial.png) | ![Perfil editado](../capturas/app-web/45-hu002-2-editado.png) | ![Perfil guardado](../capturas/app-web/45-hu002-3-guardado.png) |
 | *1. Perfil creado en el primer acceso* | *2. Zona aproximada y aficiones* | *3. Guardado* |
 
 *Figura 55. Recorrido de HU-002 en móvil, automatizado con [`tools/capture-profile.mjs`](../tools/capture-profile.mjs)
 y una posición simulada del dispositivo (40.391234, −3.628765).*
 
-![Perfil en la base de datos](img/46-hu002-base-de-datos.png)
+![Perfil en la base de datos](../capturas/infraestructura/46-hu002-base-de-datos.png)
 
 *Figura 56. En la base de datos solo quedan las coordenadas redondeadas y las aficiones con su nivel.*
 

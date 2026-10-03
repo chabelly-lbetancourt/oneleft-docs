@@ -1,0 +1,80 @@
+@startuml 14-clases-users-hexagonal
+!include ../../estilo.iuml
+title Servicio users: arquitectura hexagonal (HU-001 y HU-002)
+hide empty members
+skinparam packageStyle rectangle
+left to right direction
+
+package "infrastructure.rest (adaptadores de entrada)" as REST {
+  class UserController <<RestController>> {
+    + me(jwt) : UserResponse
+  }
+  class ProfileController <<RestController>> {
+    + myProfile(jwt) : ProfileResponse
+    + updateMyProfile(jwt, request) : ProfileResponse
+    + profileOf(userId) : PublicProfileResponse
+    + catalog() : CatalogResponse
+  }
+  class ApiExceptionHandler <<RestControllerAdvice>>
+}
+
+package "domain" as DOM {
+  package "port.in" {
+    interface GetCurrentUserUseCase
+    interface ManageProfileUseCase
+  }
+  package "model" {
+    class User <<record>>
+    class Identity <<record>>
+    class Profile <<record>> {
+      + initial(user) : Profile
+      + update(name, zone, hobbies) : Profile
+    }
+    class ApproximateZone <<record>> {
+      coordenadas redondeadas
+      a 2 decimales
+    }
+    class Hobby <<record>>
+    enum Activity
+    enum Level
+    enum Role
+  }
+  package "port.out" {
+    interface ProfileRepository {
+      + findById(userId) : Optional<Profile>
+      + save(profile) : Profile
+    }
+  }
+}
+
+package "application" as APP {
+  class CurrentUserService <<Service>>
+  class ProfileService <<Service>>
+}
+
+package "infrastructure.persistence (adaptadores de salida)" as PER {
+  class JpaProfileRepository <<Repository>>
+  class ProfileEntity <<Entity>>
+  interface SpringDataProfileRepository
+}
+
+UserController --> GetCurrentUserUseCase
+ProfileController --> ManageProfileUseCase
+CurrentUserService ..|> GetCurrentUserUseCase
+ProfileService ..|> ManageProfileUseCase
+ProfileService --> GetCurrentUserUseCase
+ProfileService --> ProfileRepository
+JpaProfileRepository ..|> ProfileRepository
+JpaProfileRepository --> SpringDataProfileRepository
+SpringDataProfileRepository ..> ProfileEntity
+Profile *-- "0..1" ApproximateZone
+Profile *-- "0..10" Hobby
+Hobby --> Activity
+Hobby --> Level
+User --> Role
+
+note bottom of DOM
+  El dominio no depende de Spring ni de las demás capas:
+  lo comprueba ArchUnit en cada build.
+end note
+@enduml

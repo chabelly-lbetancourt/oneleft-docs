@@ -42,6 +42,8 @@ export const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 export const mobilePage = async (browser) => {
   const page = await browser.newPage();
   await page.setViewport(MOBILE);
+  // Captures show the final state of each screen: no entrance animations or page transitions
+  await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
   await page.evaluateOnNewDocument((lang) => localStorage.setItem('oneleft.language', lang), LANG);
   return page;
 };
@@ -57,15 +59,36 @@ export const click = async (page, selector) => {
 };
 
 /**
- * Fills the Keycloak login form that the app redirected to. Pages that keep a stream open (Server-Sent Events)
- * never reach networkidle0: pass waitUntil 'load' for them.
+ * The app opens its own sign-in and sign-up pages first (/login, /register): «Continue with email» leads to the
+ * Keycloak form. Does nothing when the page is already Keycloak.
  */
-export const keycloakLogin = async (page, { user, password }, waitUntil = 'networkidle0') => {
+export const openKeycloak = async (page) => {
+  const found = await page.waitForSelector('#username, #firstName, .email-login button', { timeout: 20000 });
+  if (await found.evaluate((element) => element.matches('.email-login button'))) {
+    // The page arrives with a short transition (view transitions): clicks during it do not reach the button
+    await pause(600);
+    await found.click();
+    await page.waitForSelector('#username, #firstName', { timeout: 60000 });
+  }
+};
+
+/**
+ * Fills the Keycloak login form that the app redirected to. It waits for 'load': with a session the app keeps the
+ * real-time stream open (Server-Sent Events), so its pages never reach networkidle0.
+ */
+export const keycloakLogin = async (page, { user, password }, waitUntil = 'load') => {
+  await openKeycloak(page);
   await page.waitForSelector('#username');
   await page.locator('#username').fill(user);
   await page.locator('#password').fill(password);
   await Promise.all([page.waitForNavigation({ waitUntil }), page.locator('#kc-login').click()]);
 };
 
-export const screenshot = (page, outDir, prefix, name, fullPage = true) =>
-  page.screenshot({ path: `${outDir}/${prefix}-${name}.png`, fullPage });
+/** Waits until the screen has its data (no loading screen or skeletons left) and captures it. */
+export const screenshot = async (page, outDir, prefix, name, fullPage = true) => {
+  await page
+    .waitForFunction(() => !document.querySelector('app-skeleton, .app-splash'), { timeout: 20000 })
+    .catch(() => {});
+  await pause(500);
+  return page.screenshot({ path: `${outDir}/${prefix}-${name}.png`, fullPage });
+};
