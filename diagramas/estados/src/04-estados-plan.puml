@@ -10,12 +10,17 @@ Abierto --> EnCurso : llega la hora de inicio
 Completo --> EnCurso : llega la hora de inicio
 Abierto --> Cancelado : el organizador cancela
 Completo --> Cancelado : el organizador cancela
-EnCurso --> Finalizado : termina el plan
+EnCurso --> Finalizado : 3 h después del inicio
 
 Finalizado --> [*] : valoraciones
 Cancelado --> [*]
 
-state EnCurso : ya no admite participantes
+state EnCurso : ya no admite participantes\nni lista de espera
 state Abierto : plazasLibres() > 0
 state Completo : plazasLibres() = 0
+note right of Abierto
+  30 minutos antes del inicio,
+  recordatorio a quien organiza
+  y a los participantes (HU-007)
+end note
 @enduml
