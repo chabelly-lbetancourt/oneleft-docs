@@ -1,0 +1,42 @@
+@startuml 31-secuencia-recordatorio
+!include ../../estilo.iuml
+title HU-007 · Recordatorio antes de empezar y caducidad del plan
+
+participant "plans\nPlanLifecycleScheduler" as S
+participant "plans\nPlanLifecycleService" as L
+database "plans\n(PostgreSQL)" as DB
+queue "RabbitMQ" as MQ
+participant "plans\nflujo en tiempo real" as RT
+participant "notifications\nPlanReminderNotifier" as N
+participant "Servicio de push\ndel navegador" as PS
+actor "Lucía\n(apuntada)" as L2
+
+== Cada minuto, en cada réplica ==
+S -> L : advance()
+L -> DB : planes con algo pendiente\n(recordar, empezar, terminar)
+DB --> L : ids
+loop por cada plan, con bloqueo optimista
+  L -> DB : lee el plan (versión n)
+  alt faltan 30 minutos y no se ha recordado
+    L -> DB : guarda reminded_at (versión n+1)
+    L -> MQ : plan.reminder\n(título, lugar, hora, organizadora y participantes)
+  else ha llegado la hora de inicio
+    L -> DB : IN_PROGRESS, sin lista de espera
+  else han pasado 3 horas
+    L -> DB : FINISHED
+  end
+  note right of L
+    Si otra réplica guardó antes,
+    la versión ya no coincide: se relee
+    el plan, ya no queda nada que hacer
+    y no se repite el recordatorio
+  end note
+end
+
+== Entrega del recordatorio ==
+MQ -> RT : cola anónima por réplica
+RT -> L2 : plan-reminder (con la app abierta)
+MQ -> N : cola durable compartida
+N -> PS : Web Push cifrado\n(texto en su idioma)
+PS -> L2 : «Empieza pronto: Pádel…»
+@enduml
