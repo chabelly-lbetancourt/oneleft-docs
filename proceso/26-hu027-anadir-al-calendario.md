@@ -32,6 +32,29 @@ Bajo los participantes aparece el botón «Añadir al calendario». En el navega
 Calendar, Apple Calendar y Outlook abren como un evento nuevo con el título, la hora, el lugar, sus coordenadas, el
 enlace al plan y el aviso.
 
+![Añadir al calendario](../capturas/app-web/81-hu027-anadir-al-calendario.png)
+
+*Figura 103. Detalle de un plan de Ana con el botón «Añadir al calendario» bajo los participantes. Captura generada
+con [`tools/capture-calendar.mjs`](../tools/capture-calendar.mjs), que también guarda el fichero descargado.*
+
+El fichero de ese plan (las 14:03 en Madrid son las 12:03 en UTC; la descripción, larga, se pliega en dos líneas):
+
+```text
+BEGIN:VEVENT
+UID:plan-b6e43ad2-53a3-4b4b-9cb0-721a9095285b@oneleft
+DTSTART:20261004T120300Z
+DTEND:20261004T150300Z
+SUMMARY:Pádel 2 contra 2
+DESCRIPTION:Ver el plan en OneLeft: http://localhost:8080/share/plans/b6e43
+ ad2-53a3-4b4b-9cb0-721a9095285b
+LOCATION:Pistas de la Albufera
+GEO:40.391;-3.629
+BEGIN:VALARM
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+```
+
 ## 4. Pruebas
 
 - **Unitarias** (`plan-calendar.spec.ts`, 100 % de cobertura): formato de fechas, duración, escapado de `;`, `,`
