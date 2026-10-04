@@ -55,6 +55,11 @@ END:VALARM
 END:VEVENT
 ```
 
+![Plan importado en Calendario de Apple](../capturas/app-web/82-hu027-calendario-apple.png)
+
+*Figura 104. Un plan publicado en inglés, importado en Calendario de Apple (macOS): título, lugar, de 15:49 a 18:49,
+aviso 30 minutos antes, descripción con el enlace al plan y el enlace del evento.*
+
 ## 4. Pruebas
 
 - **Unitarias** (`plan-calendar.spec.ts`, 100 % de cobertura): formato de fechas, duración, escapado de `;`, `,`
@@ -63,3 +68,4 @@ END:VEVENT
   Android.
 - **E2E** (`share.e2e.ts`): tras apuntarse al plan compartido, descarga el `.ics` y comprueba su `UID`, la hora y el
   aviso. Se usa el plan que el test ya publica, así que **no crea datos nuevos**: la API no permite borrar planes.
+- **Manual:** el fichero descargado se abre en Calendario de Apple con todos sus datos (figura 104).
