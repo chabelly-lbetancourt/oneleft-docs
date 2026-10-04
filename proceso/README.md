@@ -30,6 +30,7 @@ implementación y gestión del proyecto de la memoria.
 | 30/09/2026 | Sprint 7 | [23 · HU-006 Avisos de planes cercanos](23-hu006-avisos-planes-cercanos.md) |
 | 03/10/2026 | Sprint 12 | [24 · Release: tercera promoción de dev a pre](24-release-pre-3.md) |
 | 03/10/2026 | Sprint 12 | [25 · HU-007 Caducidad automática de planes y recordatorio](25-hu007-caducidad-y-recordatorio.md) |
+| 04/10/2026 | Sprint 12 | [26 · HU-027 Añadir un plan al calendario](26-hu027-anadir-al-calendario.md) |
 
 ## Convenciones
 
