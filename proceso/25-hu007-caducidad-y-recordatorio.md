@@ -46,6 +46,13 @@ repetidos. El recordatorio llega por el flujo en tiempo real y por Web Push. Fue
 - El detalle de un plan en curso, terminado o cancelado muestra su estado en lugar de las plazas libres y ya no
   ofrece unirse, salir ni la lista de espera.
 
+![Recordatorio y plan en curso](../capturas/app-web/80-hu007-recordatorio-y-en-curso.png)
+
+*Figura 102. A la izquierda, Lucía recibe en la app el aviso de su plan «Pádel 2 contra 2» 30 minutos antes de que
+empiece. A la derecha, su otro plan ya ha empezado: muestra «En curso» y no admite a nadie más. Capturas generadas con
+[`tools/capture-reminder.mjs`](../tools/capture-reminder.mjs), que publica los dos planes y espera a que llegue el
+aviso y a que empiece el primero.*
+
 ## 4. Pruebas
 
 - **Dominio** (`PlanLifecycleTest`, 7 tests): las transiciones, el paso directo a terminado de un plan muy antiguo,
