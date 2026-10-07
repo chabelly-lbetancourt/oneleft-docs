@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Wordragon">
+  <title>Wordragon</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2B7CD3"/><stop offset="1" stop-color="#134A9E"/></linearGradient>
+    <radialGradient id="hl" cx=".3" cy=".15" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <clipPath id="c"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <rect width="512" height="512" fill="url(#hl)"/>
+    <g transform="translate(256 256) scale(1.0) translate(-256 -256)" stroke-linejoin="round" stroke-linecap="round"><g>
+<path d="M300 205 C325 150 375 110 432 78 C418 132 398 178 372 222Z" fill="#FFFFFF" opacity=".85"/>
+<path d="M372 262 C410 238 448 244 476 264 C446 276 424 292 394 310Z" fill="#FFFFFF" opacity=".7"/>
+<path d="M256 140 C302 140 348 185 374 245 C388 292 362 334 338 362 C322 388 292 408 256 408Z" fill="#FFFFFF"/>
+<path d="M300 258 L356 238 L346 280 Q322 288 300 258Z" fill="#123F7E"/>
+<path d="M326 252 L336 262" stroke="#FFC83D" stroke-width="8"/>
+<circle cx="292" cy="352" r="9" fill="#123F7E"/>
+<path d="M286 380 L296 408 L306 376Z" fill="#123F7E" opacity=".35"/>
+<path d="M300 225 L350 205" stroke="#123F7E" stroke-width="9"/>
+</g><g transform="translate(512 0) scale(-1 1)">
+<path d="M300 205 C325 150 375 110 432 78 C418 132 398 178 372 222Z" fill="#FFFFFF" opacity=".85"/>
+<path d="M372 262 C410 238 448 244 476 264 C446 276 424 292 394 310Z" fill="#FFFFFF" opacity=".7"/>
+<path d="M256 140 C302 140 348 185 374 245 C388 292 362 334 338 362 C322 388 292 408 256 408Z" fill="#FFFFFF"/>
+<path d="M300 258 L356 238 L346 280 Q322 288 300 258Z" fill="#123F7E"/>
+<path d="M326 252 L336 262" stroke="#FFC83D" stroke-width="8"/>
+<circle cx="292" cy="352" r="9" fill="#123F7E"/>
+<path d="M286 380 L296 408 L306 376Z" fill="#123F7E" opacity=".35"/>
+<path d="M300 225 L350 205" stroke="#123F7E" stroke-width="9"/>
+</g><path d="M256 168 L274 215 L256 245 L238 215Z" fill="#123F7E" opacity=".35"/></g>
+  </g>
+</svg>
