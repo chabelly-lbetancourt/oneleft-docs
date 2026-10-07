@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Unicornote">
+  <title>Unicornote</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B59D0"/><stop offset="1" stop-color="#5B2A98"/></linearGradient>
+    <radialGradient id="hl" cx=".3" cy=".15" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <clipPath id="c"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <rect width="512" height="512" fill="url(#hl)"/>
+    <g transform="translate(256 274) scale(0.86) translate(-256 -256)" stroke-linejoin="round" stroke-linecap="round"><g>
+<path d="M300 150 C352 162 376 232 364 330 C356 380 334 410 300 424 C318 362 322 280 308 200Z" fill="#FFFFFF" opacity=".6"/>
+<path d="M286 142 L322 66 L326 170Z" fill="#FFFFFF"/>
+<path d="M256 125 C292 125 314 160 316 205 C318 265 312 335 300 385 C294 412 278 430 256 430Z" fill="#FFFFFF"/>
+<path d="M256 150 C270 200 272 280 266 340 L256 346Z" fill="#4B2A78" opacity=".12"/>
+<ellipse cx="300" cy="232" rx="11" ry="15" fill="#4B2A78" transform="rotate(12 300 232)"/>
+<ellipse cx="277" cy="396" rx="8" ry="11" fill="#4B2A78"/></g><g transform="translate(512 0) scale(-1 1)">
+<path d="M300 150 C352 162 376 232 364 330 C356 380 334 410 300 424 C318 362 322 280 308 200Z" fill="#FFFFFF" opacity=".6"/>
+<path d="M286 142 L322 66 L326 170Z" fill="#FFFFFF"/>
+<path d="M256 125 C292 125 314 160 316 205 C318 265 312 335 300 385 C294 412 278 430 256 430Z" fill="#FFFFFF"/>
+<path d="M256 150 C270 200 272 280 266 340 L256 346Z" fill="#4B2A78" opacity=".12"/>
+<ellipse cx="300" cy="232" rx="11" ry="15" fill="#4B2A78" transform="rotate(12 300 232)"/>
+<ellipse cx="277" cy="396" rx="8" ry="11" fill="#4B2A78"/></g><path d="M240 140 L256 8 L272 140Z" fill="#FFC83D"/>
+<path d="M243 112 L268 100 M246 86 L266 76 M249 62 L263 54 M251 38 L261 32" stroke="#B87A00" stroke-width="6" fill="none"/></g>
+  </g>
+</svg>

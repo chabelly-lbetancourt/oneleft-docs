@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Phoenixpoint">
+  <title>Phoenixpoint</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8683A"/><stop offset="1" stop-color="#B8321A"/></linearGradient>
+    <radialGradient id="hl" cx=".3" cy=".15" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <clipPath id="c"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <rect width="512" height="512" fill="url(#hl)"/>
+    <g transform="translate(256 252) scale(0.82) translate(-256 -256)" stroke-linejoin="round" stroke-linecap="round"><g>
+<path d="M262 300 C310 245 390 185 485 150 C470 212 432 270 366 322Z" fill="#FFFFFF" opacity=".95"/>
+<path d="M262 335 C318 300 388 268 470 262 C445 318 392 356 326 378Z" fill="#FFFFFF" opacity=".78"/>
+<path d="M262 370 C310 355 370 350 432 372 C402 410 350 424 298 416Z" fill="#FFFFFF" opacity=".6"/>
+</g><g transform="translate(512 0) scale(-1 1)">
+<path d="M262 300 C310 245 390 185 485 150 C470 212 432 270 366 322Z" fill="#FFFFFF" opacity=".95"/>
+<path d="M262 335 C318 300 388 268 470 262 C445 318 392 356 326 378Z" fill="#FFFFFF" opacity=".78"/>
+<path d="M262 370 C310 355 370 350 432 372 C402 410 350 424 298 416Z" fill="#FFFFFF" opacity=".6"/>
+</g>
+<path d="M256 165 C292 215 298 295 272 365 L256 420 L240 365 C214 295 220 215 256 165Z" fill="#FFFFFF"/>
+<circle cx="256" cy="165" r="36" fill="#FFFFFF"/>
+<path d="M256 118 C236 92 246 70 256 44 C266 70 276 92 256 118Z" fill="#FFC83D"/>
+<path d="M232 128 C206 110 210 86 214 70 C232 84 244 104 242 124Z" fill="#FFC83D" opacity=".9"/>
+<path d="M280 128 C306 110 302 86 298 70 C280 84 268 104 270 124Z" fill="#FFC83D" opacity=".9"/>
+<circle cx="242" cy="160" r="6" fill="#8A2410"/><circle cx="270" cy="160" r="6" fill="#8A2410"/>
+<path d="M246 176 L266 176 L256 204Z" fill="#FFC83D"/>
+<path d="M256 410 C226 442 232 472 256 496 C280 472 286 442 256 410Z" fill="#FFC83D"/>
+<path d="M256 436 C244 454 248 468 256 480 C264 468 268 454 256 436Z" fill="#FFF3C4"/>
+</g>
+  </g>
+</svg>

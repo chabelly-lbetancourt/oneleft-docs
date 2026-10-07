@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Sphinxpoint">
+  <title>Sphinxpoint</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2BA598"/><stop offset="1" stop-color="#0B6A66"/></linearGradient>
+    <radialGradient id="hl" cx=".3" cy=".15" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <clipPath id="c"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <rect width="512" height="512" fill="url(#hl)"/>
+    <g transform="translate(256 264) scale(0.86) translate(-256 -256)" stroke-linejoin="round" stroke-linecap="round">
+<path d="M256 62 C334 62 386 104 398 168 L420 470 L304 470 L304 310 L208 310 L208 470 L92 470 L114 168 C126 104 178 62 256 62Z" fill="#FFFFFF"/>
+<g stroke="#06403F" stroke-width="6" opacity=".22"><path d="M122 150 H390 M118 210 H394 M116 270 H396 M112 340 H196 M316 340 H400 M108 410 H190 M322 410 H404"/></g>
+<path d="M256 118 C302 118 324 150 324 200 C324 268 298 322 256 322 C214 322 188 268 188 200 C188 150 210 118 256 118Z" fill="#FFE9C2"/>
+<path d="M208 206 Q228 192 248 204 Q228 216 208 208Z M304 206 Q284 192 264 204 Q284 216 304 208Z" fill="#06403F"/>
+<path d="M200 205 L180 210 M312 205 L332 210" stroke="#06403F" stroke-width="5"/>
+<path d="M256 212 L247 258 L265 258Z" fill="#06403F" opacity=".2"/>
+<path d="M234 288 Q256 300 278 288" stroke="#06403F" stroke-width="7" fill="none"/>
+<path d="M246 322 H266 L262 384 H250Z" fill="#06403F"/>
+<path d="M256 100 C244 86 248 70 256 56 C264 70 268 86 256 100Z" fill="#FFC83D"/>
+<path d="M186 336 C206 410 306 410 326 336" stroke="#FFC83D" stroke-width="16" fill="none"/>
+</g>
+  </g>
+</svg>
