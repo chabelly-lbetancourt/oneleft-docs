@@ -34,6 +34,7 @@ implementación y gestión del proyecto de la memoria.
 | 08/10/2026 | Sprint 13 | [27 · HU-039 Mínimo de participantes](27-hu039-minimo-de-participantes.md) |
 | 08/10/2026 | Sprint 13 | [28 · HU-026 Aviso del tiempo en planes al aire libre](28-hu026-prevision-del-tiempo.md) |
 | 08/10/2026 | Sprint 13 | [29 · HU-036 Alertas guardadas](29-hu036-alertas-guardadas.md) |
+| 09/10/2026 | Sprint 13 | [30 · HU-035 «Estoy libre ahora»](30-hu035-estoy-libre-ahora.md) |
 
 ## Convenciones
 
