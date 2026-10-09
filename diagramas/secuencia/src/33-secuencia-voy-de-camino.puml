@@ -1,0 +1,31 @@
+@startuml 33-secuencia-voy-de-camino
+!include ../../estilo.iuml
+title HU-040 · «Voy de camino» y «llego tarde»
+
+actor "Lucía\n(apuntada)" as L
+participant "Web" as W
+participant "plans\nArrivalService" as A
+database "plans\n(PostgreSQL)" as DB
+queue "RabbitMQ" as MQ
+participant "plans\nflujo en tiempo real" as RT
+actor "Ana\n(organiza)" as O
+
+L -> W : «Llego tarde» +10 min
+W -> A : PUT /api/v1/plans/{id}/arrivals/me
+A -> DB : lee el plan (versión n)
+alt Lucía es del grupo y el plan no ha empezado
+  A -> DB : guarda su estado\n(sustituye el anterior; versión n+1)
+  A -> MQ : plan.arrival\n(nombre, estado, minutos y\nresto del grupo)
+  A --> W : el plan con los estados del grupo
+  MQ -> RT : a cada réplica
+  RT -> O : plan-arrival\n«Lucía llegará 10 min tarde»
+  O -> O : el detalle abierto se recarga
+else no es del grupo o ya empezó
+  A --> W : 409 plan.notParticipant / plan.started
+end
+note over DB
+  Al empezar el plan, la tarea de cada minuto (HU-007)
+  lo pasa a «en curso» y vacía los estados.
+  Quien sale del plan pierde el suyo.
+end note
+@enduml
