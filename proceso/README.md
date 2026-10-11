@@ -36,6 +36,7 @@ implementación y gestión del proyecto de la memoria.
 | 08/10/2026 | Sprint 13 | [29 · HU-036 Alertas guardadas](29-hu036-alertas-guardadas.md) |
 | 09/10/2026 | Sprint 13 | [30 · HU-035 «Estoy libre ahora»](30-hu035-estoy-libre-ahora.md) |
 | 09/10/2026 | Sprint 13 | [31 · HU-040 Recordatorio y «voy de camino / llego tarde»](31-hu040-voy-de-camino.md) |
+| 11/10/2026 | Sprint 12 | [32 · La app Android verificada en el emulador](32-app-android-verificada.md) |
 
 ## Convenciones
 
