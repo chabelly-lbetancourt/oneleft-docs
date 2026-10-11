@@ -65,6 +65,9 @@ app y, al pulsar «Continue with email», Keycloak en el navegador del sistema (
 **Pendiente:** completar en el emulador el inicio de sesión y confirmar la vuelta a la app por
 `oneleft://callback`. Por eso la PR #56 está en borrador.
 
+**Actualización (11/10/2026):** el recorrido completo en el emulador, con sus capturas, está en la
+[entrada 32](32-app-android-verificada.md).
+
 ## 5. Incidencias
 
 - **Conflictos al actualizar la rama.** La rama llevaba desde el Sprint 5 y en `dev` habían entrado el rediseño,
