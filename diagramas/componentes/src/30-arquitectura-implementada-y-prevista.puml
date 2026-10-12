@@ -25,10 +25,11 @@ package "Clientes (mismo código Angular)" {
 component "L(keycloak)\n**Keycloak 26**\nOIDC + PKCE · Google" as KC
 
 node "Microservicios hexagonales S(docker) (Docker Compose)" {
-  component "L(spring)\n**API Gateway**\nSpring Cloud Gateway\nJWT · límite de peticiones · S(swagger) Swagger" as GW
+  component "L(spring)\n**API Gateway**\nSpring Cloud Gateway\nJWT · límite de peticiones · S(swagger) Swagger\nrelé del WebSocket del chat" as GW
   component "L(springboot)\n**users**\nperfiles, zona aproximada\naficiones" as US
   component "L(springboot)\n**plans**\nplanes, plazas, lista de espera\nbúsqueda por cercanía · SSE" as PL
   component "L(springboot)\n**notifications**\na quién avisar · Web Push\npreferencias y horario" as NT
+  component "L(springboot)\n**chat**\nchat de cada plan · WebSocket\nsolo lectura al terminar" as CH
   component "**ai**\nSpring AI · ranking de avisos\nplanes en lenguaje natural · moderación" <<previsto>> as AI
   component "**Agente «¿qué hago ahora?»**\nIA agéntica: planifica y usa\nherramientas (MCP) con confirmación" <<previsto>> as AG
 }
@@ -55,18 +56,22 @@ U --> WEB
 U --> APP
 WEB --> KC : login
 APP --> KC : login
-WEB --> GW : REST + SSE (JWT)
-APP --> GW : REST + SSE (JWT)
+WEB --> GW : REST + SSE + WebSocket (JWT)
+APP --> GW : REST + SSE + WebSocket (JWT)
 GW --> US
 GW --> PL
 GW --> NT
+GW --> CH : /ws/chat (relé)
 GW ..> AG
 GW --> RD
 US --> PG
 PL --> PG
 NT --> PG
+CH --> PG
+CH --> PL : ¿quién está en el plan?
 PL --> MQ : eventos de planes
 MQ --> NT : plan publicado
+MQ --> CH : salidas, cancelaciones\ny mensajes entre réplicas
 
 NT ..> PL : aviso en tiempo real (vía MQ)
 NT ..> AI : ¿a quién avisar?
