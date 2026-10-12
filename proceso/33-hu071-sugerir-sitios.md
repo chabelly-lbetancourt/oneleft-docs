@@ -73,9 +73,11 @@ elegir el primero con el teclado se rellenan el nombre y el punto. Capturas gene
 - **La lista se salía de la pantalla** (frontend#98). Las primeras capturas mostraron que PrimeNG deja cada opción en
   una línea, así que en el móvil la lista era más ancha que el campo y cortaba direcciones y distancias. Ahora mide lo
   mismo que el campo, parte el texto y cabe con los cinco sitios.
-- **E2E de la CI en rojo por las imágenes de `pre`.** El job de extremo a extremo usa el backend de `pre`, que aún no
-  tiene HU-007, HU-035, HU-036, HU-039 ni HU-040: fallan sus cinco recorridos y pasan los de esta historia. Se
-  volverá a comprobar al promocionar `dev` a `pre`.
+- **E2E de la CI en rojo, y no solo por `pre`.** El job de extremo a extremo usa el backend de `pre`, que aún no tiene
+  HU-007, HU-035, HU-036, HU-039 ni HU-040, y se atribuyeron a eso sus cinco fallos. Pero `publish.e2e.ts` fallaba
+  también por un error de esta historia (frontend#102, [entrada 34](34-hu008-chat-del-plan.md)): con
+  `optionValue="name"`, PrimeNG leía `name` también del texto escrito, una cadena, y un sitio escrito a mano dejaba el
+  campo vacío. Lo descubrieron las capturas de HU-008; corregido, `publish.e2e.ts` pasa contra el stack local.
 - **Scripts de capturas.** Con las sugerencias, la lista podía tapar «Estoy aquí» en los recorridos que escriben el
   sitio a mano: `tools/lib/publish.mjs` tiene ahora `typePlace`, que la cierra antes, y lo usan `capture-plan.mjs`,
   `capture-rate-limit.mjs` y `publishPlan`.
