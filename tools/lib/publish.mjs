@@ -16,6 +16,16 @@ export const typeNumber = async (page, selector, value) => {
 };
 
 /**
+ * Writes the meeting point by hand. The field suggests places (HU-071): once they have had time to arrive the list is
+ * closed, so that it does not cover «I'm here».
+ */
+export const typePlace = async (page, place) => {
+  await page.locator('#placeName').fill(place);
+  await pause(1500);
+  await page.keyboard.press('Escape');
+};
+
+/**
  * Fills and sends the form (the page must be on /plans/new) and returns the path of the published plan. `spots` changes
  * the free spots and `before` runs on the filled form just before sending it (HU-039 uses it for the minimum).
  */
@@ -28,7 +38,7 @@ export const publishPlan = async (page, { activity, title, place, time, spots, b
   await page.locator('#title').fill(title);
   await click(page, `p-togglebutton[aria-label="${t('publish.custom')}"]`);
   await page.locator('#customTime').fill(time);
-  await page.locator('#placeName').fill(place);
+  await typePlace(page, place);
   await click(page, button('publish.here'));
   await page.waitForSelector('.meeting-coordinates');
   if (spots) {

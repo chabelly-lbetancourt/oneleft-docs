@@ -1,6 +1,7 @@
 // Walks through HU-003 in the app: login, publish a plan, see its detail and the home screen.
 // Usage: ONELEFT_TEST_USER=... ONELEFT_TEST_PASSWORD=... [ONELEFT_LANG=en] node tools/capture-plan.mjs <output-dir> [prefix]
 import { APP, button, click, credentials, keycloakLogin, launch, mobilePage, pause, screenshot, t } from './lib/app.mjs';
+import { typePlace } from './lib/publish.mjs';
 
 const [outDir = '.', prefix = 'plan'] = process.argv.slice(2);
 const login = credentials();
@@ -25,7 +26,7 @@ try {
   await page.type('#title', t('publish.planTitlePlaceholder'));
   await page.type('#description', t('publish.detailsPlaceholder'));
   await click(page, `p-togglebutton[aria-label="${t('publish.in120')}"]`);
-  await page.type('#placeName', t('publish.wherePlaceholder'));
+  await typePlace(page, t('publish.wherePlaceholder'));
   await click(page, button('publish.here'));
   await page.waitForSelector('.meeting-coordinates');
   await click(page, `p-togglebutton[aria-label="${t('levels.INTERMEDIATE')}"]`);
