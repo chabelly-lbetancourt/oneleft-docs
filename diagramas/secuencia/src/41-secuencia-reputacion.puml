@@ -1,0 +1,46 @@
+@startuml 41-secuencia-reputacion
+!include ../../estilo.iuml
+title HU-009 · Reputación a partir de los eventos de los planes
+
+participant "plans" as P
+database "plans\n(PostgreSQL)" as PDB
+queue "RabbitMQ\noneleft.plans" as MQ
+participant "reputation\nReputationService" as R
+database "reputation\n(PostgreSQL)" as RDB
+actor "Lucía" as L
+
+== Check-in (HU-025) ==
+P -> MQ : plan.checked-in (Lucía hace check-in)
+MQ -> R : cola duradera reputation.check-ins
+R -> RDB : apunte ATTENDED +10\n(INSERT … ON CONFLICT DO NOTHING)
+alt apunte nuevo
+  R -> RDB : puntuación de Lucía += 10\n(misma transacción)
+else repetido
+  R -> R : no cambia nada
+end
+
+== Cierre del check-in: tarea de cada minuto (inicio + 30 min) ==
+P -> PDB : planes con la asistencia abierta
+P -> PDB : check-ins del plan
+P -> MQ : plan.attendance-closed\n(llegaron, no llegaron, ¿lleno?)
+P -> PDB : attendance_closed_at = ahora (una vez por plan)
+MQ -> R : cola duradera reputation.attendance
+alt alguien del grupo hizo check-in
+  R -> RDB : NO_SHOW −15 a cada ausente
+  opt plan lleno y llegó algún participante
+    R -> RDB : ORGANIZED_HELD +20 al organizador
+  end
+else nadie lo hizo
+  R -> R : el plan no cuenta
+end
+note over RDB
+  El libro es inmutable (un trigger rechaza cambios).
+  La puntuación es una proyección: se recalcula
+  sumando el libro (POST /scores/rebuild).
+end note
+
+== Consulta ==
+L -> R : GET /api/v1/reputation/me/ledger (por el gateway)
+R -> RDB : apuntes de Lucía, del más reciente
+R --> L : motivo, puntos, plan y fecha
+@enduml
