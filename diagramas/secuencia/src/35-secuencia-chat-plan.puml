@@ -1,0 +1,54 @@
+@startuml 35-secuencia-chat-plan
+!include ../../estilo.iuml
+title HU-008 · Un mensaje en el chat del plan
+
+actor "Lucía\n(participante)" as L
+participant "Web" as W
+participant "API Gateway\n(relé /ws/chat)" as G
+participant "chat\n(réplica A)" as C
+participant "plans" as P
+database "PostgreSQL\n(chat)" as DB
+queue "RabbitMQ\noneleft.chat" as MQ
+participant "chat\n(réplica B)" as C2
+actor "Ana\n(organizadora)" as A
+
+== Abrir el chat ==
+L -> W : «Chat del plan»
+W -> G : GET /api/v1/chats/{plan}/messages
+G -> C : historial
+C -> P : GET /api/v1/plans/{plan}\ncon el token de Lucía
+P --> C : organizador y participantes, endsAt
+C -> DB : últimos 50 mensajes
+C --> W : mensajes y si el chat está abierto
+W -> G : WebSocket /ws/chat?planId=…\nSec-WebSocket-Protocol: oneleft.bearer, <token>
+G -> G : Spring Security valida el token\n(límite: 30 conexiones por minuto)
+G -> C : WebSocket /ws/chat?planId=…\nAuthorization: Bearer <token>
+C -> P : ¿Lucía está en el plan?
+alt no está
+  C --> G : 403
+  G --> W : cierre 4403 chat.notMember
+else está
+  C --> W : {"type": "ready", "open": true}
+end
+
+== Escribir ==
+L -> W : «Yo llevo las bolas»
+W -> G : {"text": "Yo llevo las bolas"}
+G -> C : (mismo mensaje)
+alt plan terminado, texto vacío o más de 10 mensajes en 10 s
+  C --> W : {"type": "error", "code": "chat.closed" | "chat.text" | "chat.tooFast"}
+else
+  C -> DB : guarda el mensaje
+  C -> MQ : chat.message
+  MQ -> C : a la réplica A
+  MQ -> C2 : y a la B (cola anónima por réplica)
+  C --> W : {"type": "message", ...}
+  C2 --> A : {"type": "message", ...}\n(Ana está conectada a la réplica B)
+end
+
+== Salir o cancelar ==
+P -> MQ : plan.left (Lucía sale del plan)
+MQ -> C : cierra las conexiones de Lucía (4403)
+P -> MQ : plan.cancelled
+MQ -> C2 : cierra las de todos (4409): solo lectura
+@enduml

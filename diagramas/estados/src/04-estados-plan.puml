@@ -8,14 +8,24 @@ Abierto --> Completo : se ocupa la última plaza
 Completo --> Abierto : un participante abandona
 Abierto --> EnCurso : llega la hora de inicio
 Completo --> EnCurso : llega la hora de inicio
-Abierto --> Cancelado : el organizador cancela
+Abierto --> Cancelado : el organizador cancela\no no se llega al mínimo\na la hora límite (HU-039)
 Completo --> Cancelado : el organizador cancela
-EnCurso --> Finalizado : termina el plan
+EnCurso --> Finalizado : 3 h después del inicio
 
 Finalizado --> [*] : valoraciones
 Cancelado --> [*]
 
-state EnCurso : ya no admite participantes
+state EnCurso : ya no admite participantes\nni lista de espera
 state Abierto : plazasLibres() > 0
 state Completo : plazasLibres() = 0
+note right of Abierto
+  30 minutos antes del inicio,
+  recordatorio a quien organiza
+  y a los participantes (HU-007)
+  ----
+  Con mínimo de participantes (HU-039):
+  a la hora límite se confirma si hay
+  bastante gente y, si no, se cancela.
+  El recordatorio espera a la confirmación.
+end note
 @enduml

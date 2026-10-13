@@ -1,0 +1,47 @@
+@startuml 34-secuencia-sugerir-sitios
+!include ../../estilo.iuml
+title HU-071 · Sugerir sitios cercanos al escribir el punto de encuentro
+
+actor "Lucía" as U
+participant "Web\n(publicar un plan)" as W
+participant "API Gateway\n(límite por persona)" as G
+participant "plans\nPlaceSuggestionService" as P
+participant "plans\nPhotonPlaces" as A
+database "Redis\n(caché 24 h)" as R
+participant "plans\nPhotonClient\n(circuit breaker)" as C
+participant "Photon\n(OpenStreetMap)" as PH
+
+U -> W : escribe «Polidep» en «¿Dónde quedáis?»
+note right of W
+  Desde 3 caracteres y tras 300 ms sin escribir.
+  La ubicación del dispositivo se redondea a ~1 km
+  antes de salir de él (o la zona del perfil)
+end note
+W -> G : GET /api/v1/places?query=Polidep&latitude=40.39&longitude=-3.63
+alt más de 30 búsquedas en un minuto
+  G --> W : 429 rate.limited
+  W -> U : sin sugerencias: escribe el sitio y usa «Estoy aquí»
+else dentro del límite
+  G -> P : suggest(consulta)
+  P -> A : search(consulta)
+  A -> R : texto normalizado y lugar (~1 km)
+  alt ya en caché
+    R --> A : sitios
+  else no está
+    A -> C : search(texto, lugar)
+    alt circuito cerrado
+      C -> PH : /api?q=polidep&lat=40.39&lon=-3.63&limit=10
+      PH --> C : GeoJSON con hasta 10 sitios
+      C -> R : guarda 24 horas
+    else circuito abierto o error
+      C --> A : sin sitios (no se guarda)
+    end
+  end
+  A --> P : sitios
+  P -> P : distancia a cada uno, fuera los de más de 50 km,\nel más cercano primero, sin repetidos, como mucho 5
+  P --> W : 200 [nombre, dirección, punto, distancia]
+  W -> U : lista accesible (combobox) con nombre,\ndirección y distancia
+  U -> W : elige «Polideportivo Campus Sur»
+  W -> W : rellena el nombre y el punto del encuentro
+end
+@enduml

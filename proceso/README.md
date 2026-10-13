@@ -28,6 +28,18 @@ implementación y gestión del proyecto de la memoria.
 | 29/09/2026 | Sprint 7 | [21 · Release: segunda promoción de dev a pre](21-release-pre-2.md) |
 | 30/09/2026 | Sprint 5 | [22 · La app Android con Capacitor](22-app-android-capacitor.md) |
 | 30/09/2026 | Sprint 7 | [23 · HU-006 Avisos de planes cercanos](23-hu006-avisos-planes-cercanos.md) |
+| 03/10/2026 | Sprint 12 | [24 · Release: tercera promoción de dev a pre](24-release-pre-3.md) |
+| 03/10/2026 | Sprint 12 | [25 · HU-007 Caducidad automática de planes y recordatorio](25-hu007-caducidad-y-recordatorio.md) |
+| 04/10/2026 | Sprint 12 | [26 · HU-027 Añadir un plan al calendario](26-hu027-anadir-al-calendario.md) |
+| 08/10/2026 | Sprint 13 | [27 · HU-039 Mínimo de participantes](27-hu039-minimo-de-participantes.md) |
+| 08/10/2026 | Sprint 13 | [28 · HU-026 Aviso del tiempo en planes al aire libre](28-hu026-prevision-del-tiempo.md) |
+| 08/10/2026 | Sprint 13 | [29 · HU-036 Alertas guardadas](29-hu036-alertas-guardadas.md) |
+| 09/10/2026 | Sprint 13 | [30 · HU-035 «Estoy libre ahora»](30-hu035-estoy-libre-ahora.md) |
+| 09/10/2026 | Sprint 13 | [31 · HU-040 Recordatorio y «voy de camino / llego tarde»](31-hu040-voy-de-camino.md) |
+| 11/10/2026 | Sprint 12 | [32 · La app Android verificada en el emulador](32-app-android-verificada.md) |
+| 11/10/2026 | Sprint 13 | [33 · HU-071 Sugerir sitios cercanos al escribir el punto de encuentro](33-hu071-sugerir-sitios.md) |
+| 12/10/2026 | Sprint 13 | [34 · HU-008 Chat del plan](34-hu008-chat-del-plan.md) |
+| 13/10/2026 | Sprint 13 | [35 · Release: cuarta promoción de dev a pre](35-release-pre-4.md) |
 
 ## Convenciones
 

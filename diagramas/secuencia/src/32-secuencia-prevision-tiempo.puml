@@ -1,0 +1,41 @@
+@startuml 32-secuencia-prevision-tiempo
+!include ../../estilo.iuml
+title HU-026 · Previsión del tiempo de un plan al aire libre
+
+actor "Lucía" as U
+participant "Web\n(detalle del plan)" as W
+participant "API Gateway" as G
+participant "plans\nPlanWeatherService" as P
+database "Redis\n(caché 30 min)" as R
+participant "plans\nOpenMeteoClient\n(circuit breaker)" as C
+participant "Open-Meteo" as OM
+
+U -> W : abre un plan de ciclismo
+W -> G : GET /api/v1/plans/{id}
+G --> W : el plan
+W -> G : GET /api/v1/plans/{id}/weather
+G -> P : weather(id)
+alt actividad bajo techo o plan ya empezado
+  P --> W : 204 sin previsión
+else plan al aire libre que aún no ha empezado
+  P -> R : lugar (~1 km) y hora del plan
+  alt ya en caché
+    R --> P : previsión
+  else no está
+    P -> C : forecast(lugar, hora)
+    alt circuito cerrado
+      C -> OM : /v1/forecast (temperatura, lluvia, viento)
+      OM --> C : valores de esa hora
+      C -> R : guarda 30 minutos
+    else circuito abierto o error
+      C --> P : sin previsión (no se guarda)
+    end
+  end
+  P --> W : 200 previsión o 204
+end
+W -> U : «El tiempo a esa hora»\ny aviso destacado si es probable que llueva
+note over W
+  Sin previsión el plan se ve igual:
+  la web ignora el 204 y cualquier error
+end note
+@enduml
