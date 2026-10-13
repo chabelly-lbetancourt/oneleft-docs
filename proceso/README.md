@@ -39,6 +39,7 @@ implementación y gestión del proyecto de la memoria.
 | 11/10/2026 | Sprint 12 | [32 · La app Android verificada en el emulador](32-app-android-verificada.md) |
 | 11/10/2026 | Sprint 13 | [33 · HU-071 Sugerir sitios cercanos al escribir el punto de encuentro](33-hu071-sugerir-sitios.md) |
 | 12/10/2026 | Sprint 13 | [34 · HU-008 Chat del plan](34-hu008-chat-del-plan.md) |
+| 13/10/2026 | Sprint 13 | [35 · Release: cuarta promoción de dev a pre](35-release-pre-4.md) |
 
 ## Convenciones
 
