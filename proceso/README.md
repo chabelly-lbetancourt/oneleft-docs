@@ -40,6 +40,7 @@ implementación y gestión del proyecto de la memoria.
 | 11/10/2026 | Sprint 13 | [33 · HU-071 Sugerir sitios cercanos al escribir el punto de encuentro](33-hu071-sugerir-sitios.md) |
 | 12/10/2026 | Sprint 13 | [34 · HU-008 Chat del plan](34-hu008-chat-del-plan.md) |
 | 13/10/2026 | Sprint 13 | [35 · Release: cuarta promoción de dev a pre](35-release-pre-4.md) |
+| 13/10/2026 | Sprint 13 | [36 · HU-025 Check-in al llegar al punto de encuentro](36-hu025-check-in.md) |
 
 ## Convenciones
 
