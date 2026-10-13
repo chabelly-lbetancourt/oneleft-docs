@@ -1,0 +1,43 @@
+@startuml 43-secuencia-insignias
+!include ../../estilo.iuml
+title HU-044 · De la asistencia de un plan al aviso de una insignia
+
+participant "plans" as P
+queue "RabbitMQ\noneleft.plans" as MQ
+participant "reputation\nReputationService" as R
+database "reputation\n(PostgreSQL)" as RDB
+queue "RabbitMQ\noneleft.notifications" as NQ
+participant "plans\nUserEventSubscriptions" as SSE
+actor "Lucía" as L
+
+L -> SSE : GET /api/v1/plans/events/stream\n(con la app abierta)
+
+== Cierre del check-in (inicio + 30 min) ==
+P -> MQ : plan.attendance-closed\n(actividad, organizador, llegaron, no llegaron)
+MQ -> R : cola duradera reputation.attendance
+R -> RDB : apuntes de la reputación (HU-009)
+R -> RDB : una línea del historial por persona del grupo\n(track_record, ON CONFLICT DO NOTHING)
+loop cada persona del grupo
+  R -> RDB : su historial en una consulta\n(organizados celebrados, llegadas, actividades, racha, kudos)
+  R -> R : insignias alcanzadas (BadgeRules)
+  R -> RDB : INSERT badge … ON CONFLICT DO NOTHING
+  alt insignia nueva
+    R -> NQ : notification.badge-earned (persona, insignia, fecha)
+  else ya la tenía
+    R -> R : no avisa
+  end
+end
+note over RDB
+  Solo cuentan los planes celebrados
+  (alguien del grupo hizo check-in) y las
+  llegadas con check-in. Una insignia se
+  consigue una vez y no se pierde.
+end note
+
+== Aviso en tiempo real ==
+NQ -> SSE : cola de cada réplica
+SSE -> L : evento badge-earned
+L -> L : aviso «¡Nueva insignia!»;\n«Mi reputación» se actualiza sola
+L -> R : GET /api/v1/reputation/me/badges (por el gateway)
+R --> L : cada insignia: conseguida y fecha, o progreso y meta
+@enduml
