@@ -1,0 +1,45 @@
+@startuml 39-secuencia-seguir-perfil-privado
+!include ../../estilo.iuml
+title HU-047 · Seguir a alguien con el perfil privado
+
+actor "Lucía" as L
+participant "Web" as W
+participant "API Gateway" as GW
+participant "social\nSocialService" as S
+database "social\n(PostgreSQL)" as DB
+participant "users" as U
+actor "Ana\n(perfil privado)" as A
+
+L -> W : «Pedir seguir» en la página de Ana
+W -> GW : PUT /api/v1/social/me/following/{ana}
+GW -> S : (token de Lucía)
+S -> DB : registra a Lucía con el nombre de su cuenta\n(la primera vez, privada)
+S -> DB : ¿conoce a Ana?
+alt aún no
+  S -> U : GET /api/v1/users/{ana}/profile\n(una sola vez, con el token de Lucía)
+  U --> S : su nombre (404 si no tiene cuenta)
+  S -> DB : guarda a Ana, privada hasta que elija
+end
+alt el perfil de Ana es público
+  S -> DB : follow ACCEPTED
+  S --> W : 200 «Sigues a Ana»
+else es privado
+  S -> DB : follow PENDING
+  S --> W : 200 «Solicitud enviada»
+end
+...
+A -> W : «Mi red» › Solicitudes
+W -> GW : GET /api/v1/social/me/requests
+GW -> S
+S -> DB : solicitudes con sus nombres\n(una sola consulta)
+S --> W : Lucía, Marta
+A -> W : «Aceptar» a Lucía
+W -> GW : POST /api/v1/social/me/requests/{lucía}/accept
+GW -> S
+S -> DB : follow ACCEPTED
+S --> W : Lucía ya sigue a Ana
+note over DB
+  Si Ana hace público su perfil, se aceptan
+  de una vez todas las solicitudes que esperaban.
+end note
+@enduml
