@@ -1,0 +1,43 @@
+@startuml 37-secuencia-check-in
+!include ../../estilo.iuml
+title HU-025 · Check-in al llegar al punto de encuentro
+
+actor "Lucía\n(apuntada)" as L
+participant "Web" as W
+participant "plans\nCheckInService" as C
+database "plans\n(PostgreSQL + PostGIS)" as DB
+queue "RabbitMQ" as MQ
+participant "plans\nflujo en tiempo real" as RT
+actor "Ana\n(organiza)" as O
+
+note over W
+  Desde 15 min antes del inicio
+  hasta 30 min después
+end note
+L -> W : «He llegado»
+W -> W : ubicación actual y precisa\n(redondeada a ~11 m en el móvil)
+W -> C : POST /api/v1/plans/{id}/check-ins/me\n{latitude, longitude}
+C -> DB : lee el plan
+alt no es del grupo, cancelado o fuera de horario
+  C --> W : 409 plan.notParticipant / plan.notOpen /\ncheckIn.notYet / checkIn.closed
+else dentro del horario
+  C -> DB : ST_DWithin(punto de encuentro,\nubicación, 150 m)
+  alt a más de 150 m
+    C --> W : 409 checkIn.tooFar
+  else ya había llegado
+    C --> W : 201 el primer check-in (sin aviso)
+  else dentro de la geovalla
+    C -> DB : guarda plan, persona, nombre y hora\n(no la ubicación)
+    C -> MQ : plan.checked-in\n(nombre y resto del grupo)
+    C --> W : 201 «Has llegado a las 18:02»
+    MQ -> RT : a cada réplica
+    RT -> O : plan-check-in\n«Lucía ha llegado a «Pádel»»
+    O -> C : GET /api/v1/plans/{id}/check-ins
+    C --> O : quién ha llegado y a qué hora
+  end
+end
+note over DB
+  La asistencia queda registrada para la
+  reputación (HU-009) y se borra con el plan.
+end note
+@enduml
