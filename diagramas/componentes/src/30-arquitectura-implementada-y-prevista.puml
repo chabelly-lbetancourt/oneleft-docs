@@ -26,7 +26,7 @@ component "L(keycloak)\n**Keycloak 26**\nOIDC + PKCE · Google" as KC
 
 node "Microservicios hexagonales S(docker) (Docker Compose)" {
   component "L(spring)\n**API Gateway**\nSpring Cloud Gateway\nJWT · límite de peticiones · S(swagger) Swagger\nrelé del WebSocket del chat" as GW
-  component "L(springboot)\n**users**\nperfiles, zona aproximada\naficiones" as US
+  component "L(springboot)\n**users**\nperfiles, zona aproximada\naficiones · foto de perfil" as US
   component "L(springboot)\n**plans**\nplanes, plazas, lista de espera\nbúsqueda por cercanía · SSE" as PL
   component "L(springboot)\n**notifications**\na quién avisar · Web Push\npreferencias y horario" as NT
   component "L(springboot)\n**chat**\nchat de cada plan · WebSocket\nsolo lectura al terminar" as CH
@@ -39,6 +39,7 @@ node "Microservicios hexagonales S(docker) (Docker Compose)" {
 database "L(postgresql)\n**PostgreSQL 17**\nS(postgis) PostGIS · BD por servicio" as PG
 queue "L(rabbitmq)\n**RabbitMQ 4**\neventos de dominio" as MQ
 database "L(redis)\n**Redis**\nlímite de peticiones" as RD
+storage "**Almacenamiento de objetos**\ncompatible con S3 · fotos de perfil\n(S3 o bucket de Lightsail al desplegar)" as OS
 cloud "**Proveedor LLM**\n(intercambiable)" <<previsto>> as LLM
 
 package "Observabilidad" {
@@ -69,6 +70,9 @@ GW --> RP
 GW ..> AG
 GW --> RD
 US --> PG
+US --> OS : firma enlaces\ncomprueba y borra
+WEB --> OS : sube y ve las fotos\n(enlaces firmados)
+APP --> OS
 PL --> PG
 NT --> PG
 CH --> PG
