@@ -1,0 +1,39 @@
+@startuml 45-secuencia-foto-de-perfil
+!include ../../estilo.iuml
+title HU-020 · Foto de perfil con enlaces firmados
+
+actor "Lucía" as L
+participant "Web o app\nAngular" as W
+participant "users\nPhotoService" as U
+database "users\n(PostgreSQL)" as DB
+participant "Almacenamiento\ncompatible con S3" as S
+actor "Ana" as A
+
+== Subir la foto ==
+L -> W : elige una foto (archivo, cámara o galería)
+W -> W : cuadrado del centro, 512 px, WebP\n(en el navegador: el original no sale del móvil)
+W -> U : POST /api/v1/users/me/photo/uploads\n(tipo y tamaño)
+U -> U : WebP o JPEG, hasta 1 MiB;\nclave nueva photos/<Lucía>/<aleatorio>.webp
+U --> W : enlace firmado: solo PUT de ese tipo\ny tamaño, durante 5 minutos
+W -> S : PUT de la foto (sin token)
+note right of S
+  Otro tamaño u otro tipo: 403.
+  La foto no pasa por el backend.
+end note
+S --> W : 200
+W -> U : PUT /api/v1/users/me/photo (clave)
+U -> U : ¿la clave es de Lucía?
+U -> S : HEAD de la clave: ¿está y es válida?
+U -> DB : profile_photo de Lucía = clave
+U -> S : borra la anterior y las subidas sin confirmar
+U --> W : enlace firmado para verla (1 hora)
+
+== Ver las fotos de una lista ==
+A -> W : abre un plan de Lucía
+W -> U : GET /api/v1/users/photos?ids=Lucía,Ana\n(una petición por lista, con sesión)
+U -> DB : claves de esas personas (una consulta)
+U --> W : enlaces firmados de quien tiene foto
+W -> S : GET con el enlace firmado
+S --> W : la foto
+W --> A : la foto junto a cada nombre;\nsin foto o con el enlace caducado, las iniciales
+@enduml
