@@ -44,6 +44,7 @@ implementación y gestión del proyecto de la memoria.
 | 13/10/2026 | Sprint 13 | [37 · HU-047 Seguir a personas](37-hu047-seguir-a-personas.md) |
 | 13/10/2026 | Sprint 13 | [38 · HU-009 Reputación basada en eventos](38-hu009-reputacion.md) |
 | 13/10/2026 | Sprint 13 | [39 · HU-044 Insignias por hitos](39-hu044-insignias.md) |
+| 14/10/2026 | Sprint 13 | [40 · HU-020 Foto de perfil](40-hu020-foto-de-perfil.md) |
 
 ## Convenciones
 
