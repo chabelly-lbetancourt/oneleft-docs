@@ -30,7 +30,7 @@ node "Microservicios hexagonales S(docker) (Docker Compose)" {
   component "L(springboot)\n**plans**\nplanes, plazas, lista de espera\nbúsqueda por cercanía · SSE" as PL
   component "L(springboot)\n**notifications**\na quién avisar · Web Push\npreferencias y horario" as NT
   component "L(springboot)\n**chat**\nchat de cada plan · WebSocket\nsolo lectura al terminar" as CH
-  component "L(springboot)\n**social**\nseguir a personas\nperfiles públicos o privados" as SO
+  component "L(springboot)\n**social**\nseguir a personas, perfiles públicos o privados\ny quién ve sus planes y su red" as SO
   component "L(springboot)\n**reputation**\nlibro de reputación inmutable\npuntuación por eventos" as RP
   component "**ai**\nSpring AI · ranking de avisos\nplanes en lenguaje natural · moderación" <<previsto>> as AI
   component "**Agente «¿qué hago ahora?»**\nIA agéntica: planifica y usa\nherramientas (MCP) con confirmación" <<previsto>> as AG
@@ -80,6 +80,7 @@ SO --> PG
 RP --> PG
 CH --> PL : ¿quién está en el plan?
 SO --> US : nombre de alguien nuevo
+PL --> SO : ¿se ven sus planes?
 PL --> MQ : eventos de planes
 MQ --> NT : plan publicado
 MQ --> CH : salidas, cancelaciones\ny mensajes entre réplicas

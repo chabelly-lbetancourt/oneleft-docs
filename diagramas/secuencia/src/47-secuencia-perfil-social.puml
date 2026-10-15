@@ -1,0 +1,42 @@
+@startuml 47-secuencia-perfil-social
+!include ../../estilo.iuml
+title HU-048 · El perfil social de alguien con el perfil privado
+
+actor "Lucía" as L
+participant "Web o app\nAngular" as W
+participant "social" as SO
+participant "users" as US
+participant "reputation" as RP
+participant "plans" as PL
+database "plans\n(PostgreSQL)" as DB
+
+== Lo que ve cualquiera con sesión ==
+L -> W : abre la página de Ana
+W -> SO : GET /api/v1/social/people/{Ana}
+SO --> W : nombre, privado, cuentas, relación\ny activityVisible = no la sigue ni es ella
+W -> US : GET /api/v1/users/{Ana}/profile
+US --> W : bio y aficiones con nivel
+W -> RP : GET /api/v1/reputation/people/{Ana}/stats
+RP --> W : planes, organizados y actividades\n(del mismo historial que las insignias)
+W --> L : foto, bio, aficiones, estadísticas,\nreputación e insignias
+W --> L : «El perfil de Ana es privado: solo quienes\nla siguen ven sus planes y su red»
+note right of W
+  La web no pide los planes ni la red;
+  si alguien los pide igual, se le niegan.
+end note
+
+== Los planes de Ana, si alguien los pide sin seguirla ==
+W -> PL : GET /api/v1/plans/people/{Ana}/recent
+PL -> SO : GET /api/v1/social/people/{Ana}\n(con el token de Lucía)
+SO --> PL : activityVisible = false
+PL --> W : 403 social.private
+
+== Cuando Ana acepta a Lucía ==
+W -> PL : GET /api/v1/plans/people/{Ana}/recent
+PL -> SO : GET /api/v1/social/people/{Ana} (token de Lucía)
+SO --> PL : activityVisible = true
+PL -> DB : los 5 últimos celebrados que organizó o\na los que llegó (una consulta, sin dónde)
+PL --> W : título, actividad, fecha y papel
+W -> SO : GET /api/v1/social/people/{Ana}/followers
+SO --> W : sus seguidores
+@enduml
