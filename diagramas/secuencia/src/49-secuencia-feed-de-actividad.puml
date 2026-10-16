@@ -1,0 +1,53 @@
+@startuml 49-secuencia-feed-de-actividad
+!include ../../estilo.iuml
+title HU-051 y HU-059 · El feed de actividad, calculado al leerlo, y su privacidad
+
+actor "Ana" as A
+actor "Lucía\n(sigue a Ana)" as L
+participant "Web o app\nAngular" as W
+participant "plans" as PL
+queue "RabbitMQ" as MQ
+participant "social" as SO
+database "social\n(PostgreSQL)" as DB
+database "Redis" as R
+
+== Ana se apunta a un plan: una sola escritura ==
+A -> PL : POST /api/v1/plans/{id}/participants
+PL -> MQ : plan.joined (actividad y hora del plan)
+MQ -> SO : cola social.joined
+SO -> DB : ¿comparte su actividad?\n¿ha ocultado este plan?
+alt comparte con sus seguidores y el plan no está oculto
+  SO -> DB : INSERT activity … ON CONFLICT DO NOTHING
+  SO -> DB : sus seguidores aceptados
+  SO -> R : tras el commit: olvida la primera\npágina del feed de cada seguidor
+  SO -> MQ : tras el commit: notification.feed-activity\n(uno por seguidor)
+  MQ -> PL : cola anónima de cada réplica
+  PL --> W : SSE feed-activity (solo al stream de Lucía)
+  W -> W : relee la primera página y pone\nlo nuevo arriba, resaltado
+else con «nadie» o con el plan oculto
+  SO -> SO : no guarda ni avisa
+end
+
+== Lucía abre su feed: fan-out al leer ==
+L -> W : Actividad de tu red
+W -> SO : GET /api/v1/social/me/feed?page=0&size=20
+SO -> R : oneleft:social:feed:{Lucía}
+alt en caché (10 min como mucho)
+  R --> SO : la primera página
+else no está, o Redis no responde
+  SO -> DB : actividad de quienes sigue y la han aceptado,\nque comparten su actividad y sin planes ocultos,\nlo más reciente primero (una consulta)
+  SO -> R : guarda la primera página
+end
+SO --> W : quién, qué, cuándo y el plan
+W --> L : el feed, con fotos (una petición por página)
+
+== Ana oculta el plan de su actividad (HU-059) ==
+A -> W : «Mostrar en mi actividad»: no
+W -> SO : PUT /api/v1/social/me/hidden-plans/{plan}
+SO -> DB : INSERT hidden_plan
+SO -> R : tras el commit: olvida el feed de sus seguidores
+note right of SO
+  Es un filtro al leer: al mostrar el
+  plan de nuevo, vuelve lo guardado.
+end note
+@enduml

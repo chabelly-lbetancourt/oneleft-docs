@@ -30,7 +30,7 @@ node "Microservicios hexagonales S(docker) (Docker Compose)" {
   component "L(springboot)\n**plans**\nplanes, plazas, lista de espera\nbúsqueda por cercanía · SSE" as PL
   component "L(springboot)\n**notifications**\na quién avisar · Web Push\npreferencias y horario" as NT
   component "L(springboot)\n**chat**\nchat de cada plan · WebSocket\nsolo lectura al terminar" as CH
-  component "L(springboot)\n**social**\nseguir a personas, perfiles públicos o privados\ny quién ve sus planes y su red" as SO
+  component "L(springboot)\n**social**\nseguir a personas, perfiles públicos o privados,\nquién ve sus planes y su red y feed de actividad" as SO
   component "L(springboot)\n**reputation**\nlibro de reputación inmutable\npuntuación por eventos" as RP
   component "**ai**\nSpring AI · ranking de avisos\nplanes en lenguaje natural · moderación" <<previsto>> as AI
   component "**Agente «¿qué hago ahora?»**\nIA agéntica: planifica y usa\nherramientas (MCP) con confirmación" <<previsto>> as AG
@@ -38,7 +38,7 @@ node "Microservicios hexagonales S(docker) (Docker Compose)" {
 
 database "L(postgresql)\n**PostgreSQL 17**\nS(postgis) PostGIS · BD por servicio" as PG
 queue "L(rabbitmq)\n**RabbitMQ 4**\neventos de dominio" as MQ
-database "L(redis)\n**Redis**\nlímite de peticiones" as RD
+database "L(redis)\n**Redis**\nlímite de peticiones y cachés" as RD
 storage "**Almacenamiento de objetos**\ncompatible con S3 · fotos de perfil\n(S3 o bucket de Lightsail al desplegar)" as OS
 cloud "**Proveedor LLM**\n(intercambiable)" <<previsto>> as LLM
 
@@ -85,6 +85,9 @@ PL --> MQ : eventos de planes
 MQ --> NT : plan publicado
 MQ --> CH : salidas, cancelaciones\ny mensajes entre réplicas
 MQ --> RP : check-ins, asistencia\ny cancelaciones
+MQ --> SO : publicados, apuntes, salidas,\ncancelaciones y asistencia
+SO --> RD : primera página del feed
+SO ..> PL : actividad nueva del feed (vía MQ)
 
 NT ..> PL : aviso en tiempo real (vía MQ)
 NT ..> AI : ¿a quién avisar?
