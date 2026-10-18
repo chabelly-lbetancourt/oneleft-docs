@@ -1,0 +1,46 @@
+@startuml 51-secuencia-volver
+!include ../../estilo.iuml
+title frontend#130 · Volver a la pantalla anterior de la app
+
+actor "Lucía" as L
+participant "Cabecera\n(flecha)" as H
+participant "BackNavigation" as B
+participant "Router de Angular" as R
+participant "Historial del\nnavegador o WebView" as W
+
+== Cada navegación de esta visita ==
+R -> W : pushState({navigationId: n})
+R -> B : NavigationStart y NavigationEnd (id n)
+B -> B : entradas = [1, …, n]
+note right of B
+  Navegar con replaceUrl (al publicar
+  un plan) sustituye la última: volver
+  no abre otra vez el formulario.
+end note
+
+== Inicio → Actividad → un plan → volver ==
+L -> H : flecha
+H -> B : back(fallback = '/')
+B -> B : hay una pantalla de la app detrás
+B -> W : location.back()
+W -> R : popstate (restoredState.navigationId = 2)
+R -> W : replaceState({navigationId: 4})
+R -> B : NavigationEnd (id 4, restaurada la 2)
+B -> B : entradas = [1, 4]
+note right of B
+  El router reescribe el id de la entrada
+  a la que vuelve: la lista sigue al
+  historial, también con el botón atrás
+  de Android.
+end note
+
+== Página abierta directamente (enlace, aviso, inicio de sesión) ==
+L -> H : flecha
+H -> B : back(fallback)
+B -> B : nada de la app detrás
+B -> R : navigateByUrl(fallback, replaceUrl)
+note right of B
+  Nunca sale de la app. El chat de un
+  plan vuelve al plan; el resto, al inicio.
+end note
+@enduml
