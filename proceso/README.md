@@ -48,6 +48,9 @@ implementación y gestión del proyecto de la memoria.
 | 15/10/2026 | Sprint 13 | [41 · HU-048 Perfil social](41-hu048-perfil-social.md) |
 | 16/10/2026 | Sprint 14 | [42 · HU-051 Feed de actividad y HU-059 Privacidad social](42-hu051-hu059-feed-y-privacidad.md) |
 | 18/10/2026 | Sprint 14 | [43 · Navegación de la app, alias de imports y el entorno local](43-navegacion-de-la-app.md) |
+| 18/10/2026 | Sprint 14 | [44 · HU-060 Kudos entre participantes](44-hu060-kudos.md) |
+| 18/10/2026 | Sprint 14 | [45 · Validación de lo que está en curso y la hora de un plan terminado](45-validacion-en-curso-y-bug-139.md) |
+| 19/10/2026 | Sprint 14 | [46 · Fusión de los kudos y la hora del plan, y las pruebas en Android](46-fusiones-y-pruebas-en-android.md) |
 
 ## Convenciones
 
