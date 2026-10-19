@@ -1,0 +1,51 @@
+@startuml 52-secuencia-kudos
+!include ../../estilo.iuml
+title HU-060 · Un kudos, del detalle del plan a la reputación y el aviso
+
+actor "Ana\n(organizó el plan)" as A
+participant "Web o app\nAngular" as W
+participant "reputation\nKudosService" as R
+database "reputation\n(PostgreSQL)" as RDB
+queue "RabbitMQ\noneleft.notifications" as NQ
+participant "plans\nUserEventSubscriptions" as SSE
+actor "Lucía\n(llegó al plan)" as L
+
+L -> SSE : GET /api/v1/plans/events/stream\n(con la app abierta)
+
+== Ana abre el plan terminado ==
+A -> W : detalle del plan
+W -> R : GET /api/v1/reputation/plans/{plan}/kudos\n(por el gateway)
+R -> RDB : el historial del plan (track_record):\nquién llegó y quién lo organizó
+R -> RDB : los kudos que ya dio Ana en él
+R --> W : abierto y hasta cuándo (cierre del check-in + 7 días),\nlos demás que llegaron y lo que ya les dio
+note right of W
+  Sin check-in, la lista llega vacía
+  y el panel no se muestra.
+end note
+
+== Ana da «Buen rollo» a Lucía ==
+A -> W : «Buen rollo 😄»
+W -> R : POST /api/v1/reputation/plans/{plan}/kudos\n{receiverId: Lucía, kind: GOOD_VIBES}
+R -> R : KudosRules: las dos llegaron, no es a sí misma,\n«Organizó genial» solo al organizador, dentro de la semana
+alt se puede dar
+  R -> RDB : INSERT kudos (PK giver, receiver, plan)
+  R -> RDB : apunte KUDOS +5 para Lucía\n(origen: id del kudos)
+  R -> RDB : su puntuación y, si llega a 50 kudos,\nla insignia «El alma del barrio»
+  R --> W : 201 Created
+  W -> W : «Le diste "Buen rollo 😄"»\nen lugar de las opciones
+  R -> NQ : tras el commit: notification.kudos\n(Lucía, Ana, tipo, plan)
+  NQ -> SSE : cola anónima de cada réplica
+  SSE --> L : evento kudos (solo a su stream)
+  L -> L : aviso «¡Te han dado un kudos!»;\nal tocarlo, «Mi reputación»
+else ya se lo dio, la semana pasó o no llegó alguna
+  R --> W : 409 kudos.alreadyGiven / kudos.closed,\n403 kudos.notAttended o 400 kudos.*
+  W -> R : relee los kudos del plan
+  W -> W : el motivo, y el panel como lo ve el servicio
+end
+
+== Cualquiera abre el perfil social de Lucía ==
+W -> R : GET /api/v1/reputation/people/{Lucía}/kudos
+R -> RDB : cuántos de cada tipo (índice kudos_receiver)
+R --> W : los cuatro tipos con su número
+W -> W : «Kudos recibidos»: solo los que tiene
+@enduml
