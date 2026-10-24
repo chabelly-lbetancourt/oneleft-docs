@@ -52,6 +52,7 @@ implementación y gestión del proyecto de la memoria.
 | 18/10/2026 | Sprint 14 | [45 · Validación de lo que está en curso y la hora de un plan terminado](45-validacion-en-curso-y-bug-139.md) |
 | 19/10/2026 | Sprint 14 | [46 · Fusión de los kudos y la hora del plan, y las pruebas en Android](46-fusiones-y-pruebas-en-android.md) |
 | 24/10/2026 | Sprint 15 | [47 · Las mejoras del panel de kudos](47-mejoras-del-panel-de-kudos.md) |
+| 24/10/2026 | Sprint 15 | [48 · Los arreglos pendientes de la entrada 47 y «Continuar con Google» en Android](48-arreglos-pendientes-y-google-en-android.md) |
 
 ## Convenciones
 
