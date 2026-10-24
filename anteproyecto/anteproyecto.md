@@ -3,13 +3,13 @@
 **Título provisional:** OneLeft: plataforma web y móvil de microservicios para completar planes inmediatos con personas cercanas en tiempo real
 
 **Máster Universitario en Ingeniería Web** · ETSISI · Universidad Politécnica de Madrid
-**Autor/a:** _[nombre y apellidos]_ · **Tutor/a:** _[pendiente de asignación]_ · **Convocatoria prevista:** julio de 2027
+**Autor/a:** Chabelly Lezcano Betancourt · **Tutor/a:** _[pendiente de asignación]_ · **Convocatoria prevista:** julio de 2027
 
 ---
 
 ## Propuesta para el foro de TFM
 
-**Personas que realizan la propuesta:** _[nombre del alumno/a]_
+**Personas que realizan la propuesta:** Chabelly Lezcano Betancourt
 
 **Título provisional:** OneLeft: plataforma web y móvil de microservicios para completar planes inmediatos con personas cercanas en tiempo real
 
