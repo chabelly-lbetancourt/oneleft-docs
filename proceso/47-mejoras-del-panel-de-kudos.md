@@ -6,7 +6,7 @@
 
 | Issue | Tipo | MoSCoW | Puntos | Resultado |
 |---|---|---|---|---|
-| frontend#143 · El panel de kudos pierde el foco al dar uno, y tres problemas de robustez | Bug | Should | — | PR #144 |
+| frontend#143 · El panel de kudos pierde el foco al dar uno, y tres problemas de robustez | Bug | Should | 1 | PR #144 |
 | docs#115 · Documentación (esta entrada) | Documentación | Should | 1 | esta entrada |
 
 **Por qué ahora:** la revisión de la PR #138 ([entrada 44](44-hu060-kudos.md)) dejó cuatro mejoras que no impedían
@@ -56,3 +56,15 @@ Los textos no cambian, ni en español ni en inglés.
   para oneleft-infra.
 - **Prettier en Windows.** `prettier --check` avisa en todos los ficheros por los finales de línea CRLF de la copia de
   trabajo; con LF, los ficheros del cambio están bien formateados, y Git los guarda en LF.
+
+## 5. Resultado
+
+El 24/10/2026, con la CI en verde y sin conflictos, se fusionaron en `dev` la PR #144 (`5cf092b`), que cerró
+frontend#143, y la PR #116 de esta entrada (`ee0142a`), que cerró docs#115. Con las mejoras del panel ya fusionadas, se
+cerró **HU-060** (backend#76): su último criterio, «Suman reputación (+5) y se muestran en el perfil», estaba comprobado
+desde la [entrada 44](44-hu060-kudos.md) (el +5 en el libro y los kudos recibidos en el perfil de Ana). frontend#143 y
+docs#115 se añadieron al tablero, en el Sprint 15, como sub-issues de HU-060.
+
+Quedan pendientes, sin issue todavía, las dos cosas de las incidencias: la ruta de `dist/` de `e2e/serve.mjs` en Windows
+y el *healthcheck* de `oneleft-web`, que va por IPv6.
+
