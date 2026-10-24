@@ -66,5 +66,6 @@ desde la [entrada 44](44-hu060-kudos.md) (el +5 en el libro y los kudos recibido
 docs#115 se añadieron al tablero, en el Sprint 15, como sub-issues de HU-060.
 
 Quedan pendientes, sin issue todavía, las dos cosas de las incidencias: la ruta de `dist/` de `e2e/serve.mjs` en Windows
-y el *healthcheck* de `oneleft-web`, que va por IPv6.
+y el *healthcheck* de `oneleft-web`, que va por IPv6. Se arreglaron en la
+[entrada 48](48-arreglos-pendientes-y-google-en-android.md) (frontend#145 e infra#70).
 
