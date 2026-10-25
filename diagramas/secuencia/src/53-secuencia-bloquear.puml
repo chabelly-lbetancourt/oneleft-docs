@@ -1,0 +1,60 @@
+@startuml 53-secuencia-bloquear
+!include ../../estilo.iuml
+title HU-033 · Bloquear a alguien y lo que cambia en cada servicio
+
+actor "Lucía" as L
+participant "Web o app" as W
+participant "gateway" as G
+participant "social" as S
+database "PostgreSQL\nsocial" as SD
+queue "RabbitMQ\noneleft.social" as Q
+participant "plans" as P
+participant "notifications" as N
+actor "Ana" as A
+
+== Lucía bloquea a Ana ==
+L -> W : Bloquear → «Sí, bloquear»
+W -> G : PUT /api/v1/social/me/blocked/{ana}
+G -> S : (mismo token)
+S -> SD : borra los seguimientos y solicitudes\nen los dos sentidos
+S -> SD : INSERT block (ON CONFLICT DO NOTHING)
+S --> W : 204
+S -> Q : user.blocked (tras el commit)
+note right of S
+  Ana no recibe ningún aviso.
+  Bloquear otra vez no cambia nada
+  ni se anuncia de nuevo.
+end note
+Q -> P : cola duradera plans.blocks
+P -> P : copia el bloqueo
+Q -> N : cola duradera notifications.blocks
+N -> N : copia el bloqueo
+
+== Desde entonces, en los dos sentidos ==
+A -> G : GET /api/v1/social/people/{lucía}
+G -> S
+S --> A : 404 person.notFound
+note right of A
+  Para Ana, Lucía no tiene cuenta:
+  el bloqueo sigue siendo privado.
+end note
+L -> G : GET /api/v1/plans/nearby
+G -> P
+P --> L : sin los planes de Ana\n(NOT EXISTS sobre block)
+A -> G : POST /api/v1/plans/{plan de Lucía}/participants
+G -> P
+P --> A : 404 (como si no existiera)
+N -> N : plan.published de Ana:\nLucía no recibe el aviso
+
+== Lucía desbloquea a Ana ==
+L -> G : DELETE /api/v1/social/me/blocked/{ana}
+G -> S
+S -> SD : DELETE block
+S -> Q : user.unblocked
+note right of Q
+  Bloquear y desbloquear comparten cola:
+  la copia nunca los recibe al revés.
+end note
+Q -> P : borra la copia
+Q -> N : borra la copia
+@enduml
