@@ -1,0 +1,58 @@
+@startuml 55-secuencia-avisos-por-tandas
+!include ../../estilo.iuml
+title HU-012 · Un plan nuevo: a quién se avisa primero y qué pasa después
+
+actor "Ana\n(organiza)" as A
+participant "plans" as P
+queue "RabbitMQ\noneleft.plans" as Q
+participant "notifications" as N
+database "PostgreSQL\nnotifications" as ND
+participant "ranker\n(Python)" as R
+actor "Lucía y otras\n(con avisos)" as L
+
+== Se publica el plan ==
+A -> P : publica «Pádel, falta 1»
+P -> Q : plan.published
+Q -> N : cola duradera notifications.plan-published
+N -> ND : personas con avisos, cerca y con la actividad;\nhistorial de cada una (avisos y aceptados, 90 días)
+N -> R : POST /v1/score (variables de cada candidata)
+alt el ranker responde
+  R --> N : probabilidad de apuntarse de cada una
+else no responde (2 s)
+  R --> N : error o tiempo agotado
+  note right of N
+    Van primero las más cercanas:
+    el servicio no depende del modelo.
+  end note
+end
+N -> ND : registra el aviso de la tanda 0\n(sent_notice: ranking y tanda)
+N -> L : tanda 0: las 5 mejores (app y notificación del navegador)
+N -> ND : guarda las demás en orden\n(pending_notice) y la hora de la próxima tanda
+note right of N
+  Las personas con una alerta guardada (HU-036)
+  piden justo este plan: se avisa al momento.
+end note
+
+== Cada 30 s: ¿toca otra tanda? ==
+N -> ND : planes con tanda vencida (cada 3 min)
+alt faltan más de 15 min y el plan sigue abierto
+  N -> ND : siguientes 5 personas (FOR UPDATE SKIP LOCKED)
+  N -> N : vuelve a comprobar cada una:\navisos activos, cerca, horas de silencio,\nlímite diario y bloqueos
+  N -> L : tanda 1, 2…: solo a quien sigue cumpliendo
+else el plan va a empezar
+  N -> ND : cierra el plan: nadie más recibe aviso
+end
+
+== Alguien se apunta ==
+L -> P : se apunta al plan
+P -> Q : plan.joined (con «lleno» si no quedan plazas)
+Q -> N : cola duradera notifications.plan-joined
+N -> ND : sent_notice.accepted_at\n(solo si ya se le había avisado)
+alt el plan está lleno
+  N -> ND : cierra el plan: se acaban las tandas
+end
+note over N, ND
+  También cierra las tandas plan.cancelled.
+  Lo aceptado es lo que mide y reentrena el modelo.
+end note
+@enduml
