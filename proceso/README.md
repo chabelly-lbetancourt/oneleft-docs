@@ -67,3 +67,4 @@ implementación y gestión del proyecto de la memoria.
   recorridos `capture-*.mjs` de cada historia y `tree.py`. Las figuras con varias pantallas se montan con
   `compose-figure.mjs`. Todas las capturas de la app se hacen con la licencia de PrimeUI y sin animaciones.
 - Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.
+| 29/10/2026 | Sprint 16 | [52 · HU-045 Exportar y borrar mis datos (RGPD)](52-hu045-exportar-y-borrar-mis-datos.md) |
