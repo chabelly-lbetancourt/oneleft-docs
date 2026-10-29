@@ -1,0 +1,63 @@
+@startuml 54-secuencia-borrar-cuenta
+!include ../../estilo.iuml
+title HU-045 · Borrar mi cuenta: lo que hace cada servicio
+
+actor "Lucía" as L
+participant "Web o app" as W
+participant "gateway" as G
+participant "users" as U
+database "PostgreSQL\nusers" as UD
+participant "storage\n(fotos)" as ST
+participant "Keycloak" as K
+queue "RabbitMQ\noneleft.accounts" as Q
+participant "plans" as P
+participant "social" as S
+participant "reputation" as R
+participant "notifications" as N
+participant "chat" as C
+
+== Antes de borrar: descargar mis datos ==
+L -> W : Mis datos → «Descargar mis datos»
+W -> G : GET /api/v1/users/me/data
+G -> U : (mismo token)
+U -> UD : perfil, aficiones y consentimiento
+U -> P : GET /api/v1/plans/me/data
+U -> S : GET /api/v1/social/me/data
+U -> R : GET /api/v1/reputation/me/data
+U -> N : GET /api/v1/notifications/me/data
+U -> C : GET /api/v1/chats/me/data
+U --> W : un único JSON
+note right of U
+  Si un servicio no responde, no hay fichero:
+  503 data.unavailable. Un fichero a medias
+  parecería completo y no lo sería.
+end note
+
+== Borrado ==
+L -> W : «Eliminar mi cuenta» → escribe ELIMINAR
+W -> G : DELETE /api/v1/users/me/account
+G -> U
+U -> UD : borra perfil, aficiones y consentimiento
+U -> ST : borra las fotos bajo users/{id}/
+U -> K : DELETE /admin/realms/oneleft/users/{id}\n(cliente oneleft-accounts, client credentials)
+U --> W : 204
+U -> Q : user.deleted (tras el commit)
+W -> W : cierra la sesión
+
+== Cada servicio, con su cola duradera ==
+Q -> P : plans.account-deleted
+P -> P : libera su plaza en planes futuros,\ncancela los futuros que organizaba,\n«Persona eliminada» en los pasados;\nborra su disponibilidad y sus bloqueos
+Q -> S : social.account-deleted
+S -> S : borra su perfil social, su actividad\ny los planes ocultos (seguimientos,\nbloqueos y denuncias caen con el perfil);\nvacía la caché de feeds
+Q -> R : reputation.account-deleted
+R -> R : borra su libro, su puntuación, su historial,\nsus insignias y los kudos recibidos;\nlos que dio pierden su autor
+Q -> N : notifications.account-deleted
+N -> N : borra avisos enviados, alertas guardadas,\nsuscripciones push, preferencias y bloqueos
+Q -> C : chat.account-deleted
+C -> C : sus mensajes pasan a una persona\nanónima, «Persona eliminada»
+
+note over Q, C
+  Cada borrado se puede repetir sin efecto: si un mensaje
+  llega dos veces, la segunda no encuentra nada.
+end note
+@enduml
