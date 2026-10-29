@@ -68,3 +68,4 @@ implementación y gestión del proyecto de la memoria.
   `compose-figure.mjs`. Todas las capturas de la app se hacen con la licencia de PrimeUI y sin animaciones.
 - Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.
 | 29/10/2026 | Sprint 16 | [52 · HU-045 Exportar y borrar mis datos (RGPD)](52-hu045-exportar-y-borrar-mis-datos.md) |
+| 29/10/2026 | Sprint 16 | [53 · HU-012 Avisar primero a quien más probabilidad tiene de apuntarse](53-hu012-avisar-a-quien-mas-probabilidad-tiene.md) |
