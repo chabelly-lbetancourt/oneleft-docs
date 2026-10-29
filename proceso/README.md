@@ -55,6 +55,7 @@ implementación y gestión del proyecto de la memoria.
 | 24/10/2026 | Sprint 15 | [48 · Los arreglos pendientes de la entrada 47 y «Continuar con Google» en Android](48-arreglos-pendientes-y-google-en-android.md) |
 | 24/10/2026 | Sprint 15 | [49 · El Compose de producción y su prueba en local](49-compose-de-produccion.md) |
 | 25/10/2026 | Sprint 15 | [50 · HU-033 Bloquear y reportar a personas y planes](50-hu033-bloquear-y-reportar.md) |
+| 29/10/2026 | Sprint 15 | [51 · HU-056 La tarjeta del plan para Stories](51-hu056-tarjeta-para-stories.md) |
 
 ## Convenciones
 
