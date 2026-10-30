@@ -69,3 +69,4 @@ implementación y gestión del proyecto de la memoria.
 - Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.
 | 29/10/2026 | Sprint 16 | [52 · HU-045 Exportar y borrar mis datos (RGPD)](52-hu045-exportar-y-borrar-mis-datos.md) |
 | 29/10/2026 | Sprint 16 | [53 · HU-012 Avisar primero a quien más probabilidad tiene de apuntarse](53-hu012-avisar-a-quien-mas-probabilidad-tiene.md) |
+| 30/10/2026 | Sprint 16 | [54 · HU-010 Crear un plan con una frase](54-hu010-plan-con-una-frase.md) |
