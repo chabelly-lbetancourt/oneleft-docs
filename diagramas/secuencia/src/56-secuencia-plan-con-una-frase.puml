@@ -1,0 +1,42 @@
+@startuml 56-secuencia-plan-con-una-frase
+!include ../../estilo.iuml
+title HU-010 · Crear un plan con una frase
+
+actor "Ana" as A
+participant "Web o app" as W
+participant "gateway" as G
+participant "plans" as P
+participant "Photon\n(lugares)" as L
+participant "Claude\n(Anthropic)" as C
+
+A -> W : escribe o dicta\n«Pádel hoy a las 7 en la Albufera, falta uno»
+note right of W
+  Dictar usa el reconocimiento de voz
+  del navegador, si lo hay.
+end note
+W -> W : zona aproximada y zona horaria
+W -> G : POST /api/v1/plans/draft\n{frase, zona, zona horaria}
+G -> P : (mismo token)
+P -> P : longitud y coordenadas válidas
+P -> C : instrucciones con la fecha, la hora y la zona;\nla frase entre <sentence> como dato
+alt Claude responde
+  C --> P : actividad, título, lugar, hora local, plazas, nivel
+else sin clave, error o respuesta ilegible
+  P --> W : 503 draft.unavailable
+  W --> A : «El asistente no está disponible.\nRellena el formulario a mano.»
+end
+P -> P : valida contra el modelo del plan:\nactividad y nivel existentes, plazas 1–20,\nhora entre 5 min y 12 h, textos recortados
+P -> L : busca el lugar cerca de la persona (HU-071)
+L --> P : el sitio más cercano, o ninguno
+P --> W : borrador + qué falta (missing) + avisos (warnings)
+W -> W : rellena el formulario y marca lo que falta
+W --> A : «Revisa el formulario»
+
+== La persona confirma ==
+A -> W : corrige lo que haga falta y pulsa «Publicar»
+W -> G : POST /api/v1/plans (el de siempre)
+note right of W
+  Hasta aquí no se ha publicado nada
+  ni se ha guardado la frase.
+end note
+@enduml
