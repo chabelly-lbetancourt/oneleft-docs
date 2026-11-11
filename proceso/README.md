@@ -71,3 +71,4 @@ implementación y gestión del proyecto de la memoria.
 | 29/10/2026 | Sprint 16 | [53 · HU-012 Avisar primero a quien más probabilidad tiene de apuntarse](53-hu012-avisar-a-quien-mas-probabilidad-tiene.md) |
 | 30/10/2026 | Sprint 16 | [54 · HU-010 Crear un plan con una frase](54-hu010-plan-con-una-frase.md) |
 | 05/11/2026 | Sprint 16 | [55 · HU-068 Más categorías de actividad](55-hu068-mas-categorias-de-actividad.md) |
+| 11/11/2026 | Sprint 17 | [56 · HU-069 Elegir quién me acompaña](56-hu069-elegir-quien-me-acompana.md) |
