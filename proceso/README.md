@@ -73,3 +73,4 @@ implementación y gestión del proyecto de la memoria.
 | 05/11/2026 | Sprint 16 | [55 · HU-068 Más categorías de actividad](55-hu068-mas-categorias-de-actividad.md) |
 | 11/11/2026 | Sprint 17 | [56 · HU-069 Elegir quién me acompaña](56-hu069-elegir-quien-me-acompana.md) |
 | 11/11/2026 | Sprint 17 | [57 · HU-070 Fecha de nacimiento y público del plan](57-hu070-fecha-de-nacimiento-y-publico.md) |
+| 16/11/2026 | Sprint 18 | [58 · HU-006 Los avisos respetan el público del plan](58-hu006-avisos-por-publico.md) |

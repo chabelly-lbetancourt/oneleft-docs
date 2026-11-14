@@ -52,5 +52,5 @@ nacimiento; capturas generadas con [`tools/capture-audience.mjs`](../tools/captu
 
 ## 6. Pendiente
 
-- **Los avisos HU-006 no filtran por público:** el servicio de notificaciones no conoce el género ni la edad de los candidatos. Hace falta un diseño (modelo de lectura propio o consulta entre servicios) y un ADR; la fecha no puede viajar.
+- **Los avisos HU-006 por público:** resuelto en la [entrada 58](58-hu006-avisos-por-publico.md) y el [ADR 0001](../arquitectura/adr/0001-avisos-por-publico-modelo-de-lectura.md).
 - Cerrar backend#100 y pasar las tarjetas a Done, con el tiempo anotado por mí.
