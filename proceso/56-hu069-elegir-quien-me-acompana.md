@@ -27,19 +27,28 @@
 | **Eventos `plan.join-requested` y `plan.request-decided`** por RabbitMQ y SSE (colas anónimas por réplica, como `plan.joined`) | El organizador ve la solicitud en tiempo real y quien pidió oye la decisión |
 | **Las solicitudes entran en la exportación y el borrado de datos** (HU-045) | Son datos personales |
 
-## 3. Pruebas
+## 3. En la app
+
+![Bandeja de solicitudes](../capturas/app-web/110-hu069-bandeja-de-solicitudes.png)
+
+*Figura 168. Lucía, organizadora de un plan en el que se elige a quién acompaña: cada solicitud muestra el nombre, el
+tramo de edad y el nivel en la actividad de quien pide (HU-070) y su mensaje, con «Aceptar» y «Rechazar»; Sara no ha
+indicado su fecha de nacimiento ni tiene ese nivel. La API de planes está **respondida en el navegador**; captura
+generada con [`tools/capture-audience.mjs`](../tools/capture-audience.mjs).*
+
+## 4. Pruebas
 
 - **Backend:** 18 unitarios nuevos (reglas del plan: pedir, aceptar, rechazar, retirar, caducar, plaza que se reabre, quién puede decidir; servicio con eventos, bloqueo y concurrencia) y `JoinRequestControllerTest` de integración con PostgreSQL (la CI lo ejecutó en verde).
 - **Web:** 392 tests (97 % de cobertura): los dos componentes nuevos, la API, la opción al publicar y los avisos. **E2E** (`e2e/requests.e2e.ts`, API de planes respondida en el navegador): 4 de 4 en verde en español e inglés; una persona pide plaza con un mensaje y el organizador acepta.
 
-## 4. Incidencias
+## 5. Incidencias
 
 - **El E2E empezaba en la página del plan, que es pública (HU-024)**, así que nunca pedía el login: hay que iniciar sesión antes (por `/profile`) como hacen los demás.
 - **Tests intermitentes por la carga de la máquina** (24 con timeout de 5 s con el stack local arrancado): con el stack parado pasaron los 72 ficheros.
 - **Un nombre de tipo chocaba con la anotación `@RequestBody`** de Spring en el controlador (`RequestBody` → `RequestMessage`).
 
-## 5. Pendiente
+## 6. Pendiente
 
-- **El nivel en la actividad y la franja de edad del solicitante** que pide el criterio 3 dependen de HU-070: el organizador ve ahora nombre y mensaje. Por eso backend#99 sigue abierta.
-- Capturas de la bandeja del organizador y del estado de la solicitud.
+- ~~El nivel y la franja de edad del solicitante~~ **resuelto con HU-070** (backend#142 y #143, frontend#160 y #161): backend#99 y frontend#62 se cerraron.
+- Captura del estado de la solicitud desde quien pide plaza.
 - Que el organizador vea la foto y la reputación de quien pide (hoy solo el nombre).
