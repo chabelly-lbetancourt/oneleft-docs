@@ -6,7 +6,7 @@
 
 | Issue | Tipo | MoSCoW | Puntos | Resultado |
 |---|---|---|---|---|
-| backend#100 · HU-070 Planes por género y edad | Historia | Should | 3 | PR #139, #142 |
+| backend#100 · HU-070 Planes por género y edad | Historia | Should | 3 | PR #139, #142 (y #143 con el nivel) |
 | frontend#63 · Fecha de nacimiento, género y público del plan | Historia | Should | 3 | PR #159, #160 |
 | docs · Documentación (esta entrada) | Documentación | Should | 1 | esta entrada |
 
@@ -27,19 +27,30 @@
 | **La solicitud de plaza guarda el tramo de edad del momento** (V15), si se conoce | El organizador lo ve en su bandeja sin preguntar a `users` |
 | **Web:** la comprobación del cliente solo evita mostrar el botón a quien no encaja; decide el servicio | La interfaz nunca es la barrera |
 
-## 3. Pruebas
+## 3. En la app
+
+![Fecha de nacimiento, género y público del plan](../capturas/app-web/109-hu070-fecha-de-nacimiento-y-publico.png)
+
+*Figura 167. Lucía. De izquierda a derecha: la tarjeta «Fecha de nacimiento y género» del perfil, ya guardada y con su
+tramo de edad; el selector «¿Para quién es el plan?» al publicar (mujeres, de 25 a 40 años); un plan para mujeres de 25 a
+40 que se le ofrece a ella, y el mismo plan cuando su perfil no encaja, sin botón y con el motivo. Stack local real con
+la API de planes y de datos demográficos **respondida en el navegador**, para no crear planes ni guardar ninguna fecha de
+nacimiento; capturas generadas con [`tools/capture-audience.mjs`](../tools/capture-audience.mjs).*
+
+## 4. Pruebas
 
 - **Backend:** unitarios del modelo (público, miembro, búsqueda cercana), de los servicios (comprobación, solicitudes con tramo de edad) y de integración con PostgreSQL de `users` y `plans` (en la CI).
-- **Web:** 406 tests unitarios: tarjeta del perfil, selector al publicar, público en el ticket y el detalle, y el tramo de edad en la bandeja. La CI de las PR pasó en verde. El E2E de Playwright salió como `skipping`.
+- **Web:** 406 tests unitarios: tarjeta del perfil, selector al publicar, público en el ticket y el detalle, y el tramo de edad y el nivel en la bandeja. La CI de las PR y la de `dev` pasaron en verde. **E2E** (`e2e/audience.e2e.ts`, con la API respondida en el navegador): 3 de 3 en verde, en español e inglés, contra Keycloak, `users` y gateway reales; en la CI de la PR el E2E de Playwright sale como `skipping`.
 
-## 4. Incidencias
+## 5. Incidencias
 
 - **El mock de `UsersApi` del perfil no tenía `demographics`**: la tarjeta nueva rompió 20 tests de `profile.spec` hasta añadirlo.
-- **La carga de la máquina** obligó a parar el stack para pasar los tests unitarios.
+- **La carga de la máquina** obligó a parar el stack para pasar los tests unitarios y a alargar las esperas del E2E (configuración temporal, no versionada). Con el build equivocado (producción en lugar de desarrollo) el inicio de sesión apuntaba a otro Keycloak y las seis pruebas fallaban en `signIn`.
+- **El campo de edad máxima se salía de la tarjeta** al publicar y «25–40 años» se partía en dos líneas: se vio en las capturas y se corrigió.
+- **Una fusión sin esperar a la CI:** la PR del E2E se fusionó con `branches-and-commits` en rojo (el commit de fusión `merge dev into issue#63` no seguía el formato). La CI de `dev` después pasó en verde y el commit no se reescribió (rama compartida).
+- **El aviso «Invalid PrimeUI License»** sale en los builds locales sin la variable `PRIMEUI_LICENSE`; el script de capturas lo retira antes de capturar.
 
-## 5. Pendiente
+## 6. Pendiente
 
 - **Los avisos HU-006 no filtran por público:** el servicio de notificaciones no conoce el género ni la edad de los candidatos. Hace falta un diseño (modelo de lectura propio o consulta entre servicios) y un ADR; la fecha no puede viajar.
-- **El nivel de quien pide plaza** no se muestra en la bandeja (backend#99 sigue abierta).
-- Capturas de la tarjeta del perfil, del selector al publicar y del plan con público.
-- E2E del flujo de HU-070 contra la API respondida en el navegador.
+- Cerrar backend#100 y pasar las tarjetas a Done, con el tiempo anotado por mí.
