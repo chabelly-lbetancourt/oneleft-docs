@@ -3,8 +3,8 @@
 Las referencias se citan en el texto con la clave entre corchetes. Se agrupan por tipo y, dentro de cada grupo, por
 orden alfabético de la clave.
 
-> **Pendiente:** añadir la fecha de consulta de las referencias web y adaptar el formato al estilo que pida la normativa
-> del TFM (por ejemplo, APA o IEEE).
+> **Pendiente:** ¿qué estilo de citas pide la normativa del TFM (APA, IEEE…)? Falta también la fecha de consulta de
+> las referencias web.
 
 ## Libros, artículos y trabajos académicos
 
@@ -21,7 +21,7 @@ orden alfabético de la clave.
 - **[GIL-CRIAPP]** *CRIApp: Plataforma web y móvil para apoyo a la crianza mediante cuestionarios y gamificación*
   (2026). Trabajo de Fin de Máster, Máster Universitario en Ingeniería Web, Universidad Politécnica de Madrid. Dirigido
   por F. J. Gil Rubio. <https://oa.upm.es/97133/>
-  > **Pendiente:** nombre del autor o autora de CRIApp.
+  > **Pendiente:** ¿quién es el autor o la autora de CRIApp?
 - **[KLEPPMANN-DDIA]** Kleppmann, M. (2017). *Designing Data-Intensive Applications*. O'Reilly Media.
 - **[LEWIS-FOWLER-MICROSERVICES]** Lewis, J. y Fowler, M. (2014). *Microservices*.
   <https://martinfowler.com/articles/microservices.html>

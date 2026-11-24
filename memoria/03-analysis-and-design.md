@@ -11,8 +11,8 @@ plaza. El plan pasa a «completo» al llenarse, «en curso» a su hora de inicio
 Alrededor de ese núcleo se han desarrollado, por prioridad, funciones de coordinación (chat del plan, «voy de camino»,
 check-in en el punto de encuentro, recordatorio, añadir al calendario), de descubrimiento (alertas guardadas, «estoy
 libre ahora», previsión del tiempo, sugerencias de lugares, compartir por enlace y tarjeta para Stories), de confianza
-(reputación basada en eventos, insignias, kudos, perfil social, seguir a personas, bloquear y reportar) y de privacidad
-(ubicación siempre aproximada, perfil privado por defecto, exportación y borrado de datos).
+(reputación basada en eventos, con niveles y rachas, insignias, kudos, perfil social, seguir a personas, bloquear y
+reportar) y de privacidad (ubicación siempre aproximada, perfil privado por defecto, exportación y borrado de datos).
 
 Los actores son:
 
@@ -40,7 +40,7 @@ se incorporaron historias al backlog; se derivan de las historias implementadas 
 | RF-06 | El sistema notificará los planes cercanos compatibles, con límite de avisos por usuario | HU-006, HU-036 | Implementado (web y Web Push; push en Android pendiente, frontend#55) |
 | RF-07 | Los planes caducarán automáticamente a su hora de inicio | HU-007, HU-039 | Implementado |
 | RF-08 | Los participantes de un plan dispondrán de un chat en tiempo real | HU-008 | Implementado |
-| RF-09 | Tras el plan, los participantes podrán valorarse y se registrarán las ausencias | HU-009, HU-025, HU-060 | Implementado como reputación por eventos y kudos |
+| RF-09 | Tras el plan, los participantes podrán valorarse y se registrarán las ausencias | HU-009, HU-025, HU-060, HU-062, HU-066 | Implementado como reputación por eventos y kudos, con niveles, rachas y anti-trampas |
 | RF-10 | El organizador podrá crear un plan escribiendo o dictando una frase | HU-010 | Implementado (sin probar con la API real del proveedor) |
 | RF-11 | Los planes y mensajes se moderarán automáticamente antes de publicarse | HU-011 | Pendiente |
 | RF-12 | El sistema elegirá a quién notificar según su probabilidad de aceptar | HU-012 | Implementado |
@@ -76,8 +76,11 @@ se incorporaron historias al backlog; se derivan de las historias implementadas 
 | RNF-10 | Accesibilidad | WCAG 2.2 nivel AA [WCAG22] | Componentes con roles ARIA, foco gestionado y contraste revisado en las dos paletas |
 | RNF-11 | Coste | Alertas de presupuesto en AWS | Previsto con AWS Budgets al desplegar |
 
-> **Pendiente:** el grado de cumplimiento de RNF-01, RNF-02, RNF-10 y RNF-11 depende del despliegue en AWS (infra#5),
-> de las pruebas de carga (HU-015) y de una auditoría de accesibilidad que no está documentada.
+El grado de cumplimiento de RNF-01, RNF-02 y RNF-11 depende del despliegue en AWS (infra#5) y de las pruebas de carga
+(HU-015); el de RNF-08, de activar SonarQube Cloud (apartado 4.7).
+
+> **Pendiente:** ¿se va a hacer una auditoría de accesibilidad (axe o Lighthouse) para respaldar RNF-10? No hay
+> ninguna documentada.
 
 ## 3.4 Historias de usuario
 
@@ -188,8 +191,8 @@ salida. Fuente: [`14-clases-users-hexagonal.puml`](../diagramas/clases/src/14-cl
 *Figura 3.6. Casos de uso, con la generalización de actores (la organizadora es una usuaria) y relaciones
 `<<extend>>`. Fuente: [`01-casos-de-uso.puml`](../diagramas/casos-de-uso/src/01-casos-de-uso.puml).*
 
-> **Pendiente:** el diagrama de casos de uso es el del anteproyecto. Conviene actualizarlo con los casos añadidos
-> durante el desarrollo (lista de espera, check-in, seguir, bloquear y reportar, exportar y borrar datos).
+> **Pendiente:** el diagrama es el del anteproyecto. ¿Quieres actualizarlo con los casos añadidos durante el
+> desarrollo (lista de espera, check-in, seguir, bloquear y reportar, exportar y borrar datos) o dejar el original?
 
 ## 3.7 Diseño detallado: clases, estados y secuencia
 
@@ -281,9 +284,9 @@ El entorno local se organiza por perfiles de Docker Compose:
 *Figura 3.15. Entorno local con Docker Compose y sus perfiles. Fuente:
 [`13-despliegue-local.puml`](../diagramas/despliegue/src/13-despliegue-local.puml).*
 
-> **Pendiente:** el despliegue real en AWS Lightsail (infra#5) no se ha realizado a fecha de este borrador. El
-> Compose de producción está preparado y probado en local (apartado 4.7), pero no hay instancia, dominio, coste real ni
-> alertas configuradas que documentar.
+El despliegue real en AWS Lightsail (infra#5) no se ha realizado a fecha de este borrador. El Compose de producción
+está preparado y probado en local (apartado 4.7), pero no hay instancia, dominio, coste real ni alertas configuradas
+que documentar; la pregunta pendiente está en el apartado 4.7.
 
 ## 3.9 Modelo de datos y bases de datos
 
@@ -301,7 +304,7 @@ gestiona con migraciones Flyway; Hibernate solo valida el esquema (`ddl-auto: va
 | `notifications` | PostgreSQL | Preferencias, avisos enviados, suscripciones Web Push, alertas guardadas, bloqueos, tandas, público de cada persona | V1–V5 |
 | `chat` | PostgreSQL | Mensajes por plan (se borran 24 h después del fin del plan) | V1 |
 | `social` | PostgreSQL + Redis | Personas, seguimientos, actividad, planes ocultos, bloqueos, reportes; primera página del feed en Redis | V1–V4 |
-| `reputation` | PostgreSQL | Libro de reputación, puntuaciones, historial de asistencia, insignias, kudos | V1–V3 |
+| `reputation` | PostgreSQL | Libro de reputación (con el motivo de cada recorte), puntuaciones, historial de asistencia, insignias, kudos | V1–V4 |
 | `gateway` | Redis | Contadores del límite de peticiones | — |
 
 Respecto al anteproyecto, el servicio `geo` con posiciones en Redis GEO no se creó (la búsqueda por proximidad y las

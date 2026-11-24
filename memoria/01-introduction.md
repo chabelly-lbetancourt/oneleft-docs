@@ -69,7 +69,7 @@ al final de cada sprint.
 - **Todo cambio nace de un issue** (historia, tarea o bug) y se integra mediante una *pull request* desde una rama
   `issue#N`, validada por la integración continua.
 - **Proceso documentado:** cada hito tiene una entrada en el diario del proceso, con las decisiones, las incidencias y
-  las capturas de los resultados. A fecha de esta versión el diario tiene 58 entradas
+  las capturas de los resultados. A fecha de esta versión el diario tiene 61 entradas
   ([índice](../proceso/README.md)).
 
 Como referencia metodológica y de estructura se ha tomado el TFM CRIApp del mismo máster [GIL-CRIAPP], del que se

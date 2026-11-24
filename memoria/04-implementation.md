@@ -34,16 +34,17 @@ Una regla de proceso que surgió durante el desarrollo es que **una issue solo s
 probada**. Al aplicarla en el Sprint 14 se reabrieron seis issues que se habían cerrado sin cumplirla y se volvió a
 probar todo lo que estaba en curso ([entrada 45](../proceso/45-validacion-en-curso-y-bug-139.md)).
 
-> **Pendiente:** el límite WIP. El anteproyecto y `CONTRIBUTING.md` fijan 2 tarjetas en *In Progress*; la columna del
-> tablero tiene un límite de 4 y en la entrada 45 llegó a haber 5. Falta unificar el criterio y explicarlo.
+> **Pendiente:** ¿cuál es el límite WIP definitivo, 2 o 4? El anteproyecto, `CONTRIBUTING.md` y las entradas 01 a 03
+> del diario fijan 2 tarjetas en *In Progress*; la entrada 45 habla de un máximo de 4 (y ese día hubo 5). Hay que
+> elegir uno, explicar por qué cambió y unificarlo en `CONTRIBUTING.md`.
 
 ### Priorización MoSCoW y estimación de tareas en cada sprint
 
 Cada issue lleva su prioridad MoSCoW y su estimación en puntos (Fibonacci), con la tabla de referencia del anteproyecto
 (1 punto: menos de 2 horas; 8 puntos: una semana; 13: se divide). Al empezar, de los 35 issues priorizados, 23 eran
 *Must*, 9 *Should*, 1 *Could* y 2 *Won't* ([entrada 02](../proceso/02-anteproyecto-priorizacion.md)). A fecha de este
-borrador el tablero tiene 266 tarjetas: 59 *Must*, 159 *Should*, 31 *Could*, 2 *Won't* y 15 sin prioridad; por tipo,
-107 historias, 90 tareas, 35 de documentación y 19 bugs.
+borrador el tablero tiene 279 tarjetas: 60 *Must*, 161 *Should*, 31 *Could*, 2 *Won't* y 25 sin prioridad; por tipo,
+109 historias, 93 tareas, 41 de documentación, 21 bugs y 15 sin tipo (entre ellas, las 12 épicas).
 
 ![Backlog con MoSCoW, puntos y sprint](../capturas/gestion/11-backlog-moscow-sprints.png)
 
@@ -59,11 +60,14 @@ Dos prácticas de estimación aparecieron con la experiencia:
 
 ### Planificación y ejecución de sprints
 
-Los sprints son semanales. La tabla 4.1 resume, sprint a sprint, los puntos planificados y completados según el
-tablero.
+Los sprints son semanales, de viernes a jueves. En el calendario del tablero, el Sprint 0 empieza el 10/07/2026 y el
+sprint en curso al cerrar este borrador es el Sprint 19 (20/11–26/11/2026). La tabla 4.1 resume, sprint a sprint, los
+puntos planificados y completados según el tablero.
 
-*Tabla 4.1. Puntos por sprint según el tablero (consulta del 24/11/2026). «Tiempo» es el campo* Tiempo invertido *de las
-tarjetas terminadas, que se anota en la misma unidad que los puntos.*
+*Tabla 4.1. Puntos por sprint según el tablero (consulta del 24/11/2026, con el Sprint 19 en curso). «Puntos
+planificados» son los de las tarjetas asignadas hoy a ese sprint, y «completados», los de las que están en* Done. *«Tiempo»
+es el campo* Tiempo invertido *de las tarjetas terminadas, que se anota en la misma unidad que los puntos
+([entrada 10](../proceso/10-sprint7-cercanos-idiomas-y-codigo-en-ingles.md)).*
 
 | Sprint | Inicio | Tarjetas | Puntos planificados | Puntos completados | Tiempo |
 |---|---|---|---|---|---|
@@ -81,21 +85,26 @@ tarjetas terminadas, que se anota en la misma unidad que los puntos.*
 | 11 | 25/09/2026 | 11 | 17 | 17 | 12,5 |
 | 12 | 02/10/2026 | 15 | 25 | 25 | 21 |
 | 13 | 09/10/2026 | 56 | 164 | 164 | 162 |
-| 14 | 16/10/2026 | 15 | 37 | 37 | 32 |
-| 15 | 23/10/2026 | 14 | 31 | 25 | 25 |
-| 16 | 30/10/2026 | 33 | 164 | 73 | 50 |
-| 17 | 06/11/2026 | 20 | 97 | 8 | 8 |
-| 18 | 13/11/2026 | 5 | 24 | 24 | 6 |
-| 19 | 20/11/2026 | 2 | 14 | 0 | 0 |
+| 14 | 16/10/2026 | 17 | 37 | 37 | 32 |
+| 15 | 23/10/2026 | 13 | 28 | 25 | 25 |
+| 16 | 30/10/2026 | 29 | 149 | 73 | 50 |
+| 17 | 06/11/2026 | 21 | 97 | 8 | 8 |
+| 18 | 13/11/2026 | 10 | 24 | 24 | 6 |
+| 19 | 20/11/2026 | 12 | 38 | 16 | 0 |
 | 20 | 27/11/2026 | 1 | 5 | 0 | 0 |
 
-En total, 574,5 puntos completados con 484 unidades de tiempo anotadas.
+En total, 590,5 puntos completados (574,5 en los sprints cerrados, del 0 al 18, y 16 en el Sprint 19, en curso) con 484
+unidades de tiempo anotadas. Otras 14 tarjetas no tienen sprint ni puntos: las 12 épicas y las 2 historias *Won't*. El
+tiempo de casi todas las tarjetas cerradas en los sprints 18 y 19 está sin anotar, así que el total de tiempo no es
+comparable todavía con el de puntos.
 
-> **Pendiente:** explicar el calendario. El anteproyecto y las primeras entradas del diario situaban el Sprint 0 el
-> 28/09/2026 (por ejemplo, la entrada 10 da al Sprint 7 las fechas 16–22/11/2026), mientras que el tablero lo sitúa el
-> 10/07/2026 y las entradas desde la 24 usan ese calendario (Sprint 12: 02–08/10/2026). Las entradas 01 a 23 tienen
-> fecha 28–30/09/2026 y figuran como «trabajo del sprint adelantado». Falta la explicación de la autora sobre esta
-> replanificación y confirmar que las cifras de los sprints 0–12 reflejan el reparto real.
+El calendario del diario no coincide con el del tablero en sus primeras entradas: el anteproyecto y las entradas 01 a 23
+situaban el Sprint 0 el 28/09/2026 (la entrada 10 da al Sprint 7 las fechas 16–22/11/2026), tienen fecha 28–30/09/2026
+y figuran como «trabajo del sprint adelantado». Desde la entrada 24 el diario usa el calendario del tablero (Sprint 12:
+02–08/10/2026), que es el de esta memoria.
+
+> **Pendiente:** ¿por qué se movió el Sprint 0 del 28/09/2026 al 10/07/2026, y el reparto de tarjetas de los sprints
+> 0 a 12 del tablero refleja cuándo se hizo de verdad ese trabajo? Hace falta una frase de la autora que lo explique.
 
 Capturas del tablero al cierre de los primeros sprints:
 
@@ -106,29 +115,36 @@ Capturas del tablero al cierre de los primeros sprints:
 | ![Sprint 3](../capturas/gestion/41-tablero-sprint3.png) | ![Sprint 4](../capturas/gestion/47-tablero-sprint4.png) | ![Sprint 5](../capturas/gestion/50-tablero-sprint5.png) |
 | *Figura 4.7. Sprint 3* | *Figura 4.8. Sprint 4* | *Figura 4.9. Sprint 5* |
 
-> **Pendiente:** capturas del tablero de los sprints 6 a 18 (se hacen a mano, porque requieren sesión) y el gráfico de
-> velocidad, que debe generarse a partir de la tabla 4.1.
+> **Pendiente:** ¿puedes hacer las capturas del tablero de los sprints 6 a 19? Se hacen a mano, porque requieren
+> sesión. ¿Y quieres el gráfico de velocidad como figura generada con un script a partir de la tabla 4.1?
 
 ### Análisis de velocidad y desviaciones
 
 De la tabla 4.1 se desprenden tres fases:
 
-1. **Sprints 0–12: ritmo estable** de 16 a 25 puntos por sprint, todo lo planificado completado. Es la fase de montaje
-   (repositorios, CI, entorno) y de las historias *Must* del núcleo (HU-001 a HU-007).
+1. **Sprints 0–12: ritmo estable** de 16 a 25 puntos por sprint (18,7 de media), todo lo planificado completado. Es la
+   fase de montaje (repositorios, CI, entorno) y de las historias *Must* del núcleo (HU-001 a HU-007).
 2. **Sprints 13–14: pico de entrega.** El Sprint 13 concentra 56 tarjetas y 164 puntos: chat, reputación, insignias,
    foto, seguir, perfil social, check-in, mínimo de participantes, tiempo, alertas, «estoy libre» y sugerencias de
    lugares. Muchas de estas historias reaprovechan piezas ya hechas (la tarea de cada minuto de HU-007, el flujo en
    tiempo real, PostGIS), lo que abarató las siguientes.
-3. **Sprints 15–17: desviación.** En los sprints 16 y 17 se planificaron 164 y 97 puntos y se completaron 73 y 8. Lo
+3. **Sprints 15–17: desviación.** En los sprints 16 y 17 quedan asignados 149 y 97 puntos y se completaron 73 y 8. Lo
    que quedó sin hacer es sobre todo *Should* y *Could* del bloque de comunidad y de IA (HU-011, HU-013, HU-014,
-   HU-037, HU-049, HU-062–HU-066…) y las tareas de despliegue (infra#5, HU-015).
+   HU-037, HU-049, HU-063–HU-065…) y las tareas de despliegue (infra#5, HU-015).
+4. **Sprints 18–19: recuperación.** El Sprint 18 completó sus 24 puntos (HU-069 y HU-070). El Sprint 19, en curso,
+   lleva 16 de 38: los niveles y rachas (HU-062) y las anti-trampas de reputación (HU-066), que venían del Sprint 16
+   ([entradas 59](../proceso/59-hu066-anti-trampas-de-reputacion.md) y [60](../proceso/60-hu062-niveles-y-rachas.md)).
+   Siguen en curso esta memoria (HU-016), HU-042, HU-056 y HU-057.
+
+La **velocidad** media de los 19 sprints cerrados (0 a 18) es de 30,2 puntos por sprint, pero la media engaña por el
+pico del Sprint 13: la mediana es de 19 puntos, muy por encima de los 5 puntos semanales de capacidad que preveía el
+anteproyecto.
 
 La priorización MoSCoW cumplió su función: lo que se ha quedado fuera son historias *Should* y *Could*. Las tareas
 *Must* pendientes son el despliegue en AWS (infra#5), la memoria (HU-016) y la defensa (HU-017).
 
-> **Pendiente:** valoración de la autora sobre las causas de la desviación de los sprints 16–17 (sobreplanificación,
-> problemas del entorno local documentados en las entradas 36, 40 y 43, dedicación) y sobre la relación entre puntos y
-> tiempo anotado.
+> **Pendiente:** ¿a qué atribuyes la desviación de los sprints 16 y 17: sobreplanificación, los problemas del entorno
+> local de las entradas 36, 40 y 43, o menos dedicación? ¿Y por qué el tiempo anotado es menor que los puntos?
 
 ## 4.2 Herramientas y entorno de trabajo
 
@@ -161,8 +177,8 @@ el diseño: en la entrada 17 se rehicieron todas con la licencia de PrimeUI y el
 
 *Figura 4.10. Fuentes `.puml` en `src/` y PNG/SVG generados.*
 
-> **Pendiente:** capturas de IntelliJ IDEA, WebStorm, SonarQube Cloud y del canal de Slack, previstas en la estructura
-> de la memoria y que no están en `capturas/`.
+> **Pendiente:** ¿puedes hacer capturas de IntelliJ IDEA, WebStorm y del canal de Slack? Están previstas en la
+> estructura de la memoria y no hay ninguna en `capturas/`. La de SonarQube Cloud depende de activarlo (apartado 4.7).
 
 ## 4.3 Microservicios del backend
 
@@ -289,7 +305,12 @@ comprueba **byte a byte con el ejemplo de la propia RFC 8291**.
   la puntuación como proyección. Las reglas evitan premiar malas prácticas: +20 al organizar solo si el plan se llena y
   se celebra, −15 por no presentarse solo si alguien del grupo hizo check-in ([entrada 38](../proceso/38-hu009-reputacion.md)).
   Las insignias y los kudos se apoyan en el mismo historial de asistencia ([entradas 39](../proceso/39-hu044-insignias.md)
-  y [44](../proceso/44-hu060-kudos.md)).
+  y [44](../proceso/44-hu060-kudos.md)). En el Sprint 19 se añadieron las **anti-trampas** (HU-066): topes diarios por
+  motivo, kudos de la misma persona que valen la mitad que el anterior y pares que se valoran siempre entre sí, que no
+  suman; el apunte recortado se guarda con su motivo, de modo que el libro sigue explicando la puntuación
+  ([entrada 59](../proceso/59-hu066-anti-trampas-de-reputacion.md)). Y los **niveles y la racha semanal** (HU-062): el
+  nivel se calcula a partir de la puntuación y no se guarda, y el primer check-in de cada semana suma 5 puntos por
+  semana seguida, con tope de 25 ([entrada 60](../proceso/60-hu062-niveles-y-rachas.md)).
 
 ![Secuencia del feed de actividad](../diagramas/secuencia/49-secuencia-feed-de-actividad.png)
 
@@ -407,9 +428,14 @@ verificado en emuladores (Pixel 7 con API 36 y Pixel 10 Pro XL con API 37): inic
 Google, sesión al reabrir, compartir, barras del sistema, perfil social y avisos ([entradas 32](../proceso/32-app-android-verificada.md),
 [46](../proceso/46-fusiones-y-pruebas-en-android.md) y [48](../proceso/48-arreglos-pendientes-y-google-en-android.md)).
 
-> **Pendiente:** las notificaciones push con la app cerrada (frontend#55, Firebase) no están implementadas: en Android
-> los avisos llegan con la app abierta. Tampoco se ha probado en Android la hoja de compartir de la tarjeta para Stories
-> (HU-056) ni el dictado, que el WebView no ofrece.
+Las notificaciones push con la app cerrada (frontend#55, Firebase) no están implementadas: en Android los avisos llegan
+con la app abierta. Tampoco se han probado en Android la hoja de compartir de la tarjeta para Stories (HU-056), el
+enlace `geo:` de «cómo llegar» (HU-042, cuya ruta a pie y en bici ya está fusionada en la web) ni el dictado, que el
+WebView no ofrece. En el Sprint 19 el emulador no fue utilizable en el equipo de desarrollo
+([entrada 61](../proceso/61-e2e-padel-surf.md)).
+
+> **Pendiente:** ¿se va a implementar el push con Firebase (frontend#55) antes de la entrega, o queda como trabajo
+> futuro? ¿Hay un móvil Android u otro equipo para comprobar HU-042 y HU-056?
 
 ## 4.6 Funcionalidades de inteligencia artificial
 
@@ -484,9 +510,12 @@ responden a los riesgos descritos en 2.10:
 *Figura 4.21. De la frase al formulario relleno. Fuente:
 [`56-secuencia-plan-con-una-frase.puml`](../diagramas/secuencia/src/56-secuencia-plan-con-una-frase.puml).*
 
-> **Pendiente:** HU-010 no se ha probado contra la API real del proveedor, porque no hay clave en el entorno de
-> desarrollo; la calidad con frases reales está sin medir. La moderación automática (HU-011) y el agente «¿qué hago
-> ahora?» (HU-014) no están implementados.
+HU-010 no se ha probado contra la API real del proveedor, porque no hay clave en el entorno de desarrollo; la calidad
+con frases reales está sin medir. La moderación automática (HU-011) y el agente «¿qué hago ahora?» (HU-014) no están
+implementados.
+
+> **Pendiente:** ¿vas a conseguir una clave del proveedor para probar HU-010 con frases reales? ¿HU-011 entra en la
+> entrega o pasa a trabajo futuro, como HU-014?
 
 ## 4.7 Infraestructura y despliegue
 
@@ -562,10 +591,12 @@ datos vacía; la memoria en reposo fue de unos 2,5 GB.
 
 *Figura 4.26. El Compose de producción visto a través de Caddy en `https://localhost`.*
 
-> **Pendiente:** el despliegue en AWS Lightsail (infra#5, *Must*) no está hecho. Falta documentar la instancia, el
+El despliegue en AWS Lightsail (infra#5, *Must*) no está hecho. Hasta entonces, «pre» es la rama `pre` con sus imágenes
+`:pre` y el stack de E2E que levanta la CI, no una instancia en la nube.
+
+> **Pendiente:** ¿cuándo se despliega en AWS Lightsail (infra#5)? Después hay que documentar aquí la instancia, el
 > dominio, el certificado real, los buckets, Amazon SES, el despliegue desde GitHub Actions, el coste mensual real y las
-> alertas de AWS Budgets. Hasta entonces, «pre» es la rama `pre` con sus imágenes `:pre` y el stack de E2E que levanta la
-> CI, no una instancia en la nube.
+> alertas de AWS Budgets.
 
 ### Pipeline de CI/CD y SonarQube
 
@@ -598,9 +629,14 @@ Otras decisiones: el *runner* se fijó a `ubuntu-24.04` para evitar cambios ines
 solo lanza la CI en las ramas de integración para no duplicar ejecuciones con la PR ([entradas 05](../proceso/05-sprint2-integracion-continua.md)
 y [09](../proceso/09-sprint5-publicar-plan.md)).
 
-> **Pendiente:** SonarQube Cloud. La configuración de los dos repositorios está preparada y el análisis se activa con el
-> secreto `SONAR_TOKEN` ([entrada 05](../proceso/05-sprint2-integracion-continua.md)), pero el diario no documenta que se
-> activara ni el resultado del *quality gate*. Hacen falta capturas y cifras de SonarQube antes de cerrar la memoria.
+**SonarQube Cloud está preparado, pero no activado.** La configuración de los dos repositorios existe y el análisis se
+ejecuta en cuanto hay un secreto `SONAR_TOKEN` ([entrada 05](../proceso/05-sprint2-integracion-continua.md)). A
+24/11/2026 ese secreto no está creado ni en el backend ni en el frontend, y los workflows `ci` de `dev` de los dos
+repositorios de ese día omiten el paso con el aviso «SONAR_TOKEN is not set». No hay, por tanto, análisis ni *quality
+gate* que mostrar.
+
+> **Pendiente:** ¿vas a activar SonarQube Cloud (importar los dos repositorios y crear el secreto `SONAR_TOKEN`)? Sin
+> eso no se pueden dar cifras ni capturas del *quality gate*, que forman parte de OE7 y de RNF-08.
 
 ### Observabilidad
 
@@ -637,7 +673,7 @@ datos local solo contiene los datos del seed (8 planes) ([entrada 44](../proceso
 
 ### Métricas de cobertura
 
-*Tabla 4.5. Evolución de los tests unitarios de la web (del diario).*
+*Tabla 4.5. Evolución de los tests unitarios de la web (del diario; la última fila, de la CI).*
 
 | Momento | Tests | Cobertura de sentencias |
 |---|---|---|
@@ -649,14 +685,29 @@ datos local solo contiene los datos del seed (8 planes) ([entrada 44](../proceso
 | HU-051 | 287 | 96,7 % |
 | HU-045 | 350 | 96,9 % |
 | HU-070 | 406 | — |
+| CI de `dev` del 24/11/2026 | 438 | 97,2 % |
 
 En el backend, la cobertura de líneas por servicio se ha mantenido por encima del umbral del 80 % que impone JaCoCo; por
 ejemplo, `users` con el 100 % de líneas en HU-002, `plans` con el 100 % en HU-005 o `notifications` con el 92,5 % en
 HU-006 ([entradas 08](../proceso/08-sprint4-perfil.md), [13](../proceso/13-seed-y-hu005-unirse.md) y
 [23](../proceso/23-hu006-avisos-planes-cercanos.md)).
 
-> **Pendiente:** cifras actuales de cobertura y número de tests de cada servicio del backend (los informes de JaCoCo de
-> la última ejecución de la CI), y la cobertura final de la web.
+*Tabla 4.6. Tests y cobertura de líneas (JaCoCo) de cada servicio en el workflow `ci` de `dev` del backend del
+24/11/2026 (commit `6b7089e`, con HU-062 y HU-066).*
+
+| Servicio | Tests | Líneas cubiertas | Cobertura de líneas |
+|---|---|---|---|
+| `gateway` | 35 | 182 de 186 | 97,8 % |
+| `users` | 110 | 664 de 706 | 94,1 % |
+| `plans` | 276 | 1 925 de 1 993 | 96,6 % |
+| `notifications` | 100 | 984 de 1 069 | 92,0 % |
+| `chat` | 20 | 334 de 354 | 94,4 % |
+| `social` | 60 | 736 de 754 | 97,6 % |
+| `reputation` | 75 | 555 de 555 | 100 % |
+
+En total, 676 tests en los siete servicios Java, unitarios y de integración, más 13 del `ranker` (pytest). En la web, el
+workflow `ci` de `dev` del mismo día (commit `4642c3c`, con la ruta de HU-042) ejecuta 438 tests en 77 ficheros, con
+una cobertura del 97,2 % de sentencias, 93,6 % de ramas, 95,3 % de funciones y 97,2 % de líneas.
 
 ### Pruebas de extremo a extremo
 
@@ -684,6 +735,8 @@ HU-071 se había atribuido a las imágenes de `pre`.
 
 ### Pruebas de carga
 
-> **Pendiente:** las pruebas de carga y capacidad (HU-015, infra#6) no se han realizado. Dependen del despliegue en AWS
-> y deben medir la capacidad de la instancia, las latencias y los errores (OE6). La entrada 49 señala Keycloak como el
-> contenedor más justo de memoria (561 de 768 MB en reposo), a vigilar en esas pruebas.
+Las pruebas de carga y capacidad (HU-015, infra#6) no se han realizado. Dependen del despliegue en AWS y deben medir la
+capacidad de la instancia, las latencias y los errores (OE6). La entrada 49 señala Keycloak como el contenedor más justo
+de memoria (561 de 768 MB en reposo), a vigilar en esas pruebas.
+
+> **Pendiente:** ¿se harán las pruebas de carga (HU-015) antes de la entrega? Si no, OE6 queda sin su medida.

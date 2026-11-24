@@ -22,12 +22,12 @@ Bajo la supervisión de: *[tutor/a]*
 
 Madrid, 2027
 
-> **Pendiente:** nombre del tutor o tutora. El anteproyecto y la entrada 02 del diario indican que la asignación de
-> tutor y la firma del Anexo I están pendientes. También falta confirmar el título definitivo.
+> **Pendiente:** ¿quién es el tutor o la tutora, y cuál es el título definitivo? El anteproyecto y la entrada 02 del
+> diario dejan pendientes la asignación de tutor y la firma del Anexo I.
 
 ## Agradecimientos
 
-> **Pendiente:** texto de la autora.
+> **Pendiente:** ¿a quién quieres agradecer el trabajo? El texto es tuyo.
 
 ## Abstract
 
@@ -43,8 +43,8 @@ with a lightweight Scrum and Kanban process on GitHub Projects, with MoSCoW prio
 milestone is documented in a development log with screenshots. Continuous integration enforces branch and commit
 rules, 80 % test coverage and end-to-end tests with Playwright, and the whole stack runs with Docker Compose.
 
-> **Pendiente:** revisar el *abstract* cuando se cierren el despliegue en AWS (infra#5), las pruebas de carga
-> (HU-015) y la moderación (HU-011), y ajustar su extensión a la que pida la normativa.
+> **Pendiente:** ¿qué extensión pide la normativa para el *abstract* y el resumen? Hay que revisarlos cuando se
+> decida qué pasa con el despliegue en AWS (infra#5), las pruebas de carga (HU-015) y la moderación (HU-011).
 
 **Keywords:** microservices, hexagonal architecture, geospatial search, real-time, Angular, Capacitor, Spring Boot,
 DevOps, agile.
@@ -83,8 +83,8 @@ Spring Boot, DevOps, metodologías ágiles.
 
 Las figuras y tablas se numeran por capítulo (Figura 3.1, Tabla 4.2…).
 
-> **Pendiente:** generar los índices de figuras y de tablas al maquetar la versión final (Word o PDF). En Markdown no
-> se generan automáticamente.
+> **Pendiente:** ¿la versión final se maqueta en Word o en PDF? Los índices de figuras y de tablas se generan ahí;
+> en Markdown no se generan automáticamente.
 
 ## Abreviaturas y acrónimos
 
