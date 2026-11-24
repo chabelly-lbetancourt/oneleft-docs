@@ -77,3 +77,7 @@ implementación y gestión del proyecto de la memoria.
 | 24/11/2026 | Sprint 19 | [59 · HU-066 Anti-trampas de reputación](59-hu066-anti-trampas-de-reputacion.md) |
 | 24/11/2026 | Sprint 19 | [60 · HU-062 Niveles y rachas de reputación](60-hu062-niveles-y-rachas.md) |
 | 24/11/2026 | Sprint 19 | [61 · Los E2E que también encontraban «Pádel surf»](61-e2e-padel-surf.md) |
+| 24/11/2026 | Sprint 19 | [62 · HU-063 Ventajas por reputación](62-hu063-ventajas-por-reputacion.md) |
+| 24/11/2026 | Sprint 19 | [63 · HU-042 Cómo llegar al punto de encuentro](63-hu042-como-llegar-al-punto-de-encuentro.md) |
+| 24/11/2026 | Sprint 19 | [64 · HU-057 y HU-058 El resumen del plan y el sticker de enlace para Stories](64-hu057-hu058-resumen-y-sticker-para-stories.md) |
+| 24/11/2026 | Sprint 19 | [65 · HU-052 Recuerdos del plan (parte de backend)](65-hu052-recuerdos-del-plan-backend.md) |
