@@ -56,17 +56,6 @@ implementación y gestión del proyecto de la memoria.
 | 24/10/2026 | Sprint 15 | [49 · El Compose de producción y su prueba en local](49-compose-de-produccion.md) |
 | 25/10/2026 | Sprint 15 | [50 · HU-033 Bloquear y reportar a personas y planes](50-hu033-bloquear-y-reportar.md) |
 | 29/10/2026 | Sprint 15 | [51 · HU-056 La tarjeta del plan para Stories](51-hu056-tarjeta-para-stories.md) |
-
-## Convenciones
-
-- Una entrada por hito, numerada (`01-`, `02-`...).
-- Las capturas se guardan en [`../capturas`](../capturas), en una carpeta por categoría (gestión, código, integración continua, infraestructura, API, pruebas, app web y app Android), con el prefijo numérico de su orden de aparición.
-- Los diagramas están en [`../diagramas`](../diagramas), en una carpeta por tipo (casos de uso, componentes, clases, estados, secuencia, datos, despliegue y procesos).
-- Cada entrada indica el sprint y los issues relacionados.
-- Las capturas se generan con las herramientas de [`../tools`](../tools): `capture-terminal.sh`, `capture-web.mjs`, los
-  recorridos `capture-*.mjs` de cada historia y `tree.py`. Las figuras con varias pantallas se montan con
-  `compose-figure.mjs`. Todas las capturas de la app se hacen con la licencia de PrimeUI y sin animaciones.
-- Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.
 | 29/10/2026 | Sprint 16 | [52 · HU-045 Exportar y borrar mis datos (RGPD)](52-hu045-exportar-y-borrar-mis-datos.md) |
 | 29/10/2026 | Sprint 16 | [53 · HU-012 Avisar primero a quien más probabilidad tiene de apuntarse](53-hu012-avisar-a-quien-mas-probabilidad-tiene.md) |
 | 30/10/2026 | Sprint 16 | [54 · HU-010 Crear un plan con una frase](54-hu010-plan-con-una-frase.md) |
@@ -81,3 +70,14 @@ implementación y gestión del proyecto de la memoria.
 | 24/11/2026 | Sprint 19 | [63 · HU-042 Cómo llegar al punto de encuentro](63-hu042-como-llegar-al-punto-de-encuentro.md) |
 | 24/11/2026 | Sprint 19 | [64 · HU-057 y HU-058 El resumen del plan y el sticker de enlace para Stories](64-hu057-hu058-resumen-y-sticker-para-stories.md) |
 | 24/11/2026 | Sprint 19 | [65 · HU-052 Recuerdos del plan (parte de backend)](65-hu052-recuerdos-del-plan-backend.md) |
+
+## Convenciones
+
+- Una entrada por hito, numerada (`01-`, `02-`...).
+- Las capturas se guardan en [`../capturas`](../capturas), en una carpeta por categoría (gestión, código, integración continua, infraestructura, API, pruebas, app web y app Android), con el prefijo numérico de su orden de aparición.
+- Los diagramas están en [`../diagramas`](../diagramas), en una carpeta por tipo (casos de uso, componentes, clases, estados, secuencia, datos, despliegue y procesos).
+- Cada entrada indica el sprint y los issues relacionados.
+- Las capturas se generan con las herramientas de [`../tools`](../tools): `capture-terminal.sh`, `capture-web.mjs`, los
+  recorridos `capture-*.mjs` de cada historia y `tree.py`. Las figuras con varias pantallas se montan con
+  `compose-figure.mjs`. Todas las capturas de la app se hacen con la licencia de PrimeUI y sin animaciones.
+- Los diagramas se escriben en **PlantUML** y se generan con `tools/render-plantuml.sh`.
