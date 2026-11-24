@@ -206,7 +206,7 @@ Tres decisiones relevantes:
   ([entrada 21](../proceso/21-release-pre-2.md)).
 - **Relé del WebSocket del chat.** La versión WebMVC del gateway no reenvía WebSockets. En lugar de exponer el servicio
   de chat directamente (lo que duplicaría token, CORS y límites), el gateway acepta la conexión en `/ws/chat`, valida el
-  token y abre otra con `chat`. Como el navegador no puede enviar `Authorization` en un WebSocket, el token viaja en el
+  token y abre otra con `chat`. Como el navegador no puede enviar `Authorization` en un WebSocket [RFC6455], el token viaja en el
   subprotocolo `oneleft.bearer` ([entrada 34](../proceso/34-hu008-chat-del-plan.md)).
 
 ![Secuencia del límite de peticiones](../diagramas/secuencia/21-secuencia-limite-peticiones.png)
@@ -233,7 +233,7 @@ Es el núcleo. Sus decisiones principales:
   PostGIS y se publica `PlanPublished` en un *exchange topic* de RabbitMQ ([entrada 09](../proceso/09-sprint5-publicar-plan.md)).
 - **Planes cercanos** (HU-004): `ST_DWithin` sobre `geography` con índice GiST de expresión, orden con `<->` y límite
   de 50; las reglas de la búsqueda (radio de 500 m a 25 km, ventana de 1 a 12 h) en el dominio. El tiempo real va por
-  **Server-Sent Events**, que pasan por el gateway y los balanceadores sin necesidad de WebSockets, con un latido cada
+  **Server-Sent Events** [WHATWG-SSE], que pasan por el gateway y los balanceadores sin necesidad de WebSockets, con un latido cada
   20 s ([entrada 10](../proceso/10-sprint7-cercanos-idiomas-y-codigo-en-ingles.md)).
 - **Unirse sin sobreocupación** (HU-005): **bloqueo optimista** con una columna `version`. Se eligió frente a
   `SELECT … FOR UPDATE` porque unirse casi nunca compite: el bloqueo optimista no retiene filas ni conexiones y el caso
@@ -360,7 +360,8 @@ Los estilos se escriben en SCSS con tokens `--ol-*` para el tema claro y el oscu
   en la URL lo dejaría en los logs del gateway. Parser incremental propio y reconexión cada 5 s
   ([entrada 12](../proceso/12-hu004-planes-cercanos-web.md)).
 - **Mapa con Leaflet y OpenStreetMap** [LEAFLET] [OSM], sin clave ni coste, cargado solo en su pantalla. Los textos que
-  escriben otras personas nunca se interpretan como HTML (hay un test con `<img onerror>`).
+  escriben otras personas nunca se interpretan como HTML (hay un test con `<img onerror>`), lo que evita la inyección
+  de código en la página (XSS), incluida en la categoría «Inyección» del OWASP Top 10 [OWASP-TOP10].
 - **Idiomas con Transloco:** un único bundle para la web y Android, con cambio de idioma sin recargar; Keycloak recibe
   `ui_locales` para mostrar el login en el mismo idioma ([entrada 10](../proceso/10-sprint7-cercanos-idiomas-y-codigo-en-ingles.md)).
 - **La contraseña solo se pide en Keycloak.** Las páginas de acceso son de OneLeft, pero pedir la contraseña en la app

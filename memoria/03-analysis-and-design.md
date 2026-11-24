@@ -152,7 +152,9 @@ prevista, y la figura 3.4, la tecnología de cada pieza.
 
 Decisiones de arquitectura que conviene destacar:
 
-- **Defensa en profundidad en la autenticación.** El gateway rechaza cualquier petición a `/api/**` sin token válido,
+- **Defensa en profundidad en la autenticación.** La identidad se delega en Keycloak [KEYCLOAK] con OpenID Connect
+  [OIDC-CORE] y el flujo Authorization Code con PKCE [RFC7636], el recomendado para aplicaciones sin secreto como una
+  SPA o una app móvil. El gateway rechaza cualquier petición a `/api/**` sin token válido,
   y cada servicio lo vuelve a validar, de modo que un servicio no queda expuesto aunque alguien llegue a él sin pasar
   por el gateway ([entrada 06](../proceso/06-sprint3-login-y-observabilidad.md)).
 - **Eventos con contrato en los campos.** Cada servicio lee el JSON de los eventos en sus propias clases; no hay una
@@ -167,7 +169,8 @@ Decisiones de arquitectura que conviene destacar:
   `code` (`plan.full`, `plan.startsTooLate`…) que la web traduce al idioma de la persona.
 - **Copias locales en lugar de consultas en caliente** cuando un servicio necesita datos de otro para muchas personas a
   la vez: los bloqueos se copian a `plans` y `notifications` (HU-033), y el público de cada persona a `notifications`
-  ([ADR 0001](../arquitectura/adr/0001-avisos-por-publico-modelo-de-lectura.md)).
+  ([ADR 0001](../arquitectura/adr/0001-avisos-por-publico-modelo-de-lectura.md)). Las decisiones de este tipo se
+  registran como ADR [NYGARD-ADR] en [`arquitectura/adr`](../arquitectura/adr).
 
 Cada servicio sigue la estructura hexagonal `domain` (modelo y puertos), `application` (casos de uso) e
 `infrastructure` (adaptadores REST, persistencia, mensajería y configuración). Un test de ArchUnit por servicio falla si
