@@ -74,3 +74,6 @@ implementación y gestión del proyecto de la memoria.
 | 11/11/2026 | Sprint 17 | [56 · HU-069 Elegir quién me acompaña](56-hu069-elegir-quien-me-acompana.md) |
 | 11/11/2026 | Sprint 17 | [57 · HU-070 Fecha de nacimiento y público del plan](57-hu070-fecha-de-nacimiento-y-publico.md) |
 | 16/11/2026 | Sprint 18 | [58 · HU-006 Los avisos respetan el público del plan](58-hu006-avisos-por-publico.md) |
+| 24/11/2026 | Sprint 19 | [59 · HU-066 Anti-trampas de reputación](59-hu066-anti-trampas-de-reputacion.md) |
+| 24/11/2026 | Sprint 19 | [60 · HU-062 Niveles y rachas de reputación](60-hu062-niveles-y-rachas.md) |
+| 24/11/2026 | Sprint 19 | [61 · Los E2E que también encontraban «Pádel surf»](61-e2e-padel-surf.md) |
