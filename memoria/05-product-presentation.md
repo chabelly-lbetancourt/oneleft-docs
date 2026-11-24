@@ -21,8 +21,8 @@ colores son variables del sistema de diseño, con versión clara y oscura (HU-03
 
 *Figura 5.2. Icono adaptativo y pantallas de arranque clara y oscura de la app Android.*
 
-> **Pendiente:** tabla con la paleta definitiva (valores de los tokens `--ol-*` en claro y oscuro) y el logotipo en
-> alta resolución para la memoria impresa.
+> **Pendiente:** ¿quieres aquí una tabla con la paleta (valores de los tokens `--ol-*` en claro y oscuro)? ¿Tienes el
+> logotipo en alta resolución para la memoria impresa?
 
 ## 5.2 Autenticación
 
@@ -178,6 +178,12 @@ navegador.*
 | ![Reputación](../capturas/app-web/95-hu009-reputacion.png) | ![Insignias](../capturas/app-web/96-hu044-insignias.png) |
 | *Figura 5.33. «Mi reputación» y la reputación junto al organizador (HU-009)* | *Figura 5.34. Insignias y aviso de una nueva (HU-044)* |
 
+Desde el Sprint 19, «Mi reputación» muestra además el nivel (Nuevo, Habitual, Referente del barrio o Leyenda), la barra
+hasta el siguiente, la racha semanal y por qué un apunte dio menos puntos (HU-062 y HU-066).
+
+> **Pendiente:** faltan las capturas de HU-062 y HU-066, que las entradas 59 y 60 dejan anotadas. ¿Se puede levantar
+> el stack local para generarlas con el script de capturas?
+
 ![Kudos](../capturas/app-web/102-hu060-kudos.png)
 
 *Figura 5.35. Kudos entre quienes llegaron a un plan (HU-060).*
@@ -203,9 +209,12 @@ navegador.*
 
 ## 5.8 Panel de administración y moderación
 
-> **Pendiente:** el panel de administración y moderación (HU-013) y la moderación automática (HU-011) no están
-> implementados. Lo único disponible para el rol `admin` es el listado de reportes abiertos por la API y el recálculo de
-> puntuaciones de reputación. No hay capturas.
+El panel de administración y moderación (HU-013) y la moderación automática (HU-011) no están implementados. Lo único
+disponible para el rol `admin` es el listado de reportes abiertos por la API y el recálculo de puntuaciones de
+reputación. No hay capturas.
+
+> **Pendiente:** ¿HU-013 y HU-011 entran en la entrega? Si no, ¿se quita este apartado o se deja como alcance no
+> cubierto?
 
 ## 5.9 La app Android
 
@@ -239,5 +248,6 @@ navegador.*
 | ![Lint y cobertura del frontend](../capturas/integracion-continua/35-frontend-lint-cobertura.png) | ![E2E en local](../capturas/pruebas/62-e2e-ejecucion-local.png) |
 | *Figura 5.51. Lint, tests y cobertura del frontend (Sprint 2)* | *Figura 5.52. E2E en local* |
 
-> **Pendiente:** capturas de SonarQube Cloud (análisis y *quality gate*), de un dashboard de Grafana actualizado con
-> todos los servicios y de los resultados de las pruebas de carga (HU-015), que todavía no se han hecho.
+> **Pendiente:** faltan tres capturas que hoy no se pueden generar: SonarQube Cloud (no está activado, apartado 4.7),
+> los resultados de las pruebas de carga (HU-015, sin hacer) y un dashboard de Grafana con todos los servicios. ¿Se
+> puede levantar el stack con observabilidad para esta última?

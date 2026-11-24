@@ -180,8 +180,8 @@ el proveedor del modelo detrás de una interfaz común.
 **Hueco que cubre OneLeft:** planes de **cualquier actividad** en un **horizonte de horas**, con **plazas exactas** que se
 llenan en tiempo real y **caducidad automática**.
 
-> **Pendiente:** añadir las referencias (web y fecha de consulta) de cada aplicación en la bibliografía, y revisar si
-> alguna ha cambiado sus funciones desde el anteproyecto.
+> **Pendiente:** ¿puedes revisar la web de cada aplicación y anotar su dirección y la fecha de consulta para la
+> bibliografía? Alguna puede haber cambiado sus funciones desde el anteproyecto.
 
 ### Trabajos previos en el Máster en Ingeniería Web
 
@@ -190,8 +190,8 @@ de viajes en grupo, 2024), pero ninguno aborda la formación de grupos inmediato
 concurrente de plazas ni el uso de IA para decidir a quién notificar. Como referencia metodológica y de estructura se
 toma CRIApp [GIL-CRIAPP].
 
-> **Pendiente:** citar con título, autor y enlace los dos TFM mencionados (club de pádel, 2021; viajes en grupo,
-> 2024); no figuran en la documentación del proyecto.
+> **Pendiente:** ¿cuáles son el título, el autor y el enlace de los dos TFM mencionados (club de pádel, 2021; viajes
+> en grupo, 2024)? No figuran en la documentación del proyecto.
 
 ### Alternativas tecnológicas y justificación de las elegidas
 

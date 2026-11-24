@@ -10,8 +10,9 @@ Historias de usuario del tablero, con su issue principal (las sub-issues de otro
 MoSCoW, puntos, sprint y estado según el tablero el 24/11/2026. Los criterios de aceptación de cada historia están en su
 issue de GitHub.
 
-En algunas historias los puntos del tablero no coinciden con los que figuran en el diario, porque se reestimaron después
-(por ejemplo, HU-069 y HU-070 figuran con 3 puntos en las entradas 56 y 57).
+En algunas historias los puntos del tablero no coinciden con los que figuran en el diario, porque se reestimaron
+después: HU-069 tiene 8 puntos en el backend y 5 en su sub-issue del frontend, y HU-070, 5 y 3, mientras que las
+entradas 56 y 57 dan 3 puntos a cada parte.
 
 *Tabla B.1. Catálogo de historias de usuario.*
 
@@ -32,7 +33,7 @@ En algunas historias los puntos del tablero no coinciden con los que figuran en 
 | HU-013 | Panel de administración y moderación | backend#16 | Should | 13 | 16 | Backlog |
 | HU-014 | Agente «¿qué hago ahora?» | backend#17 | Could | 21 | 17 | Backlog |
 | HU-015 | Pruebas de carga y capacidad | infra#6 | Should | 5 | 16 | Backlog |
-| HU-016 | Memoria final del TFM | docs#5 | Must | 13 | 19 | Backlog |
+| HU-016 | Memoria final del TFM | docs#5 | Must | 13 | 19 | En curso |
 | HU-017 | Preparación de la defensa | docs#6 | Must | 5 | 20 | Backlog |
 | HU-018 | Pagos dentro de la app | backend#19 | Won't | — | — | Backlog |
 | HU-019 | Reserva de pistas y espacios integrada | backend#20 | Won't | — | — | Backlog |
@@ -58,7 +59,7 @@ En algunas historias los puntos del tablero no coinciden con los que figuran en 
 | HU-039 | Mínimo de participantes | backend#56 | Should | 3 | 13 | Hecha |
 | HU-040 | Recordatorio y «voy de camino / llego tarde» | backend#57 | Should | 5 | 13 | Hecha |
 | HU-041 | Material y gastos del plan | backend#58 | Could | 3 | 16 | Backlog |
-| HU-042 | Cómo llegar al punto de encuentro | frontend#30 | Could | 2 | 16 | En curso |
+| HU-042 | Cómo llegar al punto de encuentro | frontend#30 | Could | 2 | 19 | En curso |
 | HU-043 | Mis estadísticas | backend#59 | Could | 3 | 16 | Backlog |
 | HU-044 | Insignias por hitos | backend#60 | Could | 8 | 13 | Hecha |
 | HU-045 | Exportar y borrar mis datos (RGPD) | backend#61 | Should | 8 | 16 | Hecha |
@@ -72,17 +73,17 @@ En algunas historias los puntos del tablero no coinciden con los que figuran en 
 | HU-053 | Reacciones y comentarios | backend#72 | Could | 5 | 17 | Backlog |
 | HU-054 | Menciones y hashtags | backend#73 | Could | 3 | 17 | Backlog |
 | HU-055 | Mensajes directos | backend#74 | Could | 8 | 17 | Backlog |
-| HU-056 | Tarjeta para Stories | frontend#32 | Should | 3 | 15 | En curso |
-| HU-057 | Resumen del plan al estilo Strava | frontend#33 | Could | 3 | 16 | Backlog |
+| HU-056 | Tarjeta para Stories | frontend#32 | Should | 3 | 19 | En curso |
+| HU-057 | Resumen del plan al estilo Strava | frontend#33 | Could | 3 | 19 | En curso |
 | HU-058 | Sticker de enlace en Stories | frontend#34 | Could | 1 | 17 | Backlog |
 | HU-059 | Privacidad social por defecto | backend#75 | Should | 3 | 14 | Hecha |
 | HU-060 | Kudos entre participantes | backend#76 | Should | 3 | 14 | Hecha |
 | HU-061 | Avales de nivel por actividad | backend#77 | Could | 3 | 16 | Backlog |
-| HU-062 | Niveles y rachas de reputación | backend#78 | Should | 5 | 16 | Backlog |
+| HU-062 | Niveles y rachas de reputación | backend#78 | Should | 5 | 19 | Hecha |
 | HU-063 | Ventajas por reputación | backend#79 | Should | 5 | 16 | Backlog |
 | HU-064 | Invitar a tu plan, saludar y retos | backend#80 | Could | 8 | 17 | Backlog |
 | HU-065 | Clasificación por barrio | backend#81 | Could | 3 | 17 | Backlog |
-| HU-066 | Anti-trampas de reputación | backend#82 | Should | 5 | 16 | Backlog |
+| HU-066 | Anti-trampas de reputación | backend#82 | Should | 5 | 19 | Hecha |
 | HU-067 | Verificar el correo y recuperar la contraseña | infra#43 | — | — | 11 | Hecha |
 | HU-068 | Más categorías de actividad | backend#98 | Should | 3 | 17 | Hecha |
 | HU-069 | Elegir quién me acompaña (solicitudes con aprobación) | backend#99 | Should | 8 | 18 | Hecha |
@@ -91,8 +92,11 @@ En algunas historias los puntos del tablero no coinciden con los que figuran en 
 | HU-072 | Bottom menu in the Android app | frontend#131 | Should | 3 | 14 | Hecha |
 | HU-073 | Settings menu in the header | frontend#135 | Should | 2 | 14 | Hecha |
 
-> **Pendiente:** HU-067 no tiene prioridad ni puntos en el tablero. Decidir si el catálogo de la versión final incluye
-> los criterios de aceptación de cada historia (exportados de GitHub) o solo el enlace al issue.
+De HU-042 está fusionada la ruta a pie y en bici; queda por comprobar en Android el enlace que abre la app de mapas
+(frontend#30).
+
+> **Pendiente:** ¿qué prioridad y cuántos puntos tiene HU-067? En el tablero está sin ninguno de los dos. ¿Y el
+> catálogo final debe incluir los criterios de aceptación de cada historia o basta el enlace a su issue?
 
 Las historias se agrupan en doce épicas, issues de `oneleft-docs` de los que cuelgan como sub-issues:
 
@@ -192,7 +196,7 @@ oneleft-infra/docker/
 oneleft-docs/
 ├── anteproyecto/       propuesta del TFM
 ├── memoria/            esta memoria, un fichero por capítulo
-├── proceso/            diario del desarrollo (58 entradas) y su índice
+├── proceso/            diario del desarrollo (61 entradas) y su índice
 ├── arquitectura/adr/   registros de decisiones de arquitectura
 ├── diagramas/<tipo>/   PNG y SVG generados; fuentes PlantUML y draw.io en src/
 ├── capturas/<categoría>/  gestión, código, integración continua, infraestructura, API, pruebas, app web y Android
@@ -233,5 +237,5 @@ Según [`oneleft-infra/docker/PRODUCCION.md`](https://github.com/chabelly-lbetan
    `docker compose -f compose.prod.yaml up -d --wait` (con `--profile observability` para la observabilidad).
 5. Copia manual: `docker compose -f compose.prod.yaml run --rm backup now`.
 
-> **Pendiente:** completar este anexo con el despliegue real en AWS Lightsail y desde GitHub Actions (infra#5), el plan
-> de vuelta atrás (*rollback*) y la verificación posterior al despliegue.
+> **Pendiente:** cuando se despliegue en AWS (infra#5), ¿cómo serán el despliegue desde GitHub Actions, el plan de
+> vuelta atrás (*rollback*) y la verificación posterior? Este anexo se completa con eso.
