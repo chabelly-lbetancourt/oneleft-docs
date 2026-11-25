@@ -7,7 +7,8 @@
 ## Anexo B. Catálogo completo de historias de usuario
 
 Historias de usuario del tablero, con su issue principal (las sub-issues de otros repositorios no se listan), prioridad
-MoSCoW, puntos, sprint y estado según el tablero el 24/11/2026. Los criterios de aceptación de cada historia están en su
+MoSCoW, puntos, sprint y estado según el tablero el 24/11/2026 (las filas de HU-042, HU-052, HU-056, HU-057, HU-058 y
+HU-063, el 25/11/2026). Los criterios de aceptación de cada historia están en su
 issue de GitHub.
 
 En algunas historias los puntos del tablero no coinciden con los que figuran en el diario, porque se reestimaron
@@ -59,7 +60,7 @@ entradas 56 y 57 dan 3 puntos a cada parte.
 | HU-039 | Mínimo de participantes | backend#56 | Should | 3 | 13 | Hecha |
 | HU-040 | Recordatorio y «voy de camino / llego tarde» | backend#57 | Should | 5 | 13 | Hecha |
 | HU-041 | Material y gastos del plan | backend#58 | Could | 3 | 16 | Backlog |
-| HU-042 | Cómo llegar al punto de encuentro | frontend#30 | Could | 2 | 19 | En curso |
+| HU-042 | Cómo llegar al punto de encuentro | frontend#30 | Could | 2 | 19 | Hecha |
 | HU-043 | Mis estadísticas | backend#59 | Could | 3 | 16 | Backlog |
 | HU-044 | Insignias por hitos | backend#60 | Could | 8 | 13 | Hecha |
 | HU-045 | Exportar y borrar mis datos (RGPD) | backend#61 | Should | 8 | 16 | Hecha |
@@ -69,18 +70,18 @@ entradas 56 y 57 dan 3 puntos a cada parte.
 | HU-049 | Comunidades | backend#68 | Could | 13 | 16 | Backlog |
 | HU-050 | Invitar amigos | backend#69 | Could | 3 | 17 | Backlog |
 | HU-051 | Feed de actividad | backend#70 | Should | 8 | 14 | Hecha |
-| HU-052 | Recuerdos del plan | backend#71 | Could | 5 | 16 | Backlog |
+| HU-052 | Recuerdos del plan | backend#71 | Could | 5 | 19 | Hecha |
 | HU-053 | Reacciones y comentarios | backend#72 | Could | 5 | 17 | Backlog |
 | HU-054 | Menciones y hashtags | backend#73 | Could | 3 | 17 | Backlog |
 | HU-055 | Mensajes directos | backend#74 | Could | 8 | 17 | Backlog |
-| HU-056 | Tarjeta para Stories | frontend#32 | Should | 3 | 19 | En curso |
-| HU-057 | Resumen del plan al estilo Strava | frontend#33 | Could | 3 | 19 | En curso |
-| HU-058 | Sticker de enlace en Stories | frontend#34 | Could | 1 | 17 | Backlog |
+| HU-056 | Tarjeta para Stories | frontend#32 | Should | 3 | 19 | Hecha |
+| HU-057 | Resumen del plan al estilo Strava | frontend#33 | Could | 3 | 19 | Hecha |
+| HU-058 | Sticker de enlace en Stories | frontend#34 | Could | 1 | 19 | Hecha |
 | HU-059 | Privacidad social por defecto | backend#75 | Should | 3 | 14 | Hecha |
 | HU-060 | Kudos entre participantes | backend#76 | Should | 3 | 14 | Hecha |
 | HU-061 | Avales de nivel por actividad | backend#77 | Could | 3 | 16 | Backlog |
 | HU-062 | Niveles y rachas de reputación | backend#78 | Should | 5 | 19 | Hecha |
-| HU-063 | Ventajas por reputación | backend#79 | Should | 5 | 16 | Backlog |
+| HU-063 | Ventajas por reputación | backend#79 | Should | 5 | 19 | Hecha |
 | HU-064 | Invitar a tu plan, saludar y retos | backend#80 | Could | 8 | 17 | Backlog |
 | HU-065 | Clasificación por barrio | backend#81 | Could | 3 | 17 | Backlog |
 | HU-066 | Anti-trampas de reputación | backend#82 | Should | 5 | 19 | Hecha |
@@ -92,8 +93,11 @@ entradas 56 y 57 dan 3 puntos a cada parte.
 | HU-072 | Bottom menu in the Android app | frontend#131 | Should | 3 | 14 | Hecha |
 | HU-073 | Settings menu in the header | frontend#135 | Should | 2 | 14 | Hecha |
 
-De HU-042 está fusionada la ruta a pie y en bici; queda por comprobar en Android el enlace que abre la app de mapas
-(frontend#30).
+HU-056, HU-057 y HU-058 se cerraron el 25/11/2026 con trabajo trasladado a la tarea frontend#182: comprobar la hoja
+nativa de compartir en un Android con el WebView al día, las fotos del álbum, la duración y el barrio en el resumen, y
+abrir la app desde el enlace. El bug frontend#183 (la app en un WebView antiguo) sigue abierto. De HU-052, la
+moderación de las imágenes pasó a HU-011 ([entradas 68](../proceso/68-hu052-recuerdos-del-plan-cierre.md) y
+[69](../proceso/69-prueba-en-android-real-y-cierre-de-stories.md)).
 
 > **Pendiente:** ¿qué prioridad y cuántos puntos tiene HU-067? En el tablero está sin ninguno de los dos. ¿Y el
 > catálogo final debe incluir los criterios de aceptación de cada historia o basta el enlace a su issue?
@@ -196,7 +200,7 @@ oneleft-infra/docker/
 oneleft-docs/
 ├── anteproyecto/       propuesta del TFM
 ├── memoria/            esta memoria, un fichero por capítulo
-├── proceso/            diario del desarrollo (61 entradas) y su índice
+├── proceso/            diario del desarrollo (69 entradas) y su índice
 ├── arquitectura/adr/   registros de decisiones de arquitectura
 ├── diagramas/<tipo>/   PNG y SVG generados; fuentes PlantUML y draw.io en src/
 ├── capturas/<categoría>/  gestión, código, integración continua, infraestructura, API, pruebas, app web y Android
