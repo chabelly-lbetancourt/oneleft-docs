@@ -130,11 +130,15 @@ De la tabla 4.1 se desprenden tres fases:
    tiempo real, PostGIS), lo que abarató las siguientes.
 3. **Sprints 15–17: desviación.** En los sprints 16 y 17 quedan asignados 149 y 97 puntos y se completaron 73 y 8. Lo
    que quedó sin hacer es sobre todo *Should* y *Could* del bloque de comunidad y de IA (HU-011, HU-013, HU-014,
-   HU-037, HU-049, HU-063–HU-065…) y las tareas de despliegue (infra#5, HU-015).
+   HU-037, HU-049, HU-064, HU-065…) y las tareas de despliegue (infra#5, HU-015).
 4. **Sprints 18–19: recuperación.** El Sprint 18 completó sus 24 puntos (HU-069 y HU-070). El Sprint 19, en curso,
-   lleva 16 de 38: los niveles y rachas (HU-062) y las anti-trampas de reputación (HU-066), que venían del Sprint 16
+   llevaba 16 de 38 en la consulta del 24/11/2026: los niveles y rachas (HU-062) y las anti-trampas de reputación
+   (HU-066), que venían del Sprint 16
    ([entradas 59](../proceso/59-hu066-anti-trampas-de-reputacion.md) y [60](../proceso/60-hu062-niveles-y-rachas.md)).
-   Siguen en curso esta memoria (HU-016), HU-042, HU-056 y HU-057.
+   Después de esa consulta, el 24 y el 25/11/2026, se cerraron también en el Sprint 19 HU-063, HU-052, HU-042, HU-056,
+   HU-057 y HU-058, la cancelación de un plan por quien lo organiza y un bug del borrado de cuentas
+   ([entradas 62](../proceso/62-hu063-ventajas-por-reputacion.md) a [69](../proceso/69-prueba-en-android-real-y-cierre-de-stories.md));
+   la tabla 4.1 no se ha vuelto a calcular con esos cierres. Sigue en curso esta memoria (HU-016).
 
 La **velocidad** media de los 19 sprints cerrados (0 a 18) es de 30,2 puntos por sprint, pero la media engaña por el
 pico del Sprint 13: la mediana es de 19 puntos, muy por encima de los 5 puntos semanales de capacidad que preveía el
@@ -262,6 +266,17 @@ Es el núcleo. Sus decisiones principales:
   distribuido. La misma tarea envía el recordatorio 30 minutos antes, cancela los planes que no alcanzan su mínimo y
   cierra la asistencia al acabar la ventana de check-in ([entradas 25](../proceso/25-hu007-caducidad-y-recordatorio.md)
   y [27](../proceso/27-hu039-minimo-de-participantes.md)).
+- **Cancelar un plan** (Sprint 19): quien lo organiza puede cancelarlo antes de que empiece con
+  `DELETE /api/v1/plans/{planId}`, que reutiliza la transición a cancelado de HU-039 y el evento `plan.cancelled` con
+  un motivo (`reason`): `MINIMUM_NOT_REACHED`, `ORGANIZER` o `ACCOUNT_DELETED`. Solo `ORGANIZER` puede restar
+  reputación (−10 puntos a menos de una hora del inicio). El tercer motivo salió de un bug: borrar una cuenta cancelaba
+  sus planes con un `UPDATE` de SQL, sin evento, y nadie del plan se enteraba; se reprodujo con un test en rojo antes
+  de arreglarlo ([entradas 66](../proceso/66-cancelar-un-plan.md) y [67](../proceso/67-bug-planes-de-una-cuenta-borrada.md)).
+- **Recuerdos del plan** (HU-052): un álbum de fotos privado del grupo, que se abre cuando el plan termina. Usa el
+  mecanismo de la foto de perfil (enlaces firmados; la foto no pasa por el backend) y el mismo almacén compatible con
+  S3, con un adaptador propio en `plans`; el servicio comprueba los primeros bytes de lo subido y aplica los límites
+  (2 MiB por foto, 10 por persona y 100 por álbum). La moderación de las imágenes pasó a HU-011
+  ([entradas 65](../proceso/65-hu052-recuerdos-del-plan-backend.md) y [68](../proceso/68-hu052-recuerdos-del-plan-cierre.md)).
 - **Check-in** (HU-025): la geovalla de 150 m la responde PostGIS contra el punto del plan; la ubicación del móvil solo
   se usa para esa pregunta y **no se guarda**, cosa que comprueba un test de integración ([entrada 36](../proceso/36-hu025-check-in.md)).
 - **Integraciones externas** (HU-026, HU-071): la previsión de Open-Meteo y las sugerencias de lugares de Photon pasan por
@@ -310,7 +325,10 @@ comprueba **byte a byte con el ejemplo de la propia RFC 8291**.
   suman; el apunte recortado se guarda con su motivo, de modo que el libro sigue explicando la puntuación
   ([entrada 59](../proceso/59-hu066-anti-trampas-de-reputacion.md)). Y los **niveles y la racha semanal** (HU-062): el
   nivel se calcula a partir de la puntuación y no se guarda, y el primer check-in de cada semana suma 5 puntos por
-  semana seguida, con tope de 25 ([entrada 60](../proceso/60-hu062-niveles-y-rachas.md)).
+  semana seguida, con tope de 25 ([entrada 60](../proceso/60-hu062-niveles-y-rachas.md)). Con las **ventajas por
+  reputación** (HU-063) el nivel da prioridad en la lista de espera, más peso en los avisos, más planes publicados a la
+  vez y más alertas guardadas, además del sello «Organizador de confianza»; los valores están solo en `reputation` y
+  una ventaja nunca hace fallar nada ([entrada 62](../proceso/62-hu063-ventajas-por-reputacion.md)).
 
 ![Secuencia del feed de actividad](../diagramas/secuencia/49-secuencia-feed-de-actividad.png)
 
@@ -429,13 +447,21 @@ Google, sesión al reabrir, compartir, barras del sistema, perfil social y aviso
 [46](../proceso/46-fusiones-y-pruebas-en-android.md) y [48](../proceso/48-arreglos-pendientes-y-google-en-android.md)).
 
 Las notificaciones push con la app cerrada (frontend#55, Firebase) no están implementadas: en Android los avisos llegan
-con la app abierta. Tampoco se han probado en Android la hoja de compartir de la tarjeta para Stories (HU-056), el
-enlace `geo:` de «cómo llegar» (HU-042, cuya ruta a pie y en bici ya está fusionada en la web) ni el dictado, que el
-WebView no ofrece. En el Sprint 19 el emulador no fue utilizable en el equipo de desarrollo
-([entrada 61](../proceso/61-e2e-padel-surf.md)).
+con la app abierta. El dictado no está disponible, porque el WebView no lo ofrece.
+
+En el Sprint 19 el emulador no fue utilizable en el equipo de desarrollo ([entrada 61](../proceso/61-e2e-padel-surf.md)),
+y el 25/11/2026 la app se probó en un **móvil real** (Galaxy A20e con Android 11, por cable contra el stack local). El
+enlace `geo:` de «cómo llegar» (HU-042) abrió Google Maps con el punto de encuentro, así que el WebView de Capacitor sí
+entrega esos enlaces al sistema. El Android System WebView de ese móvil era la versión 94: la app se veía casi sin
+estilos y la tarjeta para Stories no se pudo crear, porque se dibuja con `roundRect`, que no existe antes de la
+versión 99 (bug frontend#183, abierto). Por eso la hoja nativa de compartir de la tarjeta y del resumen (HU-056 y
+HU-057) sigue sin comprobarse en un Android real; las historias se cerraron y esa comprobación pasó a la tarea
+frontend#182 ([entrada 69](../proceso/69-prueba-en-android-real-y-cierre-de-stories.md)).
 
 > **Pendiente:** ¿se va a implementar el push con Firebase (frontend#55) antes de la entrega, o queda como trabajo
-> futuro? ¿Hay un móvil Android u otro equipo para comprobar HU-042 y HU-056?
+> futuro? ¿Puedes actualizar el Android System WebView del móvil de prueba, o conseguir otro con el WebView al día,
+> para comprobar la hoja de compartir (frontend#182)? ¿Y cuál es el WebView mínimo que debe soportar la app
+> (frontend#183)?
 
 ## 4.6 Funcionalidades de inteligencia artificial
 
@@ -714,6 +740,7 @@ una cobertura del 97,2 % de sentencias, 93,6 % de ramas, 95,3 % de funciones y 9
 Los recorridos que al principio se capturaban con Puppeteer para la memoria se convirtieron en **tests E2E con
 Playwright**, ejecutados contra el stack real (Keycloak, gateway con su límite de peticiones, microservicios, RabbitMQ y
 SSE), en español y en inglés, y con datos creados por cada test ([entrada 16](../proceso/16-tests-e2e-playwright.md)).
+Desde el Sprint 19, cada test cancela al terminar los planes que publica ([entrada 66](../proceso/66-cancelar-un-plan.md)).
 La batería pasó de 10 tests (5 recorridos × 2 idiomas) a 76 en la CI de la PR #146 del frontend
 ([entrada 48](../proceso/48-arreglos-pendientes-y-google-en-android.md)).
 

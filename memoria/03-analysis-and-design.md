@@ -40,14 +40,14 @@ se incorporaron historias al backlog; se derivan de las historias implementadas 
 | RF-06 | El sistema notificará los planes cercanos compatibles, con límite de avisos por usuario | HU-006, HU-036 | Implementado (web y Web Push; push en Android pendiente, frontend#55) |
 | RF-07 | Los planes caducarán automáticamente a su hora de inicio | HU-007, HU-039 | Implementado |
 | RF-08 | Los participantes de un plan dispondrán de un chat en tiempo real | HU-008 | Implementado |
-| RF-09 | Tras el plan, los participantes podrán valorarse y se registrarán las ausencias | HU-009, HU-025, HU-060, HU-062, HU-066 | Implementado como reputación por eventos y kudos, con niveles, rachas y anti-trampas |
+| RF-09 | Tras el plan, los participantes podrán valorarse y se registrarán las ausencias | HU-009, HU-025, HU-060, HU-062, HU-063, HU-066 | Implementado como reputación por eventos y kudos, con niveles, rachas, ventajas por nivel y anti-trampas |
 | RF-10 | El organizador podrá crear un plan escribiendo o dictando una frase | HU-010 | Implementado (sin probar con la API real del proveedor) |
 | RF-11 | Los planes y mensajes se moderarán automáticamente antes de publicarse | HU-011 | Pendiente |
 | RF-12 | El sistema elegirá a quién notificar según su probabilidad de aceptar | HU-012 | Implementado |
 | RF-13 | El administrador dispondrá de un panel de gestión y moderación | HU-013 | Pendiente (existe el listado de reportes para `admin`) |
 | RF-14 | El usuario podrá elegir el idioma de la aplicación (español o inglés) | HU-022 | Implementado |
 | RF-15 | Un participante podrá salir de un plan y, si estaba completo, entrar en una lista de espera | HU-023 | Implementado |
-| RF-16 | Un plan podrá compartirse por enlace con vista previa, también con quien no tiene cuenta | HU-024, HU-056 | Implementado (tarjeta para Stories sin probar en Android) |
+| RF-16 | Un plan podrá compartirse por enlace con vista previa, también con quien no tiene cuenta | HU-024, HU-056 | Implementado (la hoja de compartir de la tarjeta para Stories, sin comprobar en un Android real: frontend#182) |
 | RF-17 | El grupo podrá avisar de que va de camino o llega tarde, y hacer check-in en el punto de encuentro | HU-040, HU-025 | Implementado |
 | RF-18 | Un plan podrá exigir un mínimo de participantes y cancelarse solo si no se alcanza | HU-039 | Implementado |
 | RF-19 | El usuario podrá guardar alertas y declararse libre durante unas horas | HU-036, HU-035 | Implementado |
@@ -212,7 +212,8 @@ base de datos.
 
 Un plan está **abierto** mientras tiene plazas, **completo** al llenarse (y vuelve a abierto si alguien sale sin
 lista de espera), **en curso** a su hora de inicio y **terminado** tres horas después. Puede **cancelarse** si exige un
-mínimo de participantes y no lo alcanza en su hora límite (HU-039). Las tres horas de duración son una decisión
+mínimo de participantes y no lo alcanza en su hora límite (HU-039), y desde el Sprint 19 también puede cancelarlo quien
+lo organiza antes de que empiece ([entrada 66](../proceso/66-cancelar-un-plan.md)). Las tres horas de duración son una decisión
 explícita: los planes no tienen hora de fin y pedirla complicaría publicar ([entrada 25](../proceso/25-hu007-caducidad-y-recordatorio.md)).
 
 ![Ciclo de vida de un plan](../diagramas/estados/04-estados-plan.png)

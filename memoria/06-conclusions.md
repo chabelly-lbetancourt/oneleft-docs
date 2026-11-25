@@ -12,11 +12,11 @@
 | OE1 | Gestión ágil con Scrum ligero, Kanban, MoSCoW y puntos | Cumplido | Tablero con 279 tarjetas, sprints semanales, tabla y análisis de velocidad (4.1). Falta el gráfico de velocidad y la explicación del cambio de calendario |
 | OE2 | Microservicios con arquitectura hexagonal documentada en UML | Cumplido | Siete servicios Java hexagonales con ArchUnit, más el `ranker`; diagramas de componentes, clases, estados, secuencia (30), datos y despliegue |
 | OE3 | Búsqueda geoespacial y asignación concurrente sin sobreocupación | Cumplido | PostGIS con índice de expresión comprobado con `EXPLAIN`; test con 6 hilos contra PostgreSQL real en el que entra exactamente uno |
-| OE4 | Web Angular publicada como app Android con Capacitor | Cumplido en parte | APK generado por la CI y verificado en emulador, con geolocalización. Las notificaciones push con la app cerrada (frontend#55) no están hechas |
+| OE4 | Web Angular publicada como app Android con Capacitor | Cumplido en parte | APK generado por la CI y verificado en emulador, con geolocalización, y probado en parte en un móvil real ([entrada 69](../proceso/69-prueba-en-android-real-y-cierre-de-stories.md)). Las notificaciones push con la app cerrada (frontend#55) no están hechas |
 | OE5 | IA: lenguaje natural, moderación y ranking de notificaciones | Cumplido en parte | HU-012 con un modelo que, en simulación, completa los planes en la mitad de tiempo con un 28 % menos de avisos; HU-010 implementada. La moderación (HU-011) falta, y las métricas de HU-012 solo se han medido sobre datos sintéticos |
 | OE6 | Despliegue en AWS Lightsail con HTTPS, copias y entornos pre y pro | No cumplido todavía | Compose de producción con Caddy, copias y límites de memoria probado en local; falta el despliegue (infra#5) y las pruebas de carga (HU-015) |
 | OE7 | Observabilidad y calidad continua | Cumplido en parte | Prometheus, Loki y Grafana como código; cobertura ≥ 80 % obligatoria en la CI; E2E en cada promoción. SonarQube Cloud está configurado pero sin activar (falta el secreto `SONAR_TOKEN`), así que no hay *quality gate* |
-| OE8 | Proceso documentado con capturas | Cumplido | 61 entradas de diario, más de 100 capturas generadas con scripts reproducibles y un ADR |
+| OE8 | Proceso documentado con capturas | Cumplido | 69 entradas de diario, más de 100 capturas generadas con scripts reproducibles y un ADR |
 
 > **Pendiente:** ¿cómo valoras el cumplimiento del objetivo general? El estado final de OE4, OE5, OE6 y OE7 depende
 > de lo que decidas sobre el push en Android, HU-011, el despliegue en AWS, las pruebas de carga y SonarQube.
@@ -55,8 +55,9 @@ Más allá del producto, el proceso deja varias conclusiones que el diario docum
 - **El borrador por lenguaje natural no se ha probado con el proveedor real.**
 - **Sin patrón *outbox*.** Si un servicio cae entre el commit y la publicación de un evento, ese evento se pierde; está
   documentado y mitigado en el borrado de cuentas, que es repetible.
-- **Notificaciones push en Android pendientes** y algunas funciones de la app (compartir la tarjeta para Stories, el
-  enlace de «cómo llegar», dictado) sin probar o no disponibles en el WebView.
+- **Notificaciones push en Android pendientes** y algunas funciones de la app sin probar o no disponibles: la hoja de
+  compartir de la tarjeta para Stories no se ha comprobado en un Android real (frontend#182), la app no funciona bien
+  en un Android System WebView antiguo (frontend#183) y el WebView no ofrece el dictado.
 - **Accesibilidad sin auditoría formal.** Se han aplicado patrones accesibles, pero no hay un informe de conformidad con
   WCAG 2.2 AA.
 - **Evaluación con usuarios reales.** El anteproyecto preveía un piloto en el Campus Sur de la UPM, que no se ha hecho.
@@ -71,5 +72,5 @@ Más allá del producto, el proceso deja varias conclusiones que el diario docum
   distancia.
 - Patrón *outbox* para la publicación de eventos.
 - El agente «¿qué hago ahora?» (HU-014) y las historias de comunidad y confianza del backlog (comunidades, avales de
-  nivel, ventajas por reputación, mensajes directos).
+  nivel, mensajes directos).
 - Aplicación web instalable (PWA) y métricas de negocio en Grafana (HU-030, HU-029).

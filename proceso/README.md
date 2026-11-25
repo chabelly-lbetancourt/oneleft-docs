@@ -70,6 +70,10 @@ implementación y gestión del proyecto de la memoria.
 | 24/11/2026 | Sprint 19 | [63 · HU-042 Cómo llegar al punto de encuentro](63-hu042-como-llegar-al-punto-de-encuentro.md) |
 | 24/11/2026 | Sprint 19 | [64 · HU-057 y HU-058 El resumen del plan y el sticker de enlace para Stories](64-hu057-hu058-resumen-y-sticker-para-stories.md) |
 | 24/11/2026 | Sprint 19 | [65 · HU-052 Recuerdos del plan (parte de backend)](65-hu052-recuerdos-del-plan-backend.md) |
+| 25/11/2026 | Sprint 19 | [66 · Cancelar un plan como organizadora](66-cancelar-un-plan.md) |
+| 25/11/2026 | Sprint 19 | [67 · Bug: borrar una cuenta cancelaba sus planes sin avisar a nadie](67-bug-planes-de-una-cuenta-borrada.md) |
+| 25/11/2026 | Sprint 19 | [68 · HU-052 Recuerdos del plan: la galería y el cierre de la historia](68-hu052-recuerdos-del-plan-cierre.md) |
+| 25/11/2026 | Sprint 19 | [69 · La prueba en un Android real y el cierre de las historias de Stories](69-prueba-en-android-real-y-cierre-de-stories.md) |
 
 ## Convenciones
 
